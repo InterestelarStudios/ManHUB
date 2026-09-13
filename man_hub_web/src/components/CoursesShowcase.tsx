@@ -71,7 +71,11 @@ const COURSES: Course[] = [
   },
 ];
 
-export default function CoursesShowcase() {
+interface CoursesShowcaseProps {
+  onBuyCourse?: (courseId: string, courseTitle: string) => void;
+}
+
+export default function CoursesShowcase({ onBuyCourse }: CoursesShowcaseProps) {
   return (
     <section id="treinamentos" className={styles.coursesSection}>
       <div className="ambient-glow-pill" style={{ top: "30%", right: "-10%" }} />
@@ -132,11 +136,15 @@ export default function CoursesShowcase() {
                 </ul>
 
                 <div className={styles.cardFooter}>
-                  <span className={styles.interactiveTag}>Disponível no App</span>
-                  <a href="#download" className={styles.openCourseBtn}>
-                    <span>Acessar no App</span>
+                  <span className={styles.interactiveTag}>R$ 97,00 vitalício</span>
+                  <button
+                    onClick={() => onBuyCourse?.(course.id, course.title)}
+                    className={styles.openCourseBtn}
+                    style={{ background: "transparent", border: "none" }}
+                  >
+                    <span>Comprar Curso</span>
                     <ArrowRight size={14} />
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>

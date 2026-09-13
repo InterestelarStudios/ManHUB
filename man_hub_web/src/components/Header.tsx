@@ -5,7 +5,11 @@ import styles from "./Header.module.css";
 import Image from "next/image";
 import { Sparkles, Menu, X } from "lucide-react";
 
-export default function Header() {
+interface HeaderProps {
+  onOpenCheckout?: () => void;
+}
+
+export default function Header({ onOpenCheckout }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -45,10 +49,13 @@ export default function Header() {
         </nav>
 
         <div className={styles.headerAction}>
-          <a href="#download" className={styles.ctaBtn}>
+          <button
+            onClick={onOpenCheckout}
+            className={styles.ctaBtn}
+          >
             <Sparkles size={15} />
-            <span>Lista VIP • Em Breve</span>
-          </a>
+            <span>Assinar • Comprar</span>
+          </button>
 
           <button
             className={styles.mobileMenuBtn}

@@ -8,7 +8,9 @@ import '../../domain/models/module.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/services/user_progress_service.dart';
 import '../../core/services/bookmark_service.dart';
+import '../../core/services/auth_service.dart';
 import '../widgets/block_widgets.dart';
+import '../widgets/purchase_bottom_sheet.dart';
 
 class PlayableSessionItem {
   final Session session;
@@ -56,13 +58,25 @@ class _SessionPlayerScreenState extends State<SessionPlayerScreen> {
   bool _isSessionFinished = false;
   final Map<int, GlobalKey<AnimatedScreenViewState>> _animKeys = {};
   final BookmarkService _bookmarkService = BookmarkService();
+  final AuthService _authService = AuthService();
+
+  bool get _hasFullAccess {
+    if (widget.training == null) return true;
+    return _authService.hasAccessToTraining(widget.training!.id);
+  }
+
+  bool _isSessionLocked(PlayableSessionItem? item) {
+    if (item == null || widget.training == null) return false;
+    return item.moduleIndex > 0 && !_hasFullAccess;
+  }
 
   @override
   void initState() {
     super.initState();
     _currentSession = widget.session;
     _isFirstSessionOfModule = widget.isFirstSessionOfModule;
-    _bookmarkService.addListener(_onBookmarkChanged);
+    _bookmarkService.addListener(_onStateChanged);
+    _authService.addListener(_onStateChanged);
     _buildPlaylist();
     final maxIndex = _currentSession.screens.isNotEmpty ? _currentSession.screens.length - 1 : 0;
     _currentIndex = widget.initialScreenIndex.clamp(0, maxIndex);
@@ -73,11 +87,12 @@ class _SessionPlayerScreenState extends State<SessionPlayerScreen> {
 
   @override
   void dispose() {
-    _bookmarkService.removeListener(_onBookmarkChanged);
+    _bookmarkService.removeListener(_onStateChanged);
+    _authService.removeListener(_onStateChanged);
     super.dispose();
   }
 
-  void _onBookmarkChanged() {
+  void _onStateChanged() {
     if (mounted) setState(() {});
   }
 
@@ -138,6 +153,14 @@ class _SessionPlayerScreenState extends State<SessionPlayerScreen> {
   void _startNextSession() {
     final nextItem = _nextPlayableItem;
     if (nextItem == null) return;
+
+    if (_isSessionLocked(nextItem)) {
+      if (widget.training != null) {
+        PurchaseBottomSheet.show(context, training: widget.training!);
+      }
+      return;
+    }
+
     setState(() {
       _currentSession = nextItem.session;
       _isFirstSessionOfModule = nextItem.isFirstSessionOfModule;
@@ -590,11 +613,13 @@ class _SessionPlayerScreenState extends State<SessionPlayerScreen> {
               ),
               const SizedBox(height: 10),
 
-              // 4. Pergunta do Usuário
+              // 4. Pergunta ou Orientação do Usuário
               Text(
                 isLastOverall
                     ? 'Parabéns! Você completou todas as aulas deste treinamento!'
-                    : 'Deseja prosseguir para a próxima aula ou sair?',
+                    : _isSessionLocked(nextItem)
+                        ? 'Você concluiu o módulo introdutório gratuito! Para avançar para o Módulo ${nextItem!.moduleIndex + 1} e dominar a metodologia prática, desbloqueie seu acesso.'
+                        : 'Deseja prosseguir para a próxima aula ou sair?',
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   color: AppColors.textSecondary,
@@ -606,116 +631,245 @@ class _SessionPlayerScreenState extends State<SessionPlayerScreen> {
 
               // 5. Card da Próxima Aula
               if (nextItem != null) ...[
-                Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: AppColors.backgroundMain.withValues(alpha: 0.65),
-                    borderRadius: BorderRadius.circular(16),
-                    border: Border.all(
-                      color: AppColors.neonPrimary.withValues(alpha: 0.25),
-                      width: 1.2,
+                if (_isSessionLocked(nextItem))
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: AppColors.backgroundMain.withValues(alpha: 0.7),
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(
+                        color: const Color(0xFFD4AF37).withValues(alpha: 0.45),
+                        width: 1.2,
+                      ),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            const Icon(
+                              Icons.lock_rounded,
+                              size: 15,
+                              color: Color(0xFFD4AF37),
+                            ),
+                            const SizedBox(width: 6),
+                            Text(
+                              'BLOQUEADO • MÓDULO ${nextItem.moduleIndex + 1}',
+                              style: const TextStyle(
+                                color: Color(0xFFD4AF37),
+                                fontSize: 11,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 1.2,
+                              ),
+                            ),
+                            const Spacer(),
+                            Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                              decoration: BoxDecoration(
+                                color: const Color(0xFFD4AF37).withValues(alpha: 0.15),
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                              child: const Text(
+                                'PREMIUM',
+                                style: TextStyle(
+                                  color: Color(0xFFD4AF37),
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          nextItem.session.title,
+                          style: const TextStyle(
+                            color: AppColors.textPrimary,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          nextItem.module.title,
+                          style: const TextStyle(
+                            color: AppColors.textSecondary,
+                            fontSize: 12,
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        const Row(
+                          children: [
+                            Icon(Icons.workspace_premium_rounded, size: 14, color: Color(0xFFD4AF37)),
+                            SizedBox(width: 6),
+                            Expanded(
+                              child: Text(
+                                'Disponível no Man Hub Pass ou Acesso Vitalício',
+                                style: TextStyle(
+                                  color: Color(0xFFD4AF37),
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  )
+                else
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: AppColors.backgroundMain.withValues(alpha: 0.65),
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(
+                        color: AppColors.neonPrimary.withValues(alpha: 0.25),
+                        width: 1.2,
+                      ),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            const Icon(
+                              Icons.play_circle_fill_rounded,
+                              size: 15,
+                              color: AppColors.neonPrimary,
+                            ),
+                            const SizedBox(width: 6),
+                            Text(
+                              'A SEGUIR • MÓDULO ${nextItem.moduleIndex + 1}',
+                              style: const TextStyle(
+                                color: AppColors.neonPrimary,
+                                fontSize: 11,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 1.2,
+                              ),
+                            ),
+                            const Spacer(),
+                            Text(
+                              '${nextItem.session.screens.length} telas',
+                              style: const TextStyle(
+                                color: AppColors.textSecondary,
+                                fontSize: 11,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          nextItem.session.title,
+                          style: const TextStyle(
+                            color: AppColors.textPrimary,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          nextItem.module.title,
+                          style: const TextStyle(
+                            color: AppColors.textSecondary,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          const Icon(
-                            Icons.play_circle_fill_rounded,
-                            size: 15,
-                            color: AppColors.neonPrimary,
-                          ),
-                          const SizedBox(width: 6),
-                          Text(
-                            'A SEGUIR • MÓDULO ${nextItem.moduleIndex + 1}',
-                            style: const TextStyle(
-                              color: AppColors.neonPrimary,
-                              fontSize: 11,
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 1.2,
-                            ),
-                          ),
-                          const Spacer(),
-                          Text(
-                            '${nextItem.session.screens.length} telas',
-                            style: const TextStyle(
-                              color: AppColors.textSecondary,
-                              fontSize: 11,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      Text(
-                        nextItem.session.title,
-                        style: const TextStyle(
-                          color: AppColors.textPrimary,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        nextItem.module.title,
-                        style: const TextStyle(
-                          color: AppColors.textSecondary,
-                          fontSize: 12,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
                 const SizedBox(height: 24),
               ],
 
               // 6. Botão de Ação Principal
-              SizedBox(
-                width: double.infinity,
-                height: 52,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.neonPrimary,
-                    foregroundColor: AppColors.backgroundMain,
-                    elevation: 6,
-                    shadowColor: AppColors.neonPrimary.withValues(alpha: 0.5),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(14),
+              if (nextItem != null && _isSessionLocked(nextItem))
+                SizedBox(
+                  width: double.infinity,
+                  height: 52,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFFD4AF37),
+                      foregroundColor: Colors.black,
+                      elevation: 6,
+                      shadowColor: const Color(0xFFD4AF37).withValues(alpha: 0.5),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(14),
+                      ),
+                    ),
+                    onPressed: () {
+                      if (widget.training != null) {
+                        PurchaseBottomSheet.show(context, training: widget.training!);
+                      }
+                    },
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.lock_open_rounded,
+                          size: 22,
+                          color: Colors.black,
+                        ),
+                        SizedBox(width: 8),
+                        Text(
+                          'Desbloquear Acesso Completo',
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 0.5,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  onPressed: () {
-                    if (nextItem != null) {
-                      _startNextSession();
-                    } else {
-                      Navigator.of(context).pop();
-                    }
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        nextItem != null
-                            ? Icons.play_arrow_rounded
-                            : Icons.check_rounded,
-                        size: 24,
-                        color: AppColors.backgroundMain,
+                )
+              else
+                SizedBox(
+                  width: double.infinity,
+                  height: 52,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.neonPrimary,
+                      foregroundColor: AppColors.backgroundMain,
+                      elevation: 6,
+                      shadowColor: AppColors.neonPrimary.withValues(alpha: 0.5),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(14),
                       ),
-                      const SizedBox(width: 8),
-                      Text(
-                        nextItem != null
-                            ? 'Prosseguir para Próxima Aula'
-                            : 'Concluir e Voltar ao Curso',
-                        style: const TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 0.5,
+                    ),
+                    onPressed: () {
+                      if (nextItem != null) {
+                        _startNextSession();
+                      } else {
+                        Navigator.of(context).pop();
+                      }
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          nextItem != null
+                              ? Icons.play_arrow_rounded
+                              : Icons.check_rounded,
+                          size: 24,
+                          color: AppColors.backgroundMain,
                         ),
-                      ),
-                    ],
+                        const SizedBox(width: 8),
+                        Text(
+                          nextItem != null
+                              ? 'Prosseguir para Próxima Aula'
+                              : 'Concluir e Voltar ao Curso',
+                          style: const TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 0.5,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
               const SizedBox(height: 12),
 
               // 7. Botão Secundário de Sair

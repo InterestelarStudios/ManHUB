@@ -5,6 +5,8 @@ import '../../../domain/models/lesson_bookmark.dart';
 import '../../../domain/models/training.dart';
 import '../../../domain/models/session.dart';
 import '../../../data/repositories/training_repository.dart';
+import '../../../core/services/auth_service.dart';
+import '../../widgets/purchase_bottom_sheet.dart';
 import '../session_player_screen.dart';
 
 class BookmarksScreen extends StatefulWidget {
@@ -83,6 +85,20 @@ class _BookmarksScreenState extends State<BookmarksScreen> {
     }
 
     if (matchingSession != null) {
+      if (matchingTraining != null) {
+        int modIdx = 0;
+        for (int m = 0; m < matchingTraining.modules.length; m++) {
+          if (matchingTraining.modules[m].sessions.any((s) => s.id == matchingSession!.id)) {
+            modIdx = m;
+            break;
+          }
+        }
+        if (modIdx > 0 && !AuthService().hasAccessToTraining(matchingTraining.id)) {
+          PurchaseBottomSheet.show(context, training: matchingTraining);
+          return;
+        }
+      }
+
       Navigator.of(context).push(
         MaterialPageRoute(
           builder: (_) => SessionPlayerScreen(
