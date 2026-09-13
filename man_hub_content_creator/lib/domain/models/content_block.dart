@@ -30,7 +30,7 @@ sealed class ContentBlock {
 
 class TitleBlock extends ContentBlock {
   String text;
-  TitleBlock({String? id, this.text = ''}) : super(id: id, type: 'title');
+  TitleBlock({super.id, this.text = ''}) : super(type: 'title');
 
   @override
   Map<String, dynamic> toJson() => {
@@ -42,7 +42,7 @@ class TitleBlock extends ContentBlock {
 
 class Title2Block extends ContentBlock {
   String text;
-  Title2Block({String? id, this.text = ''}) : super(id: id, type: 'title2');
+  Title2Block({super.id, this.text = ''}) : super(type: 'title2');
 
   @override
   Map<String, dynamic> toJson() => {
@@ -54,7 +54,7 @@ class Title2Block extends ContentBlock {
 
 class DescriptionBlock extends ContentBlock {
   String text;
-  DescriptionBlock({String? id, this.text = ''}) : super(id: id, type: 'description');
+  DescriptionBlock({super.id, this.text = ''}) : super(type: 'description');
 
   @override
   Map<String, dynamic> toJson() => {
@@ -66,7 +66,7 @@ class DescriptionBlock extends ContentBlock {
 
 class HighlightedDescriptionBlock extends ContentBlock {
   String text;
-  HighlightedDescriptionBlock({String? id, this.text = ''}) : super(id: id, type: 'highlighted_description');
+  HighlightedDescriptionBlock({super.id, this.text = ''}) : super(type: 'highlighted_description');
 
   @override
   Map<String, dynamic> toJson() => {
@@ -78,7 +78,7 @@ class HighlightedDescriptionBlock extends ContentBlock {
 
 class ImageBlock extends ContentBlock {
   String imageUrl;
-  ImageBlock({String? id, this.imageUrl = ''}) : super(id: id, type: 'image');
+  ImageBlock({super.id, this.imageUrl = ''}) : super(type: 'image');
 
   @override
   Map<String, dynamic> toJson() => {
@@ -90,7 +90,7 @@ class ImageBlock extends ContentBlock {
 
 class VideoBlock extends ContentBlock {
   String videoUrl;
-  VideoBlock({String? id, this.videoUrl = ''}) : super(id: id, type: 'video');
+  VideoBlock({super.id, this.videoUrl = ''}) : super(type: 'video');
 
   @override
   Map<String, dynamic> toJson() => {

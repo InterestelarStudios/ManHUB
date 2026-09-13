@@ -122,12 +122,11 @@ class AppTheme {
       ),
       cardTheme: CardThemeData(
         color: AppColors.card,
-        elevation:
-            0, // Zero elevation to favor glassmorphism or simple flat borders
+        elevation: 0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
           side: BorderSide(
-            color: AppColors.textSecondary.withValues(alpha: 0.5), // Subtle border for depth
+            color: AppColors.neonPrimary.withValues(alpha: 0.3),
             width: 1,
           ),
         ),
@@ -170,7 +169,7 @@ class AppTheme {
         backgroundColor: AppColors.backgroundMain,
         elevation: 0,
         selectedItemColor: AppColors.neonPrimary,
-        unselectedItemColor: AppColors.textPrimary.withOpacity(0.5),
+        unselectedItemColor: AppColors.textPrimary.withValues(alpha: 0.5),
         type: BottomNavigationBarType.fixed,
         showSelectedLabels: true,
         showUnselectedLabels: true,

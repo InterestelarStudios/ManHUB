@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 import 'presentation/controllers/creator_controller.dart';
-import 'presentation/screens/creator_screen.dart';
+import 'presentation/screens/course_list_screen.dart';
+import 'core/theme/creator_theme.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   runApp(const ManHubCreatorApp());
 }
 
@@ -13,11 +20,9 @@ class ManHubCreatorApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Man Hub Content Creator',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueAccent),
-        useMaterial3: true,
-      ),
-      home: CreatorAppRoot(),
+      theme: CreatorTheme.darkTheme,
+      home: const CreatorAppRoot(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -33,6 +38,13 @@ class _CreatorAppRootState extends State<CreatorAppRoot> {
   final CreatorController _controller = CreatorController();
 
   @override
+  void initState() {
+    super.initState();
+    // Carrega os treinamentos do Firestore na inicialização
+    _controller.loadTrainingsFromFirestore();
+  }
+
+  @override
   void dispose() {
     _controller.dispose();
     super.dispose();
@@ -40,6 +52,6 @@ class _CreatorAppRootState extends State<CreatorAppRoot> {
 
   @override
   Widget build(BuildContext context) {
-    return CreatorScreen(controller: _controller);
+    return CourseListScreen(controller: _controller);
   }
 }

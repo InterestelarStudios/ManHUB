@@ -29,6 +29,69 @@ class ContentBlockRenderer extends StatelessWidget {
   }
 }
 
+/// Utilitário para transformar marcações como **negrito** e *itálico* em TextSpans estilizados
+TextSpan buildMarkdownTextSpan({
+  required String text,
+  required TextStyle baseStyle,
+  TextStyle? boldStyle,
+  TextStyle? italicStyle,
+}) {
+  final effectiveBoldStyle = boldStyle ??
+      baseStyle.copyWith(
+        fontWeight: FontWeight.bold,
+        color: AppColors.textPrimary,
+      );
+  final effectiveItalicStyle = italicStyle ??
+      baseStyle.copyWith(
+        fontStyle: FontStyle.italic,
+      );
+
+  final pattern = RegExp(r'(\*\*([\s\S]+?)\*\*|\*([^\*]+?)\*)');
+  final matches = pattern.allMatches(text);
+
+  if (matches.isEmpty) {
+    return TextSpan(text: text, style: baseStyle);
+  }
+
+  final spans = <InlineSpan>[];
+  int currentIndex = 0;
+
+  for (final match in matches) {
+    if (match.start > currentIndex) {
+      spans.add(TextSpan(
+        text: text.substring(currentIndex, match.start),
+        style: baseStyle,
+      ));
+    }
+
+    final fullMatch = match.group(0)!;
+    if (fullMatch.startsWith('**') && fullMatch.endsWith('**')) {
+      final boldContent = match.group(2) ?? '';
+      spans.add(TextSpan(
+        text: boldContent,
+        style: effectiveBoldStyle,
+      ));
+    } else if (fullMatch.startsWith('*') && fullMatch.endsWith('*')) {
+      final italicContent = match.group(3) ?? '';
+      spans.add(TextSpan(
+        text: italicContent,
+        style: effectiveItalicStyle,
+      ));
+    }
+
+    currentIndex = match.end;
+  }
+
+  if (currentIndex < text.length) {
+    spans.add(TextSpan(
+      text: text.substring(currentIndex),
+      style: baseStyle,
+    ));
+  }
+
+  return TextSpan(children: spans);
+}
+
 class TitleBlockWidget extends StatelessWidget {
   final TitleBlock block;
 
@@ -36,14 +99,23 @@ class TitleBlockWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final baseStyle = Theme.of(context).textTheme.headlineMedium?.copyWith(
+          color: AppColors.neonPrimary,
+          fontWeight: FontWeight.bold,
+        ) ??
+        const TextStyle(
+          color: AppColors.neonPrimary,
+          fontWeight: FontWeight.bold,
+        );
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16.0),
-      child: Text(
-        block.text,
-        style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-              color: AppColors.neonPrimary,
-              fontWeight: FontWeight.bold,
-            ),
+      child: Text.rich(
+        buildMarkdownTextSpan(
+          text: block.text,
+          baseStyle: baseStyle,
+          boldStyle: baseStyle.copyWith(color: Colors.white),
+        ),
         textAlign: TextAlign.center,
       ),
     );
@@ -57,14 +129,23 @@ class Title2BlockWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final baseStyle = Theme.of(context).textTheme.titleLarge?.copyWith(
+          color: AppColors.textPrimary,
+          fontWeight: FontWeight.bold,
+        ) ??
+        const TextStyle(
+          color: AppColors.textPrimary,
+          fontWeight: FontWeight.bold,
+        );
+
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 12.0),
-      child: Text(
-        block.text,
-        style: Theme.of(context).textTheme.titleLarge?.copyWith(
-              color: AppColors.textPrimary,
-              fontWeight: FontWeight.bold,
-            ),
+      padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
+      child: Text.rich(
+        buildMarkdownTextSpan(
+          text: block.text,
+          baseStyle: baseStyle,
+          boldStyle: baseStyle.copyWith(color: AppColors.neonPrimary),
+        ),
         textAlign: TextAlign.left,
       ),
     );
@@ -78,13 +159,34 @@ class DescriptionBlockWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final baseStyle = Theme.of(context).textTheme.bodyLarge?.copyWith(
+          height: 1.6,
+          color: AppColors.textSecondary,
+        ) ??
+        const TextStyle(
+          height: 1.6,
+          color: AppColors.textSecondary,
+        );
+
+    final boldStyle = baseStyle.copyWith(
+      fontWeight: FontWeight.bold,
+      color: AppColors.textPrimary,
+    );
+
+    final italicStyle = baseStyle.copyWith(
+      fontStyle: FontStyle.italic,
+      color: AppColors.neonLight,
+    );
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0),
-      child: Text(
-        block.text,
-        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-              height: 1.6,
-            ),
+      child: Text.rich(
+        buildMarkdownTextSpan(
+          text: block.text,
+          baseStyle: baseStyle,
+          boldStyle: boldStyle,
+          italicStyle: italicStyle,
+        ),
         textAlign: TextAlign.justify,
       ),
     );
@@ -98,6 +200,27 @@ class HighlightedDescriptionBlockWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final baseStyle = Theme.of(context).textTheme.bodyLarge?.copyWith(
+          height: 1.6,
+          color: AppColors.neonLight,
+          fontWeight: FontWeight.w500,
+        ) ??
+        const TextStyle(
+          height: 1.6,
+          color: AppColors.neonLight,
+          fontWeight: FontWeight.w500,
+        );
+
+    final boldStyle = baseStyle.copyWith(
+      fontWeight: FontWeight.bold,
+      color: Colors.white,
+    );
+
+    final italicStyle = baseStyle.copyWith(
+      fontStyle: FontStyle.italic,
+      color: AppColors.neonPrimary,
+    );
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
       child: Container(
@@ -106,14 +229,21 @@ class HighlightedDescriptionBlockWidget extends StatelessWidget {
           color: AppColors.neonPrimary.withValues(alpha: 0.1),
           border: Border.all(color: AppColors.neonPrimary.withValues(alpha: 0.5), width: 1.5),
           borderRadius: BorderRadius.circular(16),
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.neonPrimary.withValues(alpha: 0.08),
+              blurRadius: 14,
+              spreadRadius: 1,
+            ),
+          ],
         ),
-        child: Text(
-          block.text,
-          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                height: 1.6,
-                color: AppColors.neonLight,
-                fontWeight: FontWeight.w500,
-              ),
+        child: Text.rich(
+          buildMarkdownTextSpan(
+            text: block.text,
+            baseStyle: baseStyle,
+            boldStyle: boldStyle,
+            italicStyle: italicStyle,
+          ),
           textAlign: TextAlign.justify,
         ),
       ),
@@ -128,19 +258,43 @@ class ImageBlockWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (block.imageUrl.trim().isEmpty) {
+      return const SizedBox.shrink();
+    }
+
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16.0),
+      padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 4.0),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(16.0),
         child: CachedNetworkImage(
           imageUrl: block.imageUrl,
-          placeholder: (context, url) => const Center(
-            child: CircularProgressIndicator(color: AppColors.neonPrimary),
+          width: double.infinity,
+          fit: BoxFit.fitWidth,
+          placeholder: (context, url) => AspectRatio(
+            aspectRatio: 16 / 9,
+            child: Container(
+              color: AppColors.card,
+              child: const Center(
+                child: SizedBox(
+                  width: 28,
+                  height: 28,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2,
+                    color: AppColors.neonPrimary,
+                  ),
+                ),
+              ),
+            ),
           ),
-          errorWidget: (context, url, error) => const Center(
-            child: Icon(Icons.broken_image, color: AppColors.textSecondary, size: 48),
+          errorWidget: (context, url, error) => AspectRatio(
+            aspectRatio: 16 / 9,
+            child: Container(
+              color: AppColors.card,
+              child: const Center(
+                child: Icon(Icons.broken_image, color: AppColors.textSecondary, size: 40),
+              ),
+            ),
           ),
-          fit: BoxFit.cover,
         ),
       ),
     );

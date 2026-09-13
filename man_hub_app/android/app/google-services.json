@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "495141513520",
+    "project_id": "man-hub-c0bef",
+    "storage_bucket": "man-hub-c0bef.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:495141513520:android:3f760fbd7d25b62e5340f5",
+        "android_client_info": {
+          "package_name": "com.example.man_hub_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8mJIcIkghuugvu-kHQby3RBnz9f97uZo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

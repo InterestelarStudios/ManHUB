@@ -1,0 +1,190 @@
+.bannerSection {
+  position: relative;
+  padding: 100px 0;
+  background: var(--bg-main);
+  overflow: hidden;
+}
+
+.bannerCard {
+  position: relative;
+  background: linear-gradient(135deg, rgba(7, 20, 38, 0.95) 0%, rgba(10, 30, 51, 0.9) 100%);
+  border: 1px solid rgba(0, 191, 255, 0.3);
+  border-radius: var(--radius-xl);
+  padding: 60px 40px;
+  text-align: center;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.7), 0 0 50px rgba(0, 191, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  overflow: hidden;
+}
+
+.bannerCard::before {
+  content: '';
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(0, 191, 255, 0.3) 0%, transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+.bannerTitle {
+  font-size: 44px;
+  font-weight: 800;
+  line-height: 1.15;
+  color: #FFFFFF;
+  max-width: 720px;
+}
+
+.bannerSubtitle {
+  font-size: 17px;
+  color: var(--text-secondary);
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+.waitlistWrap {
+  width: 100%;
+  max-width: 520px;
+  margin-top: 6px;
+}
+
+.waitlistForm {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.emailInput {
+  flex: 1;
+  padding: 16px 20px;
+  border-radius: var(--radius-full);
+  background: rgba(4, 13, 26, 0.85);
+  border: 1px solid rgba(0, 191, 255, 0.3);
+  color: #FFFFFF;
+  font-size: 15px;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.emailInput:focus {
+  border-color: var(--neon-primary);
+  box-shadow: 0 0 16px rgba(0, 191, 255, 0.3);
+}
+
+.waitlistBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 28px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--neon-primary), var(--royal-blue));
+  border: none;
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: 0 4px 20px var(--neon-glow);
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.waitlistBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 28px rgba(0, 191, 255, 0.6);
+}
+
+.successAlert {
+  padding: 14px 24px;
+  border-radius: var(--radius-md);
+  background: rgba(129, 199, 132, 0.15);
+  border: 1px solid var(--success);
+  color: #A5D6A7;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.buttonGroup {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.storeBadgeBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 22px;
+  border-radius: 14px;
+  background: rgba(4, 13, 26, 0.85);
+  border: 1px solid rgba(0, 191, 255, 0.25);
+  color: #FFFFFF;
+  transition: all 0.2s ease;
+}
+
+.storeBadgeBtn:hover {
+  border-color: var(--neon-primary);
+  background: rgba(7, 20, 38, 0.95);
+  transform: translateY(-2px);
+}
+
+.storeBadgeText {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.storeBadgeSmall {
+  font-size: 10px;
+  text-transform: uppercase;
+  color: var(--gold-accent);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.storeBadgeName {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.assuranceRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.assuranceItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+@media (max-width: 768px) {
+  .bannerCard {
+    padding: 40px 20px;
+  }
+  .bannerTitle {
+    font-size: 30px;
+  }
+  .assuranceRow {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

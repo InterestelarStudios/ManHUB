@@ -1,0 +1,359 @@
+.mockupContainer {
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+  perspective: 1200px;
+}
+
+.phoneFrame {
+  position: relative;
+  width: 100%;
+  height: 640px;
+  background: #02070E;
+  border-radius: 46px;
+  border: 9px solid #141B26;
+  box-shadow: 
+    0 0 0 2px rgba(0, 191, 255, 0.3),
+    0 25px 60px rgba(0, 0, 0, 0.8),
+    0 0 45px rgba(0, 191, 255, 0.22);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+.phoneFrame:hover {
+  transform: translateY(-6px) rotateY(-2deg) rotateX(2deg);
+  box-shadow: 
+    0 0 0 2px rgba(0, 191, 255, 0.5),
+    0 35px 80px rgba(0, 0, 0, 0.9),
+    0 0 60px rgba(0, 191, 255, 0.35);
+}
+
+/* Speaker & Dynamic Island */
+.phoneHeaderBar {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 110px;
+  height: 22px;
+  background: #09121E;
+  border-radius: 12px;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.cameraLens {
+  width: 9px;
+  height: 9px;
+  background: #030810;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 191, 255, 0.3);
+}
+
+.speakerMesh {
+  width: 36px;
+  height: 4px;
+  background: #1C2634;
+  border-radius: 2px;
+}
+
+/* Screen Content */
+.phoneScreen {
+  position: relative;
+  flex: 1;
+  background: #040D1A;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Story Progress Bars */
+.storyBars {
+  display: flex;
+  gap: 4px;
+  padding: 38px 14px 10px;
+  z-index: 20;
+}
+
+.barTrack {
+  flex: 1;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.barFill {
+  height: 100%;
+  background: var(--neon-primary);
+  box-shadow: 0 0 8px var(--neon-primary);
+  transition: width 0.2s linear;
+}
+
+/* Top App Action Bar */
+.appTopBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 16px 12px;
+  z-index: 20;
+}
+
+.appBrand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.appLogoCircle {
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, var(--neon-primary), var(--royal-blue));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.appCourseTitle {
+  font-size: 12px;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: 0.02em;
+}
+
+.appActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.iconBtn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.bookmarked {
+  background: rgba(229, 169, 60, 0.25) !important;
+  border-color: #E5A93C !important;
+  color: #E5A93C !important;
+  box-shadow: 0 0 12px rgba(229, 169, 60, 0.4);
+}
+
+/* Card Visual Slide */
+.slideContent {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px;
+  z-index: 10;
+}
+
+.slideBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.7);
+  z-index: 1;
+  transition: opacity 0.5s ease;
+}
+
+.slideGradientOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(4, 13, 26, 0.4) 0%,
+    rgba(4, 13, 26, 0.7) 50%,
+    rgba(4, 13, 26, 0.96) 100%
+  );
+  z-index: 2;
+}
+
+.slideCard {
+  position: relative;
+  z-index: 5;
+  background: rgba(7, 20, 38, 0.85);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.slideBadge {
+  display: inline-block;
+  padding: 3px 8px;
+  background: rgba(0, 191, 255, 0.2);
+  border: 1px solid rgba(0, 191, 255, 0.4);
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--neon-light);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.slideTitle {
+  font-size: 16px;
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1.25;
+  margin-bottom: 6px;
+}
+
+.slideText {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+/* Touch Control Areas */
+.touchLeft, .touchRight {
+  position: absolute;
+  top: 80px;
+  bottom: 60px;
+  z-index: 15;
+  cursor: pointer;
+}
+
+.touchLeft {
+  left: 0;
+  width: 30%;
+}
+
+.touchRight {
+  right: 0;
+  width: 70%;
+}
+
+/* Bottom App Navigation Bar */
+.bottomNav {
+  height: 52px;
+  background: rgba(7, 20, 38, 0.95);
+  border-top: 1px solid rgba(0, 191, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 10px;
+  z-index: 30;
+}
+
+.navItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  color: var(--text-muted);
+  font-size: 9px;
+  cursor: pointer;
+}
+
+.navActive {
+  color: var(--neon-primary);
+}
+
+/* Floating interactive pills */
+.floatingBadge1 {
+  position: absolute;
+  top: 15%;
+  left: -24px;
+  background: rgba(7, 20, 38, 0.9);
+  border: 1px solid rgba(0, 191, 255, 0.35);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 191, 255, 0.2);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 60;
+  backdrop-filter: blur(12px);
+  animation: float 5s ease-in-out infinite;
+}
+
+.floatingBadge2 {
+  position: absolute;
+  bottom: 22%;
+  right: -24px;
+  background: rgba(7, 20, 38, 0.9);
+  border: 1px solid rgba(229, 169, 60, 0.35);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(229, 169, 60, 0.2);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 60;
+  backdrop-filter: blur(12px);
+  animation: float 6s ease-in-out infinite 1.5s;
+}
+
+.badgeIconCircle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.badgeText {
+  display: flex;
+  flex-direction: column;
+}
+
+.badgeLabel {
+  font-size: 9px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.badgeVal {
+  font-size: 13px;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+@media (max-width: 480px) {
+  .mockupContainer {
+    max-width: 310px;
+  }
+  .phoneFrame {
+    height: 560px;
+  }
+  .floatingBadge1, .floatingBadge2 {
+    display: none;
+  }
+}

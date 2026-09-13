@@ -1,0 +1,176 @@
+.hero {
+  position: relative;
+  min-height: 100vh;
+  padding-top: calc(var(--header-height) + 40px);
+  padding-bottom: 80px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.heroContent {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: center;
+  gap: 60px;
+  position: relative;
+  z-index: 10;
+}
+
+.heroLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.badgeWrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.heroTitle {
+  font-size: 54px;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: #FFFFFF;
+}
+
+.heroSubtitle {
+  font-size: 18px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 580px;
+}
+
+.heroCtas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.appBadges {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 6px;
+}
+
+.storeBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 18px;
+  border-radius: 12px;
+  background: rgba(7, 20, 38, 0.8);
+  border: 1px solid rgba(0, 191, 255, 0.2);
+  color: #fff;
+  transition: all 0.2s ease;
+}
+
+.storeBtn:hover {
+  border-color: var(--neon-primary);
+  background: rgba(10, 30, 51, 0.9);
+  transform: translateY(-2px);
+}
+
+.storeText {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.storeSmall {
+  font-size: 9px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+}
+
+.storeName {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.metricsBar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding-top: 24px;
+  margin-top: 16px;
+  border-top: 1px solid rgba(0, 191, 255, 0.12);
+}
+
+.metricItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.metricNum {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 800;
+  color: #FFFFFF;
+}
+
+.metricLabel {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.heroRight {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+@media (max-width: 1024px) {
+  .heroContent {
+    grid-template-columns: 1fr;
+    gap: 50px;
+    text-align: center;
+  }
+
+  .heroLeft {
+    align-items: center;
+  }
+
+  .heroSubtitle {
+    margin: 0 auto;
+  }
+
+  .heroCtas {
+    justify-content: center;
+  }
+
+  .appBadges {
+    justify-content: center;
+  }
+
+  .metricsBar {
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .heroTitle {
+    font-size: 38px;
+  }
+
+  .heroSubtitle {
+    font-size: 16px;
+  }
+
+  .metricsBar {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    text-align: center;
+  }
+}

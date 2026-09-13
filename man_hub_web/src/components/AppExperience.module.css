@@ -1,0 +1,174 @@
+.experienceSection {
+  position: relative;
+  padding: 100px 0;
+  background: var(--bg-surface);
+  overflow: hidden;
+}
+
+.headerWrap {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.sectionTitle {
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.sectionSubtitle {
+  font-size: 16px;
+  color: var(--text-secondary);
+}
+
+.tabsBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 50px;
+  flex-wrap: wrap;
+}
+
+.tabBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  border-radius: var(--radius-full);
+  background: rgba(7, 20, 38, 0.6);
+  border: 1px solid var(--card-border);
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.tabBtn:hover {
+  border-color: var(--neon-primary);
+  color: #fff;
+}
+
+.tabActive {
+  background: linear-gradient(135deg, rgba(0, 191, 255, 0.2) 0%, rgba(0, 95, 158, 0.3) 100%);
+  border-color: var(--neon-primary);
+  color: #FFFFFF;
+  box-shadow: 0 0 20px rgba(0, 191, 255, 0.3);
+}
+
+.tabContentGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 60px;
+}
+
+.contentLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contentTag {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--neon-primary);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.contentTitle {
+  font-size: 32px;
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1.25;
+}
+
+.contentDesc {
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.benefitList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+.benefitItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 15px;
+  color: var(--text-primary);
+}
+
+.checkIcon {
+  color: var(--neon-primary);
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.contentRight {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.previewCard {
+  width: 100%;
+  max-width: 440px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-xl);
+  padding: 28px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 191, 255, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.previewHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.previewChip {
+  padding: 4px 10px;
+  background: rgba(0, 191, 255, 0.15);
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--neon-light);
+}
+
+.previewImgWrap {
+  width: 100%;
+  height: 200px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  position: relative;
+}
+
+.previewImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 900px) {
+  .tabContentGrid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}

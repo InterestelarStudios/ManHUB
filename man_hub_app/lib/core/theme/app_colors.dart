@@ -9,7 +9,11 @@ class AppColors {
   static const Color backgroundSecondary = Color(0xFF0A1E33);
   
   // Cards & Surfaces
-  static const Color card = Color(0xFF13263F);
+  static const Color card = Color(0xFF071426);
+  static const Color cardOpaque = Color(0xFF091A2E);
+  static Color get cardBackground => backgroundSecondary.withValues(alpha: 0.5);
+  static Color get cardBorder => neonPrimary.withValues(alpha: 0.3);
+  static Color get cardBorderGlow => neonPrimary.withValues(alpha: 0.5);
   
   // Accents / Neon
   static const Color neonPrimary = Color(0xFF00BFFF);

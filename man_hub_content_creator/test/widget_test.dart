@@ -16,6 +16,6 @@ void main() {
     await tester.pumpWidget(const ManHubCreatorApp());
 
     // Verify that the title exists.
-    expect(find.text('Man Hub Content Creator'), findsOneWidget);
+    expect(find.text('Man Hub - Meus Treinamentos'), findsOneWidget);
   });
 }
