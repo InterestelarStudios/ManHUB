@@ -4,6 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/services/outfit_service.dart';
 import '../../../domain/models/outfit.dart';
+import '../../widgets/fullscreen_image_viewer.dart';
 
 class OutfitDetailScreen extends StatefulWidget {
   final Outfit outfit;
@@ -37,6 +38,18 @@ class _OutfitDetailScreenState extends State<OutfitDetailScreen> {
         }
       }
     }
+  }
+
+  void _openFullScreenImage(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => FullscreenImageViewer(
+          imageUrl: widget.outfit.imageUrl,
+          title: widget.outfit.title,
+          heroTag: 'outfit_img_${widget.outfit.id}',
+        ),
+      ),
+    );
   }
 
   @override
@@ -108,38 +121,76 @@ class _OutfitDetailScreenState extends State<OutfitDetailScreen> {
               const SizedBox(width: 8),
             ],
             flexibleSpace: FlexibleSpaceBar(
-              background: Stack(
-                fit: StackFit.expand,
-                children: [
-                  CachedNetworkImage(
-                    imageUrl: widget.outfit.imageUrl,
-                    fit: BoxFit.cover,
-                    placeholder: (context, url) => Container(color: AppColors.backgroundSecondary),
-                    errorWidget: (context, url, error) => Container(
-                      color: AppColors.backgroundSecondary,
-                      child: const Center(
-                        child: Icon(Icons.checkroom_rounded, color: AppColors.textSecondary, size: 60),
-                      ),
-                    ),
-                  ),
-                  Positioned.fill(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [
-                            Colors.black.withValues(alpha: 0.4),
-                            Colors.transparent,
-                            AppColors.backgroundMain.withValues(alpha: 0.8),
-                            AppColors.backgroundMain,
-                          ],
-                          stops: const [0.0, 0.4, 0.85, 1.0],
+              background: GestureDetector(
+                onTap: () => _openFullScreenImage(context),
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    Hero(
+                      tag: 'outfit_img_${widget.outfit.id}',
+                      child: CachedNetworkImage(
+                        imageUrl: widget.outfit.imageUrl,
+                        fit: BoxFit.cover,
+                        placeholder: (context, url) => Container(color: AppColors.backgroundSecondary),
+                        errorWidget: (context, url, error) => Container(
+                          color: AppColors.backgroundSecondary,
+                          child: const Center(
+                            child: Icon(Icons.checkroom_rounded, color: AppColors.textSecondary, size: 60),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                    Positioned.fill(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [
+                              Colors.black.withValues(alpha: 0.4),
+                              Colors.transparent,
+                              AppColors.backgroundMain.withValues(alpha: 0.8),
+                              AppColors.backgroundMain,
+                            ],
+                            stops: const [0.0, 0.4, 0.85, 1.0],
+                          ),
+                        ),
+                      ),
+                    ),
+
+                    // Badge de Toque para Expandir Foto
+                    Positioned(
+                      bottom: 16,
+                      right: 16,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                        decoration: BoxDecoration(
+                          color: Colors.black.withValues(alpha: 0.7),
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(
+                            color: AppColors.neonPrimary.withValues(alpha: 0.4),
+                            width: 1,
+                          ),
+                        ),
+                        child: const Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(Icons.fullscreen_rounded, size: 16, color: AppColors.neonLight),
+                            SizedBox(width: 5),
+                            Text(
+                              'Toque para expandir',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 11,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -196,6 +247,41 @@ class _OutfitDetailScreenState extends State<OutfitDetailScreen> {
                       ),
                     ],
                   ),
+                  if (widget.outfit.tags.isNotEmpty) ...[
+                    const SizedBox(height: 12),
+                    Wrap(
+                      spacing: 8,
+                      runSpacing: 6,
+                      children: widget.outfit.tags.map((tag) {
+                        return Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                          decoration: BoxDecoration(
+                            color: AppColors.royalBlue.withValues(alpha: 0.35),
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(
+                              color: AppColors.neonPrimary.withValues(alpha: 0.25),
+                              width: 1,
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const Icon(Icons.tag, size: 12, color: AppColors.neonLight),
+                              const SizedBox(width: 4),
+                              Text(
+                                tag,
+                                style: const TextStyle(
+                                  color: AppColors.neonLight,
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  ],
                   const SizedBox(height: 16),
 
                   // Título do Look
@@ -253,49 +339,52 @@ class _OutfitDetailScreenState extends State<OutfitDetailScreen> {
                       minimumSize: const Size.fromHeight(50),
                     ),
                   ),
-                  const SizedBox(height: 32),
+                  if (widget.outfit.pieces.isNotEmpty) ...[
+                    const SizedBox(height: 32),
 
-                  // Divisor & Título da Seção de Peças
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text(
-                        'PEÇAS DO LOOK & ONDE COMPRAR',
-                        style: TextStyle(
-                          color: AppColors.neonPrimary,
-                          fontSize: 11,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 1.5,
+                    // Divisor & Título da Seção de Peças
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'PEÇAS DO LOOK & ONDE COMPRAR',
+                          style: TextStyle(
+                            color: AppColors.neonPrimary,
+                            fontSize: 11,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 1.5,
+                          ),
                         ),
-                      ),
-                      Text(
-                        '${widget.outfit.pieces.length} itens',
-                        style: const TextStyle(
-                          color: AppColors.textSecondary,
-                          fontSize: 12,
+                        Text(
+                          '${widget.outfit.pieces.length} itens',
+                          style: const TextStyle(
+                            color: AppColors.textSecondary,
+                            fontSize: 12,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 14),
+                      ],
+                    ),
+                    const SizedBox(height: 14),
+                  ],
                 ],
               ),
             ),
           ),
 
           // Lista de Peças com Links de Afiliados
-          SliverPadding(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0),
-            sliver: SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (context, index) {
-                  final piece = widget.outfit.pieces[index];
-                  return _buildPieceCard(piece, index + 1);
-                },
-                childCount: widget.outfit.pieces.length,
+          if (widget.outfit.pieces.isNotEmpty)
+            SliverPadding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              sliver: SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) {
+                    final piece = widget.outfit.pieces[index];
+                    return _buildPieceCard(piece, index + 1);
+                  },
+                  childCount: widget.outfit.pieces.length,
+                ),
               ),
             ),
-          ),
 
           const SliverToBoxAdapter(child: SizedBox(height: 48)),
         ],

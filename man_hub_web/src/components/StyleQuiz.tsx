@@ -13,79 +13,79 @@ interface Question {
 const QUESTIONS: Question[] = [
   {
     id: 1,
-    title: "1. Qual é a sua prioridade máxima de evolução hoje?",
+    title: "1. O que mais tem travado a sua evolução hoje?",
     options: [
       {
         key: "A",
-        label: "Elevar minha autoridade e presença profissional em reuniões e negócios",
-        track: "Alfaiataria & Postura",
+        label: "Sinto que minha imagem atual não transmite o respeito, a liderança e a maturidade que possuo.",
+        track: "Transformação de Imagem",
       },
       {
         key: "B",
-        label: "Descobrir o corte de cabelo e formato de barba exatos para meu rosto",
-        track: "Visagismo Facial",
+        label: "Dificuldade com consistência, autodomínio e clareza de princípios para agir como um homem de valor.",
+        track: "Homem de Valor & Disciplina",
       },
       {
         key: "C",
-        label: "Encontrar meu perfume de assinatura e aprender a fixar por 12 horas",
-        track: "Perfumaria de Nicho",
+        label: "Postura tímida, insegurança ao falar ou falta de presença marcante em ambientes exigentes.",
+        track: "Presença & Postura Magnética",
       },
       {
         key: "D",
-        label: "Montar um guarda-roupa inteligente e parar de gastar dinheiro à toa",
-        track: "Guarda-Roupa Cápsula",
+        label: "Estar rodeado de companhias acomodadas que não têm ambição e puxam meus padrões para baixo.",
+        track: "Ambiente de Alta Performance",
       },
     ],
   },
   {
     id: 2,
-    title: "2. Como você descreveria a estrutura do seu rosto?",
+    title: "2. Em qual ambiente você mais precisa impor respeito e autoridade natural?",
     options: [
       {
         key: "A",
-        label: "Mandíbula bem definida e linhas angulares (Quadrado / Retangular)",
-        track: "Harmonia Angular",
+        label: "Em reuniões profissionais, negociações estratégicas e fechamento de negócios.",
+        track: "Autoridade em Negócios",
       },
       {
         key: "B",
-        label: "Maçãs do rosto largas e queixo afilado (Diamante)",
-        track: "Equilíbrio Lateral",
+        label: "Em eventos sociais e encontros onde a primeira impressão define o jogo.",
+        track: "Magnetismo Social & Conquista",
       },
       {
         key: "C",
-        label: "Proporções equilibradas e contorno suave (Oval)",
-        track: "Versatilidade Clássica",
+        label: "Diante de si mesmo: vencendo a preguiça, construindo foco e sustentando sua palavra.",
+        track: "Autodomínio & Firmeza",
       },
       {
         key: "D",
-        label: "Linhas suaves com largura e comprimento similares (Redondo)",
-        track: "Alongamento Vertical",
+        label: "Na liderança da sua equipe, família ou círculo de confiança como uma referência inabalável.",
+        track: "Liderança de Princípios",
       },
     ],
   },
   {
     id: 3,
-    title: "3. Qual estética melhor traduz a sua rotina?",
+    title: "3. Qual é o seu objetivo principal nos próximos 6 meses?",
     options: [
       {
         key: "A",
-        label: "Smart Casual moderno: blazer desestruturado, camisas de linho e alfaiataria",
-        track: "Elegância Contemporânea",
+        label: "Passar por um upgrade completo de imagem, porte físico e elegância masculina.",
+        track: "Upgrade Completo de Imagem",
       },
       {
         key: "B",
-        label: "Minimalista atemporal: paleta neutra (preto, off-white, marinho e grafite)",
-        track: "Minimalismo Sóbrio",
+        label: "Forjar uma rotina inegociável de disciplina, condicionamento e produtividade diária.",
+        track: "Forja de Hábitos de Elite",
       },
       {
         key: "C",
-        label: "Clássico formal: costumes bem cortados, sapatos de couro e gravatas sóbrias",
-        track: "Autoridade Tradicional",
+        label: "Elevar minha comunicação não-verbal, poder de oratória e influência entre pessoas de alto nível.",
+        track: "Comunicação de Alto Nível",
       },
       {
         key: "D",
-        label: "Urbano refinado: jeans nobre, camisetas de gramatura alta e sneakers premium",
-        track: "Casual High-End",
+        label: "Romper definitivamente com a mediocridade e caminhar entre os grandes lobos.",
+        track: "Mentalidade de Matilha",
       },
     ],
   },
@@ -165,18 +165,18 @@ export default function StyleQuiz() {
 
                 <div className={styles.diagnosisBox}>
                   <div className={styles.diagItem}>
-                    <span className={styles.diagLabel}>Foco Imediato</span>
-                    <span className={styles.diagValue}>{answers[0] || "Alfaiataria & Imagem"}</span>
+                    <span className={styles.diagLabel}>Pilar Estratégico</span>
+                    <span className={styles.diagValue}>{answers[0] || "Transformação de Imagem"}</span>
                   </div>
 
                   <div className={styles.diagItem}>
-                    <span className={styles.diagLabel}>Harmonia Facial</span>
-                    <span className={styles.diagValue}>{answers[1] || "Alinhamento de Mandíbula"}</span>
+                    <span className={styles.diagLabel}>Área de Domínio</span>
+                    <span className={styles.diagValue}>{answers[1] || "Autoridade em Negócios"}</span>
                   </div>
 
                   <div className={styles.diagItem}>
-                    <span className={styles.diagLabel}>Estilo Recomendado</span>
-                    <span className={styles.diagValue}>{answers[2] || "Elegância Smart"}</span>
+                    <span className={styles.diagLabel}>Próximo Nível</span>
+                    <span className={styles.diagValue}>{answers[2] || "Upgrade Completo de Imagem"}</span>
                   </div>
                 </div>
 

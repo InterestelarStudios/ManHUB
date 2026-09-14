@@ -28,7 +28,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundMain,
-      body: IndexedStack(
+      body: FadeIndexedStack(
         index: _currentIndex,
         children: _screens,
       ),
@@ -45,9 +45,11 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
         child: BottomNavigationBar(
           currentIndex: _currentIndex,
           onTap: (index) {
-            setState(() {
-              _currentIndex = index;
-            });
+            if (_currentIndex != index) {
+              setState(() {
+                _currentIndex = index;
+              });
+            }
           },
           backgroundColor: AppColors.backgroundMain,
           elevation: 0,
@@ -95,3 +97,78 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     );
   }
 }
+
+class FadeIndexedStack extends StatefulWidget {
+  final int index;
+  final List<Widget> children;
+  final Duration duration;
+
+  const FadeIndexedStack({
+    super.key,
+    required this.index,
+    required this.children,
+    this.duration = const Duration(milliseconds: 140),
+  });
+
+  @override
+  State<FadeIndexedStack> createState() => _FadeIndexedStackState();
+}
+
+class _FadeIndexedStackState extends State<FadeIndexedStack>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _animation;
+  late int _displayIndex;
+  int? _targetIndex;
+
+  @override
+  void initState() {
+    super.initState();
+    _displayIndex = widget.index;
+    _controller = AnimationController(
+      vsync: this,
+      duration: widget.duration,
+      value: 1.0,
+    );
+    _animation = CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeIn,
+      reverseCurve: Curves.easeOut,
+    );
+  }
+
+  @override
+  void didUpdateWidget(FadeIndexedStack oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.index != _displayIndex) {
+      _targetIndex = widget.index;
+      _controller.reverse().then((_) {
+        if (mounted && _targetIndex != null) {
+          setState(() {
+            _displayIndex = _targetIndex!;
+            _targetIndex = null;
+          });
+          _controller.forward();
+        }
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FadeTransition(
+      opacity: _animation,
+      child: IndexedStack(
+        index: _displayIndex,
+        children: widget.children,
+      ),
+    );
+  }
+}
+

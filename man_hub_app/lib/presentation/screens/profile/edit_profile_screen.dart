@@ -17,21 +17,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
   late final TextEditingController _nameController;
   late final TextEditingController _emailController;
-  late final TextEditingController _phoneController;
   late final TextEditingController _bioController;
-  late final TextEditingController _heightController;
-  late final TextEditingController _weightController;
   late final TextEditingController _imageUrlController;
-
-  String? _selectedBodyType;
-
-  final List<String> _bodyTypes = [
-    'Atlético',
-    'Magro / Ectomorfo',
-    'Médio / Mesomorfo',
-    'Robusto / Endomorfo',
-    'Outro',
-  ];
 
   bool _isSaving = false;
 
@@ -40,22 +27,17 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     super.initState();
     _nameController = TextEditingController(text: widget.user.name);
     _emailController = TextEditingController(text: widget.user.email);
-    _phoneController = TextEditingController(text: widget.user.phone ?? '');
     _bioController = TextEditingController(text: widget.user.bio ?? '');
-    _heightController = TextEditingController(text: widget.user.height ?? '');
-    _weightController = TextEditingController(text: widget.user.weight ?? '');
-    _imageUrlController = TextEditingController(text: widget.user.profileImageUrl ?? '');
-    _selectedBodyType = widget.user.bodyType;
+    _imageUrlController = TextEditingController(
+      text: widget.user.profileImageUrl ?? '',
+    );
   }
 
   @override
   void dispose() {
     _nameController.dispose();
     _emailController.dispose();
-    _phoneController.dispose();
     _bioController.dispose();
-    _heightController.dispose();
-    _weightController.dispose();
     _imageUrlController.dispose();
     super.dispose();
   }
@@ -68,11 +50,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           name: _nameController.text.trim(),
           email: _emailController.text.trim(),
           profileImageUrl: _imageUrlController.text.trim(),
-          phone: _phoneController.text.trim().isNotEmpty ? _phoneController.text.trim() : null,
-          bio: _bioController.text.trim().isNotEmpty ? _bioController.text.trim() : null,
-          height: _heightController.text.trim().isNotEmpty ? _heightController.text.trim() : null,
-          weight: _weightController.text.trim().isNotEmpty ? _weightController.text.trim() : null,
-          bodyType: _selectedBodyType,
+          bio: _bioController.text.trim().isNotEmpty
+              ? _bioController.text.trim()
+              : null,
+          phone: widget.user.phone,
+          height: widget.user.height,
+          weight: widget.user.weight,
+          bodyType: widget.user.bodyType,
         );
 
         if (mounted) {
@@ -82,7 +66,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               backgroundColor: AppColors.success,
               content: Text(
                 'Perfil atualizado com sucesso!',
-                style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           );
@@ -105,14 +92,21 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   }
 
   void _showChangePhotoDialog() {
-    final tempController = TextEditingController(text: _imageUrlController.text);
+    final tempController = TextEditingController(
+      text: _imageUrlController.text,
+    );
     showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
           backgroundColor: AppColors.card,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
-          title: const Text('Foto de Perfil', style: TextStyle(color: AppColors.textPrimary)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(18),
+          ),
+          title: const Text(
+            'Foto de Perfil',
+            style: TextStyle(color: AppColors.textPrimary),
+          ),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -142,21 +136,32 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   });
                   Navigator.pop(context);
                 },
-                child: const Text('Remover Foto', style: TextStyle(color: AppColors.error)),
+                child: const Text(
+                  'Remover Foto',
+                  style: TextStyle(color: AppColors.error),
+                ),
               ),
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: const Text('Cancelar', style: TextStyle(color: AppColors.textSecondary)),
+              child: const Text(
+                'Cancelar',
+                style: TextStyle(color: AppColors.textSecondary),
+              ),
             ),
             ElevatedButton(
-              style: ElevatedButton.styleFrom(backgroundColor: AppColors.royalBlue),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.royalBlue,
+              ),
               onPressed: () {
                 setState(() {
                   _imageUrlController.text = tempController.text.trim();
                 });
                 Navigator.pop(context);
               },
-              child: const Text('Salvar Foto', style: TextStyle(color: Colors.white)),
+              child: const Text(
+                'Salvar Foto',
+                style: TextStyle(color: Colors.white),
+              ),
             ),
           ],
         );
@@ -234,7 +239,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           ),
                           boxShadow: [
                             BoxShadow(
-                              color: AppColors.neonPrimary.withValues(alpha: 0.2),
+                              color: AppColors.neonPrimary.withValues(
+                                alpha: 0.2,
+                              ),
                               blurRadius: 16,
                               spreadRadius: 2,
                             ),
@@ -245,7 +252,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 child: Image.network(
                                   currentImageUrl,
                                   fit: BoxFit.cover,
-                                  errorBuilder: (context, error, stackTrace) => _buildDefaultAvatar(),
+                                  errorBuilder: (context, error, stackTrace) =>
+                                      _buildDefaultAvatar(),
                                 ),
                               )
                             : _buildDefaultAvatar(),
@@ -260,7 +268,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             decoration: BoxDecoration(
                               color: AppColors.royalBlue,
                               shape: BoxShape.circle,
-                              border: Border.all(color: AppColors.backgroundMain, width: 2),
+                              border: Border.all(
+                                color: AppColors.backgroundMain,
+                                width: 2,
+                              ),
                               boxShadow: [
                                 BoxShadow(
                                   color: Colors.black.withValues(alpha: 0.3),
@@ -284,7 +295,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   child: TextButton(
                     onPressed: _showChangePhotoDialog,
                     child: Text(
-                      hasCustomImage ? 'Alterar foto de perfil' : 'Adicionar foto de perfil',
+                      hasCustomImage
+                          ? 'Alterar foto de perfil'
+                          : 'Adicionar foto de perfil',
                       style: const TextStyle(
                         color: AppColors.neonLight,
                         fontSize: 13,
@@ -300,7 +313,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (_) => PersonalizedProfileScreen(user: widget.user),
+                        builder: (_) =>
+                            PersonalizedProfileScreen(user: widget.user),
                       ),
                     );
                   },
@@ -327,7 +341,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         Container(
                           padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
-                            color: AppColors.neonPrimary.withValues(alpha: 0.15),
+                            color: AppColors.neonPrimary.withValues(
+                              alpha: 0.15,
+                            ),
                             shape: BoxShape.circle,
                           ),
                           child: const Icon(
@@ -370,7 +386,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             ],
                           ),
                         ),
-                        const Icon(Icons.arrow_forward_ios_rounded, color: AppColors.neonPrimary, size: 14),
+                        const Icon(
+                          Icons.arrow_forward_ios_rounded,
+                          color: AppColors.neonPrimary,
+                          size: 14,
+                        ),
                       ],
                     ),
                   ),
@@ -388,7 +408,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   decoration: const InputDecoration(
                     labelText: 'Nome Completo',
                     hintText: 'Seu nome',
-                    prefixIcon: Icon(Icons.person_outline_rounded, color: AppColors.textSecondary),
+                    prefixIcon: Icon(
+                      Icons.person_outline_rounded,
+                      color: AppColors.textSecondary,
+                    ),
                   ),
                   validator: (val) {
                     if (val == null || val.trim().isEmpty) {
@@ -407,7 +430,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   decoration: const InputDecoration(
                     labelText: 'E-mail',
                     hintText: 'exemplo@email.com',
-                    prefixIcon: Icon(Icons.email_outlined, color: AppColors.textSecondary),
+                    prefixIcon: Icon(
+                      Icons.email_outlined,
+                      color: AppColors.textSecondary,
+                    ),
                   ),
                   validator: (val) {
                     if (val == null || val.trim().isEmpty) {
@@ -420,20 +446,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   },
                 ),
                 const SizedBox(height: 16),
-
-                // Telefone / WhatsApp
-                TextFormField(
-                  controller: _phoneController,
-                  keyboardType: TextInputType.phone,
-                  style: const TextStyle(color: AppColors.textPrimary),
-                  decoration: const InputDecoration(
-                    labelText: 'Telefone / WhatsApp',
-                    hintText: '(11) 99999-9999',
-                    prefixIcon: Icon(Icons.phone_outlined, color: AppColors.textSecondary),
-                  ),
-                ),
-                const SizedBox(height: 16),
-
                 // Bio
                 TextFormField(
                   controller: _bioController,
@@ -441,67 +453,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   style: const TextStyle(color: AppColors.textPrimary),
                   decoration: const InputDecoration(
                     labelText: 'Bio / Apresentação Pessoal',
-                    hintText: 'Escreva uma breve descrição sobre seus objetivos...',
+                    hintText:
+                        'Escreva uma breve descrição sobre seus objetivos...',
                     alignLabelWithHint: true,
                   ),
-                ),
-                const SizedBox(height: 28),
-
-                // SEÇÃO: MEDIDAS & BIOTIPO
-                _buildSectionHeader('MEDIDAS & BIOTIPO'),
-                const SizedBox(height: 12),
-
-                Row(
-                  children: [
-                    // Altura
-                    Expanded(
-                      child: TextFormField(
-                        controller: _heightController,
-                        style: const TextStyle(color: AppColors.textPrimary),
-                        decoration: const InputDecoration(
-                          labelText: 'Altura',
-                          hintText: 'Ex: 1.82 m',
-                          prefixIcon: Icon(Icons.height_rounded, color: AppColors.textSecondary),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 14),
-                    // Peso
-                    Expanded(
-                      child: TextFormField(
-                        controller: _weightController,
-                        style: const TextStyle(color: AppColors.textPrimary),
-                        decoration: const InputDecoration(
-                          labelText: 'Peso',
-                          hintText: 'Ex: 80 kg',
-                          prefixIcon: Icon(Icons.fitness_center_rounded, color: AppColors.textSecondary),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 16),
-
-                // Tipo Físico Dropdown
-                DropdownButtonFormField<String>(
-                  initialValue: _selectedBodyType,
-                  dropdownColor: AppColors.card,
-                  style: const TextStyle(color: AppColors.textPrimary, fontSize: 14),
-                  decoration: const InputDecoration(
-                    labelText: 'Tipo Físico / Silhueta',
-                    prefixIcon: Icon(Icons.accessibility_new_rounded, color: AppColors.textSecondary),
-                  ),
-                  items: _bodyTypes.map((type) {
-                    return DropdownMenuItem<String>(
-                      value: type,
-                      child: Text(type),
-                    );
-                  }).toList(),
-                  onChanged: (val) {
-                    setState(() {
-                      _selectedBodyType = val;
-                    });
-                  },
                 ),
                 const SizedBox(height: 36),
 

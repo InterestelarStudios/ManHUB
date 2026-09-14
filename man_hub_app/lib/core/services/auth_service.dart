@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class UserProfile {
   final String uid;
@@ -239,6 +240,31 @@ class AuthService extends ChangeNotifier {
   UserProfile? get currentUser => _currentUser;
   User? get firebaseUser => _auth?.currentUser;
 
+  /// Verifica se o usuário atual possui assinatura ativa do Man Hub Pass
+  bool get isSubscribed {
+    if (!isLoggedIn || _currentUser == null) return false;
+    if (!_currentUser!.isSubscribed) return false;
+    if (_currentUser!.subscriptionExpiresAt != null &&
+        _currentUser!.subscriptionExpiresAt!.isBefore(DateTime.now())) {
+      return false;
+    }
+    return true;
+  }
+
+  /// Indica se o usuário atual realizou cadastro via e-mail e senha
+  bool get isEmailPasswordUser {
+    final user = _auth?.currentUser;
+    if (user == null) return false;
+    return user.providerData.any((p) => p.providerId == 'password');
+  }
+
+  /// Indica se o usuário atual realizou login via Google
+  bool get isGoogleUser {
+    final user = _auth?.currentUser;
+    if (user == null) return false;
+    return user.providerData.any((p) => p.providerId == 'google.com');
+  }
+
   /// Permite injetar/definir perfil para testes ou modo visitante
   @visibleForTesting
   set currentUserForTesting(UserProfile? profile) {
@@ -275,7 +301,16 @@ class AuthService extends ChangeNotifier {
     _userDocSubscription = docRef.snapshots().listen(
       (snapshot) async {
         if (snapshot.exists && snapshot.data() != null) {
-          _currentUser = UserProfile.fromMap(snapshot.data()!, user.uid);
+          final profile = UserProfile.fromMap(snapshot.data()!, user.uid);
+          // Se o perfil existente não tiver foto, mas o provedor de login fornecer photoURL, sincroniza
+          if ((profile.profileImageUrl == null || profile.profileImageUrl!.isEmpty) &&
+              user.photoURL != null &&
+              user.photoURL!.isNotEmpty) {
+            try {
+              await docRef.set({'profileImageUrl': user.photoURL}, SetOptions(merge: true));
+            } catch (_) {}
+          }
+          _currentUser = profile;
           notifyListeners();
         } else {
           // Se o documento ainda não existir no Firestore, cria com dados iniciais
@@ -299,6 +334,42 @@ class AuthService extends ChangeNotifier {
         debugPrint('Erro ao sincronizar perfil do Firestore: $error');
       },
     );
+  }
+
+  /// Realiza autenticação via Google (Mobile e Web)
+  Future<UserCredential?> signInWithGoogle() async {
+    final auth = _auth;
+    if (auth == null) {
+      throw 'Serviço de autenticação indisponível.';
+    }
+
+    try {
+      if (kIsWeb) {
+        final GoogleAuthProvider googleProvider = GoogleAuthProvider();
+        return await auth.signInWithPopup(googleProvider);
+      } else {
+        final GoogleSignIn googleSignIn = GoogleSignIn();
+        final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
+
+        if (googleUser == null) {
+          // Usuário cancelou a seleção de conta
+          return null;
+        }
+
+        final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+        final OAuthCredential credential = GoogleAuthProvider.credential(
+          accessToken: googleAuth.accessToken,
+          idToken: googleAuth.idToken,
+        );
+
+        return await auth.signInWithCredential(credential);
+      }
+    } on FirebaseAuthException catch (e) {
+      throw _getErrorMessage(e);
+    } catch (e) {
+      debugPrint('Erro no login com Google: $e');
+      throw 'Não foi possível autenticar com o Google. Tente novamente.';
+    }
   }
 
   /// Realiza login com E-mail e Senha no Firebase
@@ -630,12 +701,138 @@ class AuthService extends ChangeNotifier {
     }
   }
 
+  /// Altera a senha do usuário autenticado com e-mail e senha
+  Future<void> changePassword({
+    required String currentPassword,
+    required String newPassword,
+  }) async {
+    final user = _auth?.currentUser;
+    if (user == null || user.email == null) {
+      throw 'Usuário não autenticado.';
+    }
+
+    try {
+      final cred = EmailAuthProvider.credential(
+        email: user.email!,
+        password: currentPassword.trim(),
+      );
+      await user.reauthenticateWithCredential(cred);
+      await user.updatePassword(newPassword.trim());
+    } on FirebaseAuthException catch (e) {
+      throw _getErrorMessage(e);
+    } catch (e) {
+      throw 'Não foi possível alterar a senha: $e';
+    }
+  }
+
+  /// Altera o e-mail do usuário autenticado com e-mail e senha
+  Future<void> changeEmail({
+    required String currentPassword,
+    required String newEmail,
+  }) async {
+    final user = _auth?.currentUser;
+    final firestore = _firestore;
+    if (user == null || user.email == null) {
+      throw 'Usuário não autenticado.';
+    }
+
+    final trimmedNewEmail = newEmail.trim();
+
+    try {
+      final cred = EmailAuthProvider.credential(
+        email: user.email!,
+        password: currentPassword.trim(),
+      );
+      await user.reauthenticateWithCredential(cred);
+
+      await user.verifyBeforeUpdateEmail(trimmedNewEmail);
+
+      if (firestore != null) {
+        await firestore.collection('users').doc(user.uid).set({
+          'email': trimmedNewEmail,
+          'updatedAt': FieldValue.serverTimestamp(),
+        }, SetOptions(merge: true));
+      }
+
+      if (_currentUser != null) {
+        _currentUser = _currentUser!.copyWith(email: trimmedNewEmail);
+        notifyListeners();
+      }
+    } on FirebaseAuthException catch (e) {
+      throw _getErrorMessage(e);
+    } catch (e) {
+      throw 'Não foi possível alterar o e-mail: $e';
+    }
+  }
+
+  /// Exclui permanentemente a conta do usuário
+  Future<void> deleteAccount({String? currentPassword}) async {
+    final user = _auth?.currentUser;
+    final firestore = _firestore;
+    if (user == null) {
+      throw 'Usuário não autenticado.';
+    }
+
+    try {
+      if (isEmailPasswordUser &&
+          currentPassword != null &&
+          currentPassword.trim().isNotEmpty &&
+          user.email != null) {
+        final cred = EmailAuthProvider.credential(
+          email: user.email!,
+          password: currentPassword.trim(),
+        );
+        await user.reauthenticateWithCredential(cred);
+      }
+
+      final uid = user.uid;
+
+      if (firestore != null) {
+        try {
+          await firestore.collection('users').doc(uid).delete();
+        } catch (e) {
+          debugPrint('Erro ao excluir documento do usuário: $e');
+        }
+        try {
+          await firestore.collection('user_progress').doc(uid).delete();
+        } catch (_) {}
+      }
+
+      try {
+        if (!kIsWeb) {
+          await GoogleSignIn().signOut();
+        }
+      } catch (_) {}
+
+      await user.delete();
+
+      await _userDocSubscription?.cancel();
+      _userDocSubscription = null;
+      _currentUser = null;
+      notifyListeners();
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'requires-recent-login') {
+        throw 'Por segurança, confirme sua senha atual para autorizar a exclusão da conta.';
+      }
+      throw _getErrorMessage(e);
+    } catch (e) {
+      throw 'Não foi possível excluir a conta: $e';
+    }
+  }
+
   /// Encerra a sessão do usuário
   Future<void> logout() async {
     await _userDocSubscription?.cancel();
     _userDocSubscription = null;
     final auth = _auth;
     if (auth != null) {
+      try {
+        if (!kIsWeb) {
+          await GoogleSignIn().signOut();
+        }
+      } catch (e) {
+        debugPrint('Erro ao desconectar GoogleSignIn: $e');
+      }
       await auth.signOut();
     }
     _currentUser = null;
@@ -653,6 +850,10 @@ class AuthService extends ChangeNotifier {
         return 'E-mail ou senha incorretos.';
       case 'email-already-in-use':
         return 'Este endereço de e-mail já está cadastrado em outra conta.';
+      case 'account-exists-with-different-credential':
+        return 'Já existe uma conta associada a este e-mail com outro método de login.';
+      case 'popup-closed-by-user':
+        return 'A janela de autenticação foi fechada.';
       case 'invalid-email':
         return 'O formato do e-mail digitado é inválido.';
       case 'weak-password':
@@ -665,6 +866,8 @@ class AuthService extends ChangeNotifier {
         return 'Falha de conexão. Verifique o acesso à internet do seu dispositivo.';
       case 'operation-not-allowed':
         return 'Este método de autenticação não está habilitado no momento.';
+      case 'requires-recent-login':
+        return 'Esta operação requer autenticação recente. Informe sua senha atual para continuar.';
       default:
         return e.message ?? 'Ocorreu um erro na autenticação. Tente novamente.';
     }

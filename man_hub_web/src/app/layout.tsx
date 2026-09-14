@@ -23,18 +23,18 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "MAN HUB | O Ecossistema Definitivo de Evolução e Imagem Masculina",
+  title: "MAN HUB | Academia de Desenvolvimento Masculino",
   description:
-    "A imagem é apenas o começo. Descubra seu visagismo facial, domine alfaiataria e caimento, encontre sua assinatura em perfumaria e desenvolva postura e presença de alto nível.",
+    "A imagem é o começo. A evolução é completa. A sua Academia de Desenvolvimento Masculino: transforme sua imagem, forje sua postura de homem de valor e construa uma presença de alto nível.",
   keywords: [
     "Man Hub",
+    "academia de desenvolvimento masculino",
+    "desenvolvimento masculino",
+    "homem de valor",
+    "presença masculina",
     "estilo masculino",
-    "visagismo masculino",
-    "perfumaria masculina",
-    "alfaiataria masculina",
-    "moda masculina",
-    "cuidados pessoais homem",
-    "desenvolvimento pessoal masculino",
+    "imagem masculina",
+    "postura e liderança",
   ],
   authors: [{ name: "Interestelar Studios" }],
   icons: {
@@ -43,9 +43,9 @@ export const metadata: Metadata = {
     apple: "/manhub_icon.png",
   },
   openGraph: {
-    title: "MAN HUB | Evolução Masculina Integral",
+    title: "MAN HUB | Academia de Desenvolvimento Masculino",
     description:
-      "Aprenda na prática com treinamentos dinâmicos em formato stories, diagnóstico de visagismo facial e consultoria de estilo e perfumaria.",
+      "Aprenda na prática com treinamentos dinâmicos em formato stories, transformação de imagem, princípios de homem de valor e presença de alto nível.",
     url: "https://manhub.app",
     siteName: "MAN HUB",
     locale: "pt_BR",
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "MAN HUB | A Imagem é o Começo. A Evolução é Completa.",
     description:
-      "O primeiro aplicativo brasileiro dedicado à imagem, visagismo, alfaiataria e desenvolvimento integral masculino.",
+      "A sua Academia de Desenvolvimento Masculino: transformação de imagem, postura de homem de valor e presença de alto nível.",
   },
 };
 

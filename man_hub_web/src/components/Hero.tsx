@@ -26,9 +26,8 @@ export default function Hero() {
           </h1>
 
           <p className={styles.heroSubtitle}>
-            O primeiro hub inteligente que une <strong>visagismo facial</strong>,
-            <strong> alfaiataria de caimento perfeito</strong>, <strong>perfumaria de nicho</strong> e
-            desenvolvimento pessoal prático em treinamentos imersivos.
+            A sua <strong>Academia de Desenvolvimento Masculino</strong>: transforme sua imagem,
+            forje a postura de um homem de valor e construa uma presença de alto nível com métodos práticos e treinamentos imersivos.
           </p>
 
           <div className={styles.heroCtas}>

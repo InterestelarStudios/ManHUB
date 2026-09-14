@@ -90,6 +90,9 @@ class CreatorController extends ChangeNotifier {
     String? duration,
     String? coverImageUrl,
     String? requirements,
+    double? price,
+    String? category,
+    List<String>? categories,
   }) {
     final newTraining = Training(
       title: title,
@@ -99,6 +102,9 @@ class CreatorController extends ChangeNotifier {
       duration: duration,
       coverImageUrl: coverImageUrl,
       requirements: requirements,
+      price: price,
+      category: category,
+      categories: categories,
     );
     trainings.add(newTraining);
     selectTraining(newTraining);
@@ -171,6 +177,24 @@ class CreatorController extends ChangeNotifier {
     notifyListeners();
   }
 
+  void updateTrainingPrice(double? newPrice) {
+    training.price = newPrice;
+    notifyListeners();
+  }
+
+  void updateTrainingCategory(String? newCategory) {
+    training.category = newCategory;
+    notifyListeners();
+  }
+
+  void updateTrainingCategories(List<String> newCategories) {
+    training.categories = newCategories;
+    if (newCategories.isNotEmpty) {
+      training.category = newCategories.first;
+    }
+    notifyListeners();
+  }
+
   void updateTrainingMetadata({
     String? title,
     String? subtitle,
@@ -179,6 +203,9 @@ class CreatorController extends ChangeNotifier {
     String? duration,
     String? coverImageUrl,
     String? requirements,
+    double? price,
+    String? category,
+    List<String>? categories,
   }) {
     if (title != null) training.title = title;
     if (subtitle != null) training.subtitle = subtitle;
@@ -187,6 +214,9 @@ class CreatorController extends ChangeNotifier {
     if (duration != null) training.duration = duration;
     if (coverImageUrl != null) training.coverImageUrl = coverImageUrl;
     if (requirements != null) training.requirements = requirements;
+    training.price = price;
+    if (category != null) training.category = category;
+    if (categories != null) training.categories = categories;
     notifyListeners();
   }
 

@@ -1,0 +1,191 @@
+.legalPage {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-main);
+  position: relative;
+  overflow-x: hidden;
+}
+
+.legalHeader {
+  border-bottom: 1px solid var(--card-border);
+  background: rgba(4, 13, 26, 0.85);
+  backdrop-filter: blur(16px);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  padding: 16px 0;
+}
+
+.headerInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logoWrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.logoTitle {
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #FFFFFF;
+}
+
+.backBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--card-border);
+  background: rgba(7, 20, 38, 0.6);
+  transition: all 0.2s ease;
+}
+
+.backBtn:hover {
+  color: #FFFFFF;
+  border-color: var(--neon-primary);
+  background: rgba(0, 191, 255, 0.1);
+  transform: translateX(-2px);
+}
+
+.mainContent {
+  flex: 1;
+  padding: 60px 0 100px;
+}
+
+.contentCard {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 48px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .contentCard {
+    padding: 24px;
+  }
+}
+
+.docHeader {
+  border-bottom: 1px solid rgba(0, 191, 255, 0.12);
+  padding-bottom: 28px;
+  margin-bottom: 36px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 16px;
+  background: rgba(0, 191, 255, 0.1);
+  color: var(--neon-primary);
+  border: 1px solid rgba(0, 191, 255, 0.3);
+}
+
+.docTitle {
+  font-size: clamp(26px, 4vw, 38px);
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+.metaText {
+  color: var(--text-muted);
+  font-size: 13.5px;
+}
+
+.prose {
+  color: var(--text-secondary);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.prose h2 {
+  color: #FFFFFF;
+  font-size: 20px;
+  margin: 36px 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-left: 3px solid var(--neon-primary);
+  padding-left: 12px;
+}
+
+.prose h3 {
+  color: #FFFFFF;
+  font-size: 17px;
+  margin: 24px 0 12px;
+}
+
+.prose p {
+  margin-bottom: 16px;
+}
+
+.prose ul, .prose ol {
+  margin: 12px 0 20px 24px;
+}
+
+.prose li {
+  margin-bottom: 8px;
+}
+
+.prose strong {
+  color: var(--text-primary);
+}
+
+.prose a {
+  color: var(--neon-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.prose a:hover {
+  color: var(--neon-light);
+}
+
+.alertBox {
+  background: rgba(0, 191, 255, 0.06);
+  border: 1px solid rgba(0, 191, 255, 0.2);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  margin: 24px 0;
+  display: flex;
+  gap: 14px;
+}
+
+.alertBoxWarning {
+  background: rgba(229, 169, 60, 0.08);
+  border: 1px solid rgba(229, 169, 60, 0.25);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  margin: 24px 0;
+  display: flex;
+  gap: 14px;
+}
+
+.contactBox {
+  margin-top: 48px;
+  padding: 28px;
+  background: rgba(6, 17, 34, 0.8);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  text-align: center;
+}

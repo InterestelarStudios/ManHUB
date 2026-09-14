@@ -6,6 +6,9 @@ import '../../services/export_service.dart';
 import '../controllers/creator_controller.dart';
 import '../widgets/training_details_dialog.dart';
 import 'creator_screen.dart';
+import 'outfits/outfit_manager_screen.dart';
+import 'haircuts/haircut_manager_screen.dart';
+import 'recommendations/manage_daily_recommendation_screen.dart';
 
 class CourseListScreen extends StatefulWidget {
   final CreatorController controller;
@@ -63,6 +66,9 @@ class _CourseListScreenState extends State<CourseListScreen> {
             String? duration,
             String? coverImageUrl,
             String? requirements,
+            double? price,
+            String? category,
+            List<String>? categories,
           }) async {
             widget.controller.addNewTraining(
               title,
@@ -72,6 +78,9 @@ class _CourseListScreenState extends State<CourseListScreen> {
               duration: duration,
               coverImageUrl: coverImageUrl,
               requirements: requirements,
+              price: price,
+              category: category,
+              categories: categories,
             );
             final current = widget.controller.training;
             _openEditor();
@@ -97,6 +106,9 @@ class _CourseListScreenState extends State<CourseListScreen> {
             String? duration,
             String? coverImageUrl,
             String? requirements,
+            double? price,
+            String? category,
+            List<String>? categories,
           }) async {
             widget.controller.selectTraining(training);
             widget.controller.updateTrainingMetadata(
@@ -107,6 +119,9 @@ class _CourseListScreenState extends State<CourseListScreen> {
               duration: duration,
               coverImageUrl: coverImageUrl,
               requirements: requirements,
+              price: price,
+              category: category,
+              categories: categories,
             );
             await _syncToFirestore(training);
           },
@@ -297,6 +312,51 @@ class _CourseListScreenState extends State<CourseListScreen> {
       appBar: AppBar(
         title: const Text('Man Hub - Meus Treinamentos'),
         actions: [
+          OutlinedButton.icon(
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => const HaircutManagerScreen()),
+              );
+            },
+            icon: const Icon(Icons.content_cut_outlined, size: 16),
+            label: const Text('Cortes de Cabelo'),
+            style: OutlinedButton.styleFrom(
+              foregroundColor: Colors.cyanAccent,
+              side: const BorderSide(color: Colors.cyanAccent, width: 1.2),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            ),
+          ),
+          const SizedBox(width: 8),
+          OutlinedButton.icon(
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => const OutfitManagerScreen()),
+              );
+            },
+            icon: const Icon(Icons.style_outlined, size: 16),
+            label: const Text('Outfits & Estilos'),
+            style: OutlinedButton.styleFrom(
+              foregroundColor: Colors.cyanAccent,
+              side: const BorderSide(color: Colors.cyanAccent, width: 1.2),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            ),
+          ),
+          const SizedBox(width: 8),
+          OutlinedButton.icon(
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => const ManageDailyRecommendationScreen()),
+              );
+            },
+            icon: const Icon(Icons.auto_awesome, size: 16),
+            label: const Text('Recomendação do Dia'),
+            style: OutlinedButton.styleFrom(
+              foregroundColor: Colors.amberAccent,
+              side: const BorderSide(color: Colors.amberAccent, width: 1.2),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            ),
+          ),
+          const SizedBox(width: 8),
           IconButton(
             icon: const Icon(Icons.cloud_sync_outlined),
             tooltip: 'Sincronizar com Firestore',
@@ -313,6 +373,7 @@ class _CourseListScreenState extends State<CourseListScreen> {
             tooltip: 'Importar JSON',
             onPressed: _showImportOptionsDialog,
           ),
+          const SizedBox(width: 8),
         ],
       ),
       body: isLoading
@@ -426,19 +487,49 @@ class _CourseListScreenState extends State<CourseListScreen> {
                                 ),
                                 const SizedBox(height: 2),
                               ],
-                              Row(
+                              Wrap(
+                                spacing: 6,
+                                runSpacing: 4,
+                                crossAxisAlignment: WrapCrossAlignment.center,
                                 children: [
                                   Text(
                                     '$totalModules Módulos • $totalSessions Aulas',
                                     style: const TextStyle(fontSize: 12, color: Colors.grey),
                                   ),
                                   if (t.duration != null && t.duration!.trim().isNotEmpty) ...[
-                                    const Text(' • ', style: TextStyle(fontSize: 12, color: Colors.grey)),
+                                    const Text('•', style: TextStyle(fontSize: 12, color: Colors.grey)),
                                     const Icon(Icons.timer_outlined, size: 12, color: Colors.blueAccent),
-                                    const SizedBox(width: 3),
                                     Text(
                                       t.duration!,
                                       style: const TextStyle(fontSize: 12, color: Colors.blueAccent),
+                                    ),
+                                  ],
+                                  if (t.price != null) ...[
+                                    const Text('•', style: TextStyle(fontSize: 12, color: Colors.grey)),
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 1),
+                                      decoration: BoxDecoration(
+                                        color: Colors.green.withValues(alpha: 0.15),
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      child: Text(
+                                        'R\$ ${t.price!.toStringAsFixed(2).replaceAll('.', ',')}',
+                                        style: const TextStyle(fontSize: 11, color: Colors.greenAccent, fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                  ],
+                                  if (t.category != null && t.category!.trim().isNotEmpty) ...[
+                                    const Text('•', style: TextStyle(fontSize: 12, color: Colors.grey)),
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 1),
+                                      decoration: BoxDecoration(
+                                        color: Colors.blueAccent.withValues(alpha: 0.15),
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      child: Text(
+                                        t.category!.toUpperCase(),
+                                        style: const TextStyle(fontSize: 10, color: Colors.blueAccent, fontWeight: FontWeight.bold),
+                                      ),
                                     ),
                                   ],
                                 ],

@@ -13,6 +13,7 @@ class Training {
   String? updatedAt;
   List<Module> modules;
   String? category;
+  List<String> categories;
   double? price;
   bool isUnlocked;
   double progress;
@@ -30,12 +31,14 @@ class Training {
     this.updatedAt,
     List<Module>? modules,
     this.category,
+    List<String>? categories,
     this.price,
     this.isUnlocked = false,
     this.progress = 0.0,
     this.shortDescription,
   })  : id = id ?? const Uuid().v4(),
-        modules = modules ?? [];
+        modules = modules ?? [],
+        categories = categories ?? [];
 
   Map<String, dynamic> toJson() {
     return {
@@ -49,11 +52,12 @@ class Training {
       if (requirements != null && requirements!.isNotEmpty) 'requirements': requirements,
       if (updatedAt != null && updatedAt!.isNotEmpty) 'updatedAt': updatedAt,
       'modules': modules.map((e) => e.toJson()).toList(),
-      'category': category,
-      'price': price,
+      if (category != null && category!.isNotEmpty) 'category': category,
+      if (categories.isNotEmpty) 'categories': categories,
+      if (price != null) 'price': price,
       'isUnlocked': isUnlocked,
       'progress': progress,
-      'shortDescription': shortDescription,
+      if (shortDescription != null && shortDescription!.isNotEmpty) 'shortDescription': shortDescription,
     };
   }
 
@@ -67,6 +71,12 @@ class Training {
       }
     }
 
+    final cat = json['category'] as String?;
+    final rawCats = json['categories'] as List<dynamic>?;
+    final parsedCats = rawCats != null
+        ? rawCats.map((e) => e.toString()).toList()
+        : (cat != null && cat.isNotEmpty ? [cat] : <String>[]);
+
     return Training(
       id: json['id'] as String?,
       title: json['title'] as String? ?? '',
@@ -78,7 +88,8 @@ class Training {
       requirements: json['requirements'] as String?,
       updatedAt: json['updatedAt'] as String?,
       modules: parsedModules,
-      category: json['category'] as String?,
+      category: cat,
+      categories: parsedCats,
       price: (json['price'] as num?)?.toDouble(),
       isUnlocked: json['isUnlocked'] as bool? ?? false,
       progress: (json['progress'] as num?)?.toDouble() ?? 0.0,

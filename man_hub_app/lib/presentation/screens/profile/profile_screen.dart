@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/services/auth_service.dart';
 import '../../../core/services/bookmark_service.dart';
+import '../../widgets/subscription_bottom_sheet.dart';
 import '../auth/auth_screen.dart';
 import 'edit_profile_screen.dart';
 import 'personalized_profile_screen.dart';
 import 'bookmarks_screen.dart';
+import 'achievements_progress_screen.dart';
+import 'account_management_screen.dart';
+import 'about_app_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -59,6 +63,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void _openBookmarks() {
     Navigator.of(context).push(
       MaterialPageRoute(builder: (_) => const BookmarksScreen()),
+    );
+  }
+
+  void _openAchievements(UserProfile? user) {
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (_) => AchievementsProgressScreen(user: user)),
+    );
+  }
+
+  void _openAccountManagement() {
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (_) => const AccountManagementScreen()),
+    );
+  }
+
+  void _openAboutApp() {
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (_) => const AboutAppScreen()),
     );
   }
 
@@ -148,10 +170,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   )
                 ],
               ),
-              child: Icon(
-                Icons.person_outline_rounded,
-                size: 64,
-                color: AppColors.neonPrimary.withValues(alpha: 0.8),
+              child: Image.asset(
+                'contents/images/manhub_icon.png',
+                width: 64,
+                height: 64,
+                fit: BoxFit.contain,
               ),
             ),
             const SizedBox(height: 24),
@@ -199,6 +222,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
               subtitle: 'Acesse suas dicas e telas marcadas',
               badge: _bookmarkService.count > 0 ? '${_bookmarkService.count}' : null,
               onTap: _openBookmarks,
+            ),
+            const SizedBox(height: 12),
+            _buildProfileOption(
+              icon: Icons.emoji_events_outlined,
+              title: 'Conquistas & Progresso',
+              subtitle: 'Acompanhe suas metas e evolução',
+              onTap: () => _openAchievements(null),
+            ),
+            if (!_authService.isSubscribed) ...[
+              const SizedBox(height: 12),
+              _buildSubscriptionTile(),
+            ],
+            const SizedBox(height: 12),
+            _buildProfileOption(
+              icon: Icons.info_outline_rounded,
+              title: 'Sobre o Man Hub',
+              subtitle: 'Proposta, versão e Interestelar Studios',
+              onTap: _openAboutApp,
             ),
           ],
         ),
@@ -317,39 +358,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ],
                 const SizedBox(height: 12),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    OutlinedButton.icon(
-                      onPressed: () => _openEditProfile(user),
-                      icon: const Icon(Icons.edit_note_rounded, size: 16),
-                      label: const Text('Editar Conta'),
-                      style: OutlinedButton.styleFrom(
-                        foregroundColor: AppColors.textSecondary,
-                        side: BorderSide(
-                          color: AppColors.textSecondary.withValues(alpha: 0.3),
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
-                      ),
+                OutlinedButton.icon(
+                  onPressed: () => _openEditProfile(user),
+                  icon: const Icon(Icons.edit_note_rounded, size: 16),
+                  label: const Text('Editar Conta'),
+                  style: OutlinedButton.styleFrom(
+                    foregroundColor: AppColors.textSecondary,
+                    side: BorderSide(
+                      color: AppColors.textSecondary.withValues(alpha: 0.3),
                     ),
-                    const SizedBox(width: 10),
-                    ElevatedButton.icon(
-                      onPressed: () => _openPersonalizedProfile(user),
-                      icon: const Icon(Icons.auto_awesome_rounded, size: 16, color: Colors.white),
-                      label: const Text('Diagnóstico VIP'),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.royalBlue,
-                        foregroundColor: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
-                      ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
                     ),
-                  ],
+                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                  ),
                 ),
               ],
             ),
@@ -457,6 +479,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ),
 
+          // Tile de Assinatura se o usuário não for assinante
+          if (!_authService.isSubscribed) ...[
+            const SizedBox(height: 16),
+            _buildSubscriptionTile(),
+          ],
+
           const SizedBox(height: 20),
           _buildProfileOption(
             icon: Icons.bookmarks_outlined,
@@ -474,24 +502,34 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
           const SizedBox(height: 12),
           _buildProfileOption(
-            icon: Icons.face_outlined,
-            title: 'Anamnese de Visagismo & Estilo',
-            subtitle: 'Formato de rosto, pele, biotipo e perfumes',
-            onTap: () => _openPersonalizedProfile(user),
+            icon: Icons.manage_accounts_outlined,
+            title: 'Gerenciamento de Conta',
+            subtitle: 'E-mail, senha e exclusão da conta',
+            onTap: _openAccountManagement,
           ),
           const SizedBox(height: 12),
           _buildProfileOption(
             icon: Icons.emoji_events_outlined,
             title: 'Conquistas & Progresso',
             subtitle: 'Acompanhe suas metas de evolução',
-            onTap: () {},
+            onTap: () => _openAchievements(user),
           ),
+          if (_authService.isSubscribed) ...[
+            const SizedBox(height: 12),
+            _buildProfileOption(
+              icon: Icons.workspace_premium_rounded,
+              title: 'Minha Assinatura',
+              subtitle: 'Plano Man Hub Pass Ativo',
+              badge: 'ATIVO',
+              onTap: () => SubscriptionBottomSheet.show(context),
+            ),
+          ],
           const SizedBox(height: 12),
           _buildProfileOption(
-            icon: Icons.credit_card_outlined,
-            title: 'Minha Assinatura',
-            subtitle: 'Gerenciar plano e acessos',
-            onTap: () {},
+            icon: Icons.info_outline_rounded,
+            title: 'Sobre o Man Hub',
+            subtitle: 'Proposta, versão e Interestelar Studios',
+            onTap: _openAboutApp,
           ),
           const SizedBox(height: 24),
           
@@ -554,6 +592,107 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildSubscriptionTile() {
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: () => SubscriptionBottomSheet.show(context),
+        borderRadius: BorderRadius.circular(16),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                const Color(0xFF1E1B4B).withValues(alpha: 0.6),
+                AppColors.card,
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(
+              color: AppColors.neonLight.withValues(alpha: 0.45),
+              width: 1.2,
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.neonLight.withValues(alpha: 0.08),
+                blurRadius: 12,
+                spreadRadius: 1,
+              ),
+            ],
+          ),
+          child: Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: AppColors.neonLight.withValues(alpha: 0.15),
+                ),
+                child: const Icon(
+                  Icons.workspace_premium_rounded,
+                  color: AppColors.neonLight,
+                  size: 22,
+                ),
+              ),
+              const SizedBox(width: 14),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        const Text(
+                          'Assinar Man Hub Pass',
+                          style: TextStyle(
+                            color: AppColors.textPrimary,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                          decoration: BoxDecoration(
+                            color: AppColors.neonLight.withValues(alpha: 0.2),
+                            borderRadius: BorderRadius.circular(6),
+                          ),
+                          child: const Text(
+                            'PRO',
+                            style: TextStyle(
+                              color: AppColors.neonLight,
+                              fontSize: 10,
+                              fontWeight: FontWeight.w800,
+                              letterSpacing: 0.5,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 3),
+                    const Text(
+                      'Desbloqueie todos os treinamentos por R\$ 49,90/mês',
+                      style: TextStyle(
+                        color: AppColors.textSecondary,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const Icon(
+                Icons.arrow_forward_ios_rounded,
+                color: AppColors.neonLight,
+                size: 14,
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

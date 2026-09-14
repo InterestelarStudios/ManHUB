@@ -1,6 +1,11 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import styles from "./CoursesShowcase.module.css";
 import Image from "next/image";
 import { Clock, Layers, ArrowRight, PlayCircle } from "lucide-react";
+import { db } from "@/lib/firebase";
+import { collection, onSnapshot } from "firebase/firestore";
 
 interface Course {
   id: string;
@@ -12,61 +17,65 @@ interface Course {
   modulesCount: number;
   imageUrl: string;
   topics: string[];
+  price?: number;
 }
 
-const COURSES: Course[] = [
+const DEFAULT_COURSES: Course[] = [
   {
-    id: "homem-bem-vestido",
-    category: "Estilo & Alfaiataria",
+    id: "e0ee6636-cea6-4f59-8242-6b7270f8254d",
+    category: "Estilo & Presença",
     title: "O Homem Bem-Vestido",
     subtitle: "Alfaiataria, Proporção e Caimento",
     description:
       "Aprenda a ciência visual da vestimenta masculina. Descubra como acertar caimentos, equilibrar silhuetas e montar um guarda-roupa versátil de alta autoridade.",
     duration: "5 horas",
-    modulesCount: 6,
+    modulesCount: 11,
     imageUrl:
       "https://images.unsplash.com/photo-1593032465175-481ac7f401a0?q=80&w=800&auto=format&fit=crop",
+    price: 97,
     topics: [
       "Caimento exato de ombros, mangas e barras",
       "Equilíbrio de proporção e silhueta em 'V'",
-      "Decodificação dos 5 dress codes oficiais",
-      "Montagem de guarda-roupa cápsula funcional",
+      "Decodificação dos dress codes oficiais",
+      "Montagem de guarda-roupa funcional e atemporal",
     ],
   },
   {
-    id: "pele-cabelo-barba",
-    category: "Visagismo Facial",
-    title: "Pele, Cabelo & Barba",
-    subtitle: "Visagismo e Autocuidado de Alto Padrão",
+    id: "f47a8291-3c1e-49fb-9de8-18e329ba4182",
+    category: "Autocuidado & Imagem",
+    title: "Cuidados com Pele, Cabelo e Barba",
+    subtitle: "Harmonia Facial e Autocuidado de Alto Padrão",
     description:
-      "O guia definitivo para transformar o seu visual facial. Saiba qual corte e barba alinham com a estrutura óssea do seu rosto e estabeleça um skincare prático.",
+      "O guia definitivo para transformar o seu visual. Saiba qual corte e barba alinham com a estrutura óssea do seu rosto e estabeleça uma rotina prática.",
     duration: "4.5 horas",
-    modulesCount: 5,
+    modulesCount: 13,
     imageUrl:
       "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=800&auto=format&fit=crop",
+    price: 97,
     topics: [
-      "Mapeamento geométrico do formato facial",
+      "Mapeamento geométrico e proporções faciais",
       "Harmonia de corte de cabelo e barba na mandíbula",
       "Rotina de skincare masculina em 3 passos",
       "Controle de oleosidade e prevenção de foliculite",
     ],
   },
   {
-    id: "perfumaria-masculina",
-    category: "Perfumaria & Assinatura",
-    title: "Guia de Perfumaria Masculina",
+    id: "a7e14d9b-83c6-4e5a-bb44-67290f11ac38",
+    category: "Presença & Assinatura",
+    title: "Perfumaria Masculina e Assinatura Olfativa",
     subtitle: "A Arte do Perfume e Assinatura Olfativa",
     description:
       "Aprenda a decifrar a pirâmide olfativa e escolha fragrâncias marcantes com fixação prolongada para trabalho, calor, noites e momentos decisivos.",
-    duration: "4 horas",
-    modulesCount: 6,
+    duration: "3.5 horas",
+    modulesCount: 12,
     imageUrl:
       "https://images.unsplash.com/photo-1523293182086-7651a899d37f?q=80&w=800&auto=format&fit=crop",
+    price: 97,
     topics: [
       "Pirâmide olfativa (saída, coração e fundo)",
       "Seleção de perfumes para calor vs. noites frias",
       "Pontos estratégicos de aplicação e projeção",
-      "Notas e referências validadas pelo Fragrantica",
+      "Notas e referências validadas por especialistas",
     ],
   },
 ];
@@ -76,6 +85,83 @@ interface CoursesShowcaseProps {
 }
 
 export default function CoursesShowcase({ onBuyCourse }: CoursesShowcaseProps) {
+  const [courses, setCourses] = useState<Course[]>(DEFAULT_COURSES);
+
+  useEffect(() => {
+    try {
+      const unsubscribe = onSnapshot(
+        collection(db, "trainings"),
+        (snapshot) => {
+          if (!snapshot.empty) {
+            const list: Course[] = snapshot.docs.map((docSnap) => {
+              const data = docSnap.data();
+
+              let topics: string[] = [];
+              if (data.whatYouWillLearn && typeof data.whatYouWillLearn === "string") {
+                topics = data.whatYouWillLearn
+                  .split("\n")
+                  .map((s: string) => s.replace(/^[•\-\*]\s*/, "").trim())
+                  .filter(Boolean)
+                  .slice(0, 4);
+              }
+
+              if (topics.length === 0 && Array.isArray(data.modules)) {
+                topics = data.modules
+                  .map((m: any) => (m.title ? String(m.title).trim() : ""))
+                  .filter(Boolean)
+                  .slice(0, 4);
+              }
+
+              if (topics.length === 0) {
+                topics = [
+                  "Aulas imersivas em formato stories",
+                  "Material didático objetivo e prático",
+                  "Acesso vitalício e atualizações",
+                ];
+              }
+
+              const coverImg =
+                data.coverImageUrl ||
+                data.imageUrl ||
+                "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=800&auto=format&fit=crop";
+
+              const modulesCount = Array.isArray(data.modules)
+                ? data.modules.length
+                : typeof data.modulesCount === "number"
+                ? data.modulesCount
+                : 10;
+
+              return {
+                id: docSnap.id,
+                title: data.title || "Treinamento Oficial",
+                subtitle: data.subtitle || "",
+                category: data.category || "Desenvolvimento Masculino",
+                description:
+                  data.description ||
+                  "Treinamento prático e imersivo em formato stories para acelerar sua evolução.",
+                duration: data.duration || "4 horas",
+                modulesCount,
+                imageUrl: coverImg,
+                topics,
+                price: typeof data.price === "number" ? data.price : 97,
+              };
+            });
+
+            // Ordena mantendo consistência de exibição
+            setCourses(list);
+          }
+        },
+        (error) => {
+          console.warn("Aviso ao sincronizar treinamentos do Firestore:", error);
+        }
+      );
+
+      return () => unsubscribe();
+    } catch (err) {
+      console.warn("Erro ao configurar listener do Firestore:", err);
+    }
+  }, []);
+
   return (
     <section id="treinamentos" className={styles.coursesSection}>
       <div className="ambient-glow-pill" style={{ top: "30%", right: "-10%" }} />
@@ -93,7 +179,7 @@ export default function CoursesShowcase({ onBuyCourse }: CoursesShowcaseProps) {
         </div>
 
         <div className={styles.coursesGrid}>
-          {COURSES.map((course) => (
+          {courses.map((course) => (
             <div key={course.id} className={styles.courseCard}>
               <div className={styles.cardImageWrap}>
                 <Image
@@ -102,6 +188,7 @@ export default function CoursesShowcase({ onBuyCourse }: CoursesShowcaseProps) {
                   width={600}
                   height={400}
                   className={styles.cardImage}
+                  unoptimized={!course.imageUrl.includes("images.unsplash.com")}
                 />
                 <div className={styles.cardOverlay} />
                 <span className={styles.categoryBadge}>{course.category}</span>
@@ -136,7 +223,11 @@ export default function CoursesShowcase({ onBuyCourse }: CoursesShowcaseProps) {
                 </ul>
 
                 <div className={styles.cardFooter}>
-                  <span className={styles.interactiveTag}>R$ 97,00 vitalício</span>
+                  <span className={styles.interactiveTag}>
+                    {course.price
+                      ? `R$ ${course.price.toLocaleString("pt-BR", { minimumFractionDigits: 2 })} vitalício`
+                      : "R$ 97,00 vitalício"}
+                  </span>
                   <button
                     onClick={() => onBuyCourse?.(course.id, course.title)}
                     className={styles.openCourseBtn}
@@ -154,3 +245,4 @@ export default function CoursesShowcase({ onBuyCourse }: CoursesShowcaseProps) {
     </section>
   );
 }
+

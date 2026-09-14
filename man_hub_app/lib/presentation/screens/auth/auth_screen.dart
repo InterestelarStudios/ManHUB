@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/services/auth_service.dart';
+import '../../widgets/google_logo.dart';
 import 'signup_screen.dart';
 
 class AuthScreen extends StatefulWidget {
@@ -18,6 +19,7 @@ class _AuthScreenState extends State<AuthScreen> {
 
   bool _obscurePassword = true;
   bool _isLoading = false;
+  bool _isGoogleLoading = false;
 
   @override
   void dispose() {
@@ -63,14 +65,38 @@ class _AuthScreenState extends State<AuthScreen> {
     }
   }
 
-  void _submitSocial(String provider) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        backgroundColor: AppColors.card,
-        content: Text('A autenticação via $provider estará disponível em breve.'),
-      ),
-    );
+  Future<void> _submitGoogleLogin() async {
+    setState(() => _isGoogleLoading = true);
+    try {
+      final userCred = await AuthService().signInWithGoogle();
+      if (userCred != null && mounted) {
+        Navigator.of(context).pop();
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            backgroundColor: AppColors.success,
+            content: Text(
+              'Bem-vindo de volta à jornada!',
+              style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+            ),
+          ),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: AppColors.error,
+            content: Text(e.toString()),
+          ),
+        );
+      }
+    } finally {
+      if (mounted) {
+        setState(() => _isGoogleLoading = false);
+      }
+    }
   }
+
 
   void _openSignUp() {
     Navigator.of(context).push(
@@ -232,13 +258,11 @@ class _AuthScreenState extends State<AuthScreen> {
                             )
                           ],
                         ),
-                        child: const Text(
-                          '♂',
-                          style: TextStyle(
-                            fontSize: 44,
-                            color: AppColors.neonPrimary,
-                            fontWeight: FontWeight.bold,
-                          ),
+                        child: Image.asset(
+                          'contents/images/manhub_icon.png',
+                          width: 58,
+                          height: 58,
+                          fit: BoxFit.contain,
                         ),
                       ),
                       const SizedBox(height: 16),
@@ -387,26 +411,8 @@ class _AuthScreenState extends State<AuthScreen> {
                 ),
                 const SizedBox(height: 24),
 
-                // Botões Sociais
-                Row(
-                  children: [
-                    Expanded(
-                      child: _buildSocialButton(
-                        label: 'Google',
-                        icon: Icons.g_mobiledata_rounded,
-                        onPressed: () => _submitSocial('Google'),
-                      ),
-                    ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: _buildSocialButton(
-                        label: 'Apple',
-                        icon: Icons.apple_rounded,
-                        onPressed: () => _submitSocial('Apple'),
-                      ),
-                    ),
-                  ],
-                ),
+                // Botão Social Google
+                _buildGoogleButton(),
                 const SizedBox(height: 32),
 
                 // Link para a nova tela separada de Cadastro
@@ -439,15 +445,9 @@ class _AuthScreenState extends State<AuthScreen> {
     );
   }
 
-  Widget _buildSocialButton({
-    required String label,
-    required IconData icon,
-    required VoidCallback onPressed,
-  }) {
-    return OutlinedButton.icon(
-      onPressed: onPressed,
-      icon: Icon(icon, size: 20),
-      label: Text(label),
+  Widget _buildGoogleButton() {
+    return OutlinedButton(
+      onPressed: (_isLoading || _isGoogleLoading) ? null : _submitGoogleLogin,
       style: OutlinedButton.styleFrom(
         foregroundColor: AppColors.textPrimary,
         side: BorderSide(color: AppColors.neonPrimary.withValues(alpha: 0.3), width: 1.0),
@@ -458,6 +458,23 @@ class _AuthScreenState extends State<AuthScreen> {
         ),
         textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
       ),
+      child: _isGoogleLoading
+          ? const SizedBox(
+              width: 18,
+              height: 18,
+              child: CircularProgressIndicator(
+                strokeWidth: 2,
+                color: AppColors.neonPrimary,
+              ),
+            )
+          : const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                GoogleLogo(size: 18),
+                SizedBox(width: 10),
+                Text('Continuar com o Google'),
+              ],
+            ),
     );
   }
 }

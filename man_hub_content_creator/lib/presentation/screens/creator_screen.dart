@@ -63,6 +63,9 @@ class _CreatorScreenState extends State<CreatorScreen> {
             String? duration,
             String? coverImageUrl,
             String? requirements,
+            double? price,
+            String? category,
+            List<String>? categories,
           }) {
             widget.controller.updateTrainingMetadata(
               title: title,
@@ -72,6 +75,9 @@ class _CreatorScreenState extends State<CreatorScreen> {
               duration: duration,
               coverImageUrl: coverImageUrl,
               requirements: requirements,
+              price: price,
+              category: category,
+              categories: categories,
             );
           },
         );

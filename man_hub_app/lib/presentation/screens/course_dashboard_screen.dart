@@ -5,9 +5,12 @@ import '../../core/theme/app_colors.dart';
 import '../../core/services/auth_service.dart';
 import '../../core/services/user_progress_service.dart';
 import 'course_detail_screen.dart';
+import '../widgets/subscription_bottom_sheet.dart';
 
 class CourseDashboardScreen extends StatefulWidget {
-  const CourseDashboardScreen({super.key});
+  final String? initialCategory;
+
+  const CourseDashboardScreen({super.key, this.initialCategory});
 
   @override
   State<CourseDashboardScreen> createState() => _CourseDashboardScreenState();
@@ -23,11 +26,27 @@ class _CourseDashboardScreenState extends State<CourseDashboardScreen> {
   String? _error;
   String _selectedCategory = 'Todos';
 
+  static const List<String> _standardCategories = [
+    'Todos',
+    'Jornada',
+    'Estilo',
+    'Visagismo',
+    'Perfumes',
+    'Skincare',
+    'Corpo',
+    'Comunicação',
+  ];
+
   List<String> get _categories {
-    final categoriesSet = <String>{'Todos'};
+    final categoriesSet = <String>{..._standardCategories};
     for (final t in _allTrainings) {
       if (t.category != null && t.category!.trim().isNotEmpty) {
-        categoriesSet.add(t.category!.trim().toUpperCase());
+        categoriesSet.add(t.category!.trim());
+      }
+      for (final c in t.categories) {
+        if (c.trim().isNotEmpty) {
+          categoriesSet.add(c.trim());
+        }
       }
     }
     return categoriesSet.toList();
@@ -36,6 +55,9 @@ class _CourseDashboardScreenState extends State<CourseDashboardScreen> {
   @override
   void initState() {
     super.initState();
+    if (widget.initialCategory != null && widget.initialCategory!.trim().isNotEmpty) {
+      _selectedCategory = widget.initialCategory!.trim();
+    }
     _authService.addListener(_onStateChanged);
     _progressService.addListener(_onStateChanged);
     _loadTrainings();
@@ -72,10 +94,23 @@ class _CourseDashboardScreenState extends State<CourseDashboardScreen> {
   }
 
   List<Training> get _filteredTrainings {
-    if (_selectedCategory == 'Todos') return _allTrainings;
-    return _allTrainings
-        .where((t) => (t.category ?? '').toUpperCase() == _selectedCategory.toUpperCase())
-        .toList();
+    if (_selectedCategory.toUpperCase() == 'TODOS') return _allTrainings;
+    final sel = _selectedCategory.toUpperCase();
+    return _allTrainings.where((t) {
+      if ((t.category ?? '').toUpperCase() == sel) return true;
+      if (t.categories.any((c) => c.toUpperCase() == sel)) return true;
+
+      // Fallback semântico inteligente caso a categoria tenha pequenas variações de grafia
+      final titleLower = '${t.title} ${t.subtitle ?? ''} ${t.description ?? ''}'.toLowerCase();
+      if (sel == 'PERFUMES' && (titleLower.contains('perfum') || titleLower.contains('olfat'))) return true;
+      if (sel == 'ESTILO' && (titleLower.contains('vestido') || titleLower.contains('estilo') || titleLower.contains('roupa') || titleLower.contains('alfaiataria'))) return true;
+      if (sel == 'VISAGISMO' && (titleLower.contains('visagismo') || titleLower.contains('rosto') || titleLower.contains('barba') || titleLower.contains('cabelo'))) return true;
+      if (sel == 'SKINCARE' && (titleLower.contains('pele') || titleLower.contains('skincare'))) return true;
+      if (sel == 'JORNADA' && (titleLower.contains('jornada') || titleLower.contains('valor'))) return true;
+      if (sel == 'CORPO' && (titleLower.contains('corpo') || titleLower.contains('postura') || titleLower.contains('treino'))) return true;
+      if (sel == 'COMUNICAÇÃO' && (titleLower.contains('comunicação') || titleLower.contains('voz') || titleLower.contains('oratória'))) return true;
+      return false;
+    }).toList();
   }
 
   void _openCourse(Training training) {
@@ -146,6 +181,15 @@ class _CourseDashboardScreenState extends State<CourseDashboardScreen> {
               ),
             ),
 
+            // Banner / Botão de Desbloqueio Total (Man Hub Pass)
+            if (!_authService.isSubscribed)
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(20.0, 4.0, 20.0, 4.0),
+                  child: _buildUnlockAllBanner(),
+                ),
+              ),
+
             // Barra de Filtros
             SliverToBoxAdapter(
               child: Container(
@@ -158,12 +202,12 @@ class _CourseDashboardScreenState extends State<CourseDashboardScreen> {
                   itemCount: _categories.length,
                   itemBuilder: (context, index) {
                     final cat = _categories[index];
-                    final isSelected = cat == _selectedCategory;
+                    final isSelected = cat.toUpperCase() == _selectedCategory.toUpperCase();
                     return Padding(
                       padding: const EdgeInsets.only(right: 10.0),
                       child: FilterChip(
                         label: Text(
-                          cat == 'Todos' ? 'Todos' : cat,
+                          cat,
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: isSelected
@@ -251,6 +295,166 @@ class _CourseDashboardScreenState extends State<CourseDashboardScreen> {
       ),
     ),
   );
+  }
+
+  Widget _buildUnlockAllBanner() {
+    return InkWell(
+      onTap: () => SubscriptionBottomSheet.show(context),
+      borderRadius: BorderRadius.circular(16),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 13),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16),
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              AppColors.neonPrimary.withValues(alpha: 0.16),
+              AppColors.card,
+              AppColors.backgroundSecondary.withValues(alpha: 0.7),
+            ],
+          ),
+          border: Border.all(
+            color: AppColors.neonPrimary.withValues(alpha: 0.45),
+            width: 1.2,
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.neonPrimary.withValues(alpha: 0.08),
+              blurRadius: 14,
+              spreadRadius: 1,
+              offset: const Offset(0, 3),
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Linha Superior: Ícone, Badges e Botão de Ação
+            Row(
+              children: [
+                Container(
+                  width: 36,
+                  height: 36,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient: const LinearGradient(
+                      colors: [AppColors.neonPrimary, AppColors.neonLight],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.neonPrimary.withValues(alpha: 0.35),
+                        blurRadius: 8,
+                        spreadRadius: 1,
+                      ),
+                    ],
+                  ),
+                  child: const Icon(
+                    Icons.workspace_premium_rounded,
+                    color: Colors.black,
+                    size: 20,
+                  ),
+                ),
+                const SizedBox(width: 10),
+                const Text(
+                  'MAN HUB PASS',
+                  style: TextStyle(
+                    color: AppColors.neonLight,
+                    fontSize: 11,
+                    fontWeight: FontWeight.w900,
+                    letterSpacing: 1.0,
+                  ),
+                ),
+                const SizedBox(width: 8),
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 7,
+                    vertical: 3,
+                  ),
+                  decoration: BoxDecoration(
+                    color: AppColors.neonPrimary,
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  child: const Text(
+                    'ACESSO TOTAL',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 9,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 0.5,
+                    ),
+                  ),
+                ),
+                const Spacer(),
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 6,
+                  ),
+                  decoration: BoxDecoration(
+                    color: AppColors.neonPrimary,
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.neonPrimary.withValues(alpha: 0.3),
+                        blurRadius: 6,
+                      ),
+                    ],
+                  ),
+                  child: const Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        Icons.lock_open_rounded,
+                        size: 13,
+                        color: Colors.black,
+                      ),
+                      SizedBox(width: 4),
+                      Text(
+                        'Desbloquear',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 11.5,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 0.3,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+
+            const SizedBox(height: 12),
+
+            // Título Principal com largura total (sem cortes)
+            const Text(
+              'Desbloqueie tudo por apenas R\$ 49,90/mês',
+              style: TextStyle(
+                color: AppColors.textPrimary,
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 0.2,
+              ),
+            ),
+
+            const SizedBox(height: 4),
+
+            // Subtítulo descritivo
+            const Text(
+              'Acesso ilimitado e imediato a todos os treinamentos do aplicativo.',
+              style: TextStyle(
+                color: AppColors.textSecondary,
+                fontSize: 12,
+                height: 1.3,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   Widget _buildCourseGridItem(Training training) {
@@ -344,7 +548,10 @@ class _CourseDashboardScreenState extends State<CourseDashboardScreen> {
                           ),
                         ),
                         child: Text(
-                          training.category ?? 'JORNADA',
+                          (training.categories.isNotEmpty
+                                  ? training.categories.first
+                                  : (training.category ?? 'JORNADA'))
+                              .toUpperCase(),
                           style: const TextStyle(
                             color: AppColors.neonLight,
                             fontSize: 8,
@@ -462,21 +669,38 @@ class _CourseDashboardScreenState extends State<CourseDashboardScreen> {
                               ],
                             );
                           } else {
+                            final priceDisplay = training.price != null
+                                ? 'R\$ ${training.price!.toStringAsFixed(2).replaceAll('.', ',')}'
+                                : 'R\$ 97,00';
                             return Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                const Text(
-                                  'Módulo 1 Grátis',
-                                  style: TextStyle(
-                                    color: AppColors.neonLight,
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text(
+                                      priceDisplay,
+                                      style: const TextStyle(
+                                        color: AppColors.textPrimary,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    const Text(
+                                      'Módulo 1 Grátis',
+                                      style: TextStyle(
+                                        color: AppColors.neonLight,
+                                        fontSize: 9,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                                 Icon(
                                   Icons.play_circle_outline_rounded,
                                   color: AppColors.neonPrimary.withValues(alpha: 0.8),
-                                  size: 16,
+                                  size: 18,
                                 ),
                               ],
                             );

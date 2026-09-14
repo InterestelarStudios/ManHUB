@@ -1,8 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./CheckoutModal.module.css";
 import { X, ShieldCheck, ArrowRight, Loader2, Sparkles } from "lucide-react";
+import { db } from "@/lib/firebase";
+import { collection, onSnapshot } from "firebase/firestore";
 
 interface CheckoutModalProps {
   isOpen: boolean;
@@ -11,6 +13,18 @@ interface CheckoutModalProps {
   defaultTrainingId?: string;
   defaultTrainingTitle?: string;
 }
+
+interface ModalTraining {
+  id: string;
+  title: string;
+  price: number;
+}
+
+const DEFAULT_TRAININGS: ModalTraining[] = [
+  { id: "e0ee6636-cea6-4f59-8242-6b7270f8254d", title: "O Homem Bem-Vestido", price: 97.0 },
+  { id: "f47a8291-3c1e-49fb-9de8-18e329ba4182", title: "Cuidados com Pele, Cabelo e Barba", price: 97.0 },
+  { id: "a7e14d9b-83c6-4e5a-bb44-67290f11ac38", title: "Perfumaria Masculina e Assinatura Olfativa", price: 97.0 },
+];
 
 export default function CheckoutModal({
   isOpen,
@@ -21,26 +35,47 @@ export default function CheckoutModal({
 }: CheckoutModalProps) {
   const [planType, setPlanType] = useState<"pass" | "training">(defaultPlan);
   const [selectedTraining, setSelectedTraining] = useState(
-    defaultTrainingId || "curso_o_homem_bem_vestido"
+    defaultTrainingId || "e0ee6636-cea6-4f59-8242-6b7270f8254d"
   );
+  const [trainingsList, setTrainingsList] = useState<ModalTraining[]>(DEFAULT_TRAININGS);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
-  if (!isOpen) return null;
+  useEffect(() => {
+    try {
+      const unsub = onSnapshot(collection(db, "trainings"), (snapshot) => {
+        if (!snapshot.empty) {
+          const list: ModalTraining[] = snapshot.docs.map((docSnap) => {
+            const data = docSnap.data();
+            return {
+              id: docSnap.id,
+              title: data.title || "Treinamento Oficial",
+              price: typeof data.price === "number" ? data.price : 97.0,
+            };
+          });
+          setTrainingsList(list);
+        }
+      });
+      return () => unsub();
+    } catch (err) {
+      console.warn("Aviso ao buscar treinamentos para Checkout:", err);
+    }
+  }, []);
 
-  const trainings = [
-    { id: "e0ee6636-cea6-4f59-8242-6b7270f8254d", title: "O Homem Bem-Vestido", price: 97.0 },
-    { id: "curso_pele_cabelo_barba", title: "Pele, Cabelo & Barba", price: 97.0 },
-    { id: "curso_perfumaria_masculina", title: "Guia de Perfumaria Masculina", price: 97.0 },
-  ];
+  useEffect(() => {
+    if (defaultPlan) setPlanType(defaultPlan);
+    if (defaultTrainingId) setSelectedTraining(defaultTrainingId);
+  }, [defaultPlan, defaultTrainingId]);
+
+  if (!isOpen) return null;
 
   const currentPrice = planType === "pass" ? 49.9 : 97.0;
   const currentTitle =
     planType === "pass"
       ? "Man Hub Pass - Todos os Cursos"
-      : trainings.find((t) => t.id === selectedTraining)?.title || defaultTrainingTitle || "Treinamento Man Hub";
+      : trainingsList.find((t) => t.id === selectedTraining)?.title || defaultTrainingTitle || "Treinamento Man Hub";
 
   const handleCheckout = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -136,9 +171,9 @@ export default function CheckoutModal({
               value={selectedTraining}
               onChange={(e) => setSelectedTraining(e.target.value)}
             >
-              {trainings.map((t) => (
+              {trainingsList.map((t) => (
                 <option key={t.id} value={t.id}>
-                  {t.title} - R$ 97,00
+                  {t.title} - R$ {t.price.toFixed(2).replace(".", ",")}
                 </option>
               ))}
             </select>

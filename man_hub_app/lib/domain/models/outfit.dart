@@ -89,11 +89,12 @@ class Outfit {
   final String id;
   final String title;
   final String description;
-  final String styleCategory; // 'Smart Casual', 'Old Money', 'Casual Urbano', 'Minimalista', 'Clássico', 'Tech & Sport'
+  final String styleCategory; // 'Smart Casual', 'Old Money', 'Casual Urbano', 'Minimalista', 'Criativo', 'Streetwear', 'Clássico', 'Tech & Sport'
   final String occasion; // 'Trabalho / Corporativo', 'Encontro Noturno', 'Fim de Semana Casual', 'Evento Social', 'Viagem'
   final String? season; // 'Verão', 'Inverno', 'Outono', 'Primavera', 'Atemporal'
   final String imageUrl; // Foto completa e cinematográfica do outfit
   final List<OutfitPiece> pieces;
+  final List<String> tags; // Tags personalizadas pelo curador (ex: 'halloween', 'carnaval', 'casamento', etc.)
   final int likesCount;
   final String creatorName;
   final bool isFeatured;
@@ -112,6 +113,7 @@ class Outfit {
     this.season,
     required this.imageUrl,
     this.pieces = const [],
+    this.tags = const [],
     this.likesCount = 0,
     String? creatorName,
     String? authorName,
@@ -141,6 +143,12 @@ class Outfit {
           .toList();
     }
 
+    final rawTags = map['tags'];
+    List<String> tagsList = [];
+    if (rawTags is List) {
+      tagsList = rawTags.map((e) => e.toString().trim()).where((e) => e.isNotEmpty).toList();
+    }
+
     return Outfit(
       id: docId ?? map['id'] as String? ?? '',
       title: map['title'] as String? ?? 'Outfit Exclusivo',
@@ -150,6 +158,7 @@ class Outfit {
       season: map['season'] as String?,
       imageUrl: map['imageUrl'] as String? ?? '',
       pieces: piecesList,
+      tags: tagsList,
       likesCount: (map['likesCount'] as num?)?.toInt() ?? 0,
       creatorName: map['creatorName'] as String? ?? map['authorName'] as String? ?? 'Man Hub IA',
       isFeatured: map['isFeatured'] as bool? ?? false,
@@ -167,6 +176,7 @@ class Outfit {
       'season': season,
       'imageUrl': imageUrl,
       'pieces': pieces.map((p) => p.toMap()).toList(),
+      'tags': tags,
       'likesCount': likesCount,
       'creatorName': creatorName,
       'isFeatured': isFeatured,
@@ -183,6 +193,7 @@ class Outfit {
     String? season,
     String? imageUrl,
     List<OutfitPiece>? pieces,
+    List<String>? tags,
     int? likesCount,
     String? creatorName,
     bool? isFeatured,
@@ -197,6 +208,7 @@ class Outfit {
       season: season ?? this.season,
       imageUrl: imageUrl ?? this.imageUrl,
       pieces: pieces ?? this.pieces,
+      tags: tags ?? this.tags,
       likesCount: likesCount ?? this.likesCount,
       creatorName: creatorName ?? this.creatorName,
       isFeatured: isFeatured ?? this.isFeatured,

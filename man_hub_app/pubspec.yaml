@@ -44,6 +44,8 @@ dependencies:
   firebase_storage:
   url_launcher: ^6.3.2
   http: ^1.6.0
+  google_sign_in: ^6.2.2
+  shared_preferences: ^2.5.5
 
 dev_dependencies:
   flutter_test:
@@ -69,8 +71,10 @@ flutter:
 
   assets:
     - contents/
+    - contents/images/
     - contents/images/face_formats/
     - contents/images/style_identity/
+    - contents/images/onboarding/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

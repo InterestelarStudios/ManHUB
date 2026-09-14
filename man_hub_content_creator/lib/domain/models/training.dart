@@ -12,6 +12,9 @@ class Training {
   String? requirements;
   String? updatedAt;
   List<Module> modules;
+  String? category;
+  List<String> categories;
+  double? price;
 
   Training({
     String? id,
@@ -24,8 +27,12 @@ class Training {
     this.requirements,
     this.updatedAt,
     List<Module>? modules,
+    this.category,
+    List<String>? categories,
+    this.price,
   })  : id = id ?? const Uuid().v4(),
-        modules = modules ?? [];
+        modules = modules ?? [],
+        categories = categories ?? [];
 
   Map<String, dynamic> toJson() {
     return {
@@ -39,6 +46,9 @@ class Training {
       if (requirements != null && requirements!.isNotEmpty) 'requirements': requirements,
       if (updatedAt != null && updatedAt!.isNotEmpty) 'updatedAt': updatedAt,
       'modules': modules.map((e) => e.toJson()).toList(),
+      if (category != null && category!.isNotEmpty) 'category': category,
+      if (categories.isNotEmpty) 'categories': categories,
+      if (price != null) 'price': price,
     };
   }
 
@@ -52,6 +62,12 @@ class Training {
       }
     }
 
+    final cat = json['category'] as String?;
+    final rawCats = json['categories'] as List<dynamic>?;
+    final parsedCats = rawCats != null
+        ? rawCats.map((e) => e.toString()).toList()
+        : (cat != null && cat.isNotEmpty ? [cat] : <String>[]);
+
     return Training(
       id: json['id'] as String?,
       title: json['title'] as String? ?? '',
@@ -63,6 +79,9 @@ class Training {
       requirements: json['requirements'] as String?,
       updatedAt: json['updatedAt'] as String?,
       modules: parsedModules,
+      category: cat,
+      categories: parsedCats,
+      price: (json['price'] as num?)?.toDouble(),
     );
   }
 }

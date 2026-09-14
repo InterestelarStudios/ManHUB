@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/services/auth_service.dart';
+import '../../widgets/google_logo.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -20,6 +21,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
   bool _isLoading = false;
+  bool _isGoogleLoading = false;
 
   @override
   void dispose() {
@@ -80,14 +82,38 @@ class _SignUpScreenState extends State<SignUpScreen> {
     }
   }
 
-  void _submitSocial(String provider) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        backgroundColor: AppColors.card,
-        content: Text('O cadastro via $provider estará disponível em breve.'),
-      ),
-    );
+  Future<void> _submitGoogleRegister() async {
+    setState(() => _isGoogleLoading = true);
+    try {
+      final userCred = await AuthService().signInWithGoogle();
+      if (userCred != null && mounted) {
+        Navigator.of(context).pop();
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            backgroundColor: AppColors.success,
+            content: Text(
+              'Conta conectada com sucesso! Bem-vindo à jornada.',
+              style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+            ),
+          ),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: AppColors.error,
+            content: Text(e.toString()),
+          ),
+        );
+      }
+    } finally {
+      if (mounted) {
+        setState(() => _isGoogleLoading = false);
+      }
+    }
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -142,13 +168,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             )
                           ],
                         ),
-                        child: const Text(
-                          '♂',
-                          style: TextStyle(
-                            fontSize: 38,
-                            color: AppColors.neonPrimary,
-                            fontWeight: FontWeight.bold,
-                          ),
+                        child: Image.asset(
+                          'contents/images/manhub_icon.png',
+                          width: 52,
+                          height: 52,
+                          fit: BoxFit.contain,
                         ),
                       ),
                       const SizedBox(height: 14),
@@ -324,26 +348,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 const SizedBox(height: 20),
 
-                // Botões Sociais
-                Row(
-                  children: [
-                    Expanded(
-                      child: _buildSocialButton(
-                        label: 'Google',
-                        icon: Icons.g_mobiledata_rounded,
-                        onPressed: () => _submitSocial('Google'),
-                      ),
-                    ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: _buildSocialButton(
-                        label: 'Apple',
-                        icon: Icons.apple_rounded,
-                        onPressed: () => _submitSocial('Apple'),
-                      ),
-                    ),
-                  ],
-                ),
+                // Botão Social Google
+                _buildGoogleButton(),
                 const SizedBox(height: 28),
 
                 // Link para voltar ao Login
@@ -376,15 +382,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 
-  Widget _buildSocialButton({
-    required String label,
-    required IconData icon,
-    required VoidCallback onPressed,
-  }) {
-    return OutlinedButton.icon(
-      onPressed: onPressed,
-      icon: Icon(icon, size: 20),
-      label: Text(label),
+  Widget _buildGoogleButton() {
+    return OutlinedButton(
+      onPressed: (_isLoading || _isGoogleLoading) ? null : _submitGoogleRegister,
       style: OutlinedButton.styleFrom(
         foregroundColor: AppColors.textPrimary,
         side: BorderSide(color: AppColors.neonPrimary.withValues(alpha: 0.3), width: 1.0),
@@ -395,6 +395,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
         ),
         textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
       ),
+      child: _isGoogleLoading
+          ? const SizedBox(
+              width: 18,
+              height: 18,
+              child: CircularProgressIndicator(
+                strokeWidth: 2,
+                color: AppColors.neonPrimary,
+              ),
+            )
+          : const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                GoogleLogo(size: 18),
+                SizedBox(width: 10),
+                Text('Cadastrar com o Google'),
+              ],
+            ),
     );
   }
 }

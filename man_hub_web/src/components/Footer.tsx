@@ -19,8 +19,8 @@ export default function Footer() {
               <span className={styles.logoTitle}>MAN HUB</span>
             </div>
             <p className={styles.brandDesc}>
-              A imagem é apenas o começo. O primeiro hub integrado dedicado à evolução masculina,
-              visagismo, alfaiataria, perfumaria de nicho e autoconfiança de alto padrão.
+              A imagem é apenas o começo. A sua Academia de Desenvolvimento Masculino:
+              transformação de imagem, princípios de homem de valor e presença de alto nível.
             </p>
             <div style={{ marginTop: "4px" }}>
               <span className="badge-gold" style={{ fontSize: "10.5px" }}>
@@ -81,7 +81,10 @@ export default function Footer() {
                 <a href="#faq">Perguntas Frequentes</a>
               </li>
               <li className={styles.linkItem}>
-                <a href="mailto:contato@manhub.app">Suporte & Contato</a>
+                <a href="mailto:support@interestelar.studio">Suporte & Contato</a>
+              </li>
+              <li className={styles.linkItem}>
+                <a href="/exclusao-de-conta">Exclusão de Conta</a>
               </li>
             </ul>
           </div>
@@ -94,14 +97,14 @@ export default function Footer() {
           </span>
 
           <div className={styles.legalLinks}>
-            <a href="#" className={styles.legalLink}>
+            <a href="/termos-de-uso" className={styles.legalLink}>
               Termos de Uso
             </a>
-            <a href="#" className={styles.legalLink}>
+            <a href="/politica-de-privacidade" className={styles.legalLink}>
               Política de Privacidade
             </a>
-            <a href="#" className={styles.legalLink}>
-              Segurança de Dados
+            <a href="/exclusao-de-conta" className={styles.legalLink}>
+              Exclusão de Dados & Conta
             </a>
           </div>
         </div>

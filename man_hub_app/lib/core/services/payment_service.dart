@@ -9,8 +9,12 @@ class PaymentService {
   factory PaymentService() => _instance;
   PaymentService._internal();
 
-  /// URL base da API do Man Hub Web (Next.js)
-  /// Android Emulator usa 10.0.2.2 para acessar o localhost do computador hospedeiro.
+  /// Endpoint oficial do Firebase Cloud Functions para criação de preferências
+  static const String _cloudFunctionUrl =
+      'https://us-central1-man-hub-c0bef.cloudfunctions.net/createPaymentPreference';
+
+  /// URL base da API do Man Hub Web (Next.js) como fallback de desenvolvimento
+  /// Android Emulator usa 10.0.2.2 para acessar o localhost do host.
   String get _apiBaseUrl {
     if (kIsWeb) return 'http://localhost:3000';
     try {
@@ -19,8 +23,8 @@ class PaymentService {
     return 'http://localhost:3000';
   }
 
-  /// Gera a preferência no Mercado Pago através do backend Next.js
-  /// e abre a interface de Checkout Pro oficial (Pix, Cartão, Boleto) no navegador ou app do MP.
+  /// Gera a preferência no Mercado Pago através do Firebase Cloud Functions
+  /// (ou fallback web) e abre o Checkout Pro oficial (Pix, Cartão, Boleto).
   Future<bool> startCheckout({
     required String itemType, // 'training' | 'pass'
     required String itemId,
@@ -29,46 +33,62 @@ class PaymentService {
     required String userId,
     String? userEmail,
   }) async {
-    final uri = Uri.parse('$_apiBaseUrl/api/payments/create-preference');
+    final payload = jsonEncode({
+      'itemType': itemType,
+      'itemId': itemId,
+      'title': title,
+      'price': price,
+      'userId': userId,
+      'userEmail': userEmail ?? '',
+    });
 
-    try {
-      final response = await http
-          .post(
-            uri,
-            headers: {'Content-Type': 'application/json'},
-            body: jsonEncode({
-              'itemType': itemType,
-              'itemId': itemId,
-              'title': title,
-              'price': price,
-              'userId': userId,
-              'userEmail': userEmail ?? '',
-            }),
-          )
-          .timeout(const Duration(seconds: 12));
+    final endpoints = [
+      Uri.parse('https://createpaymentpreference-qvx7hkb7ha-uc.a.run.app'),
+      Uri.parse(_cloudFunctionUrl),
+      Uri.parse('$_apiBaseUrl/api/payments/create-preference'),
+    ];
 
-      if (response.statusCode != 200) {
-        throw Exception(
-            'Falha no gateway de pagamento (${response.statusCode}): ${response.body}');
+    String? initPoint;
+    dynamic lastError;
+
+    for (final uri in endpoints) {
+      try {
+        debugPrint('[PaymentService] Tentando checkout em: $uri');
+        final response = await http
+            .post(
+              uri,
+              headers: {'Content-Type': 'application/json'},
+              body: payload,
+            )
+            .timeout(const Duration(seconds: 12));
+
+        if (response.statusCode == 200) {
+          final data = jsonDecode(response.body) as Map<String, dynamic>;
+          initPoint = data['initPoint'] as String?;
+          if (initPoint != null && initPoint.isNotEmpty) {
+            break; // Sucesso na criação da preferência
+          }
+        } else {
+          lastError =
+              'Status ${response.statusCode}: ${response.body}';
+        }
+      } catch (e) {
+        lastError = e;
+        debugPrint('[PaymentService] Falha no endpoint $uri: $e');
       }
-
-      final data = jsonDecode(response.body) as Map<String, dynamic>;
-      final initPoint = data['initPoint'] as String?;
-
-      if (initPoint == null || initPoint.isEmpty) {
-        throw Exception('Link de pagamento não retornado pelo Mercado Pago.');
-      }
-
-      final checkoutUri = Uri.parse(initPoint);
-      final launched = await launchUrl(
-        checkoutUri,
-        mode: LaunchMode.externalApplication,
-      );
-
-      return launched;
-    } catch (e) {
-      debugPrint('[PaymentService] Erro ao iniciar checkout Mercado Pago: $e');
-      rethrow;
     }
+
+    if (initPoint == null || initPoint.isEmpty) {
+      throw Exception(
+          'Não foi possível iniciar o checkout no Mercado Pago. Detalhes: $lastError');
+    }
+
+    final checkoutUri = Uri.parse(initPoint);
+    final launched = await launchUrl(
+      checkoutUri,
+      mode: LaunchMode.externalApplication,
+    );
+
+    return launched;
   }
 }

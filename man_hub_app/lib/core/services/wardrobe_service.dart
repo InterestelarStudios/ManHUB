@@ -144,26 +144,8 @@ class WardrobeService extends ChangeNotifier {
   }
 
   void _loadDefaultSavedItems() {
-    if (_savedHaircuts.isEmpty) {
-      _savedHaircuts.addAll([
-        const SavedHaircut(
-          id: 'hc_1',
-          title: 'Textured Quiff com Fade Graduado',
-          faceShape: 'Quadrado / Oval',
-          description: 'Corte versátil com textura superior e linhas limpas nas têmporas, criando altura e harmonia angular.',
-          imageUrl: 'https://images.unsplash.com/photo-1503443207922-dff7d543fd0e?q=80&w=600&auto=format&fit=crop',
-          recommendedStylingProduct: 'Pomada Matte Efeito Seco (Argila Modeladora)',
-        ),
-        const SavedHaircut(
-          id: 'hc_2',
-          title: 'Slick Back Clássico Contemporâneo',
-          faceShape: 'Oval / Retangular',
-          description: 'Cabelos alinhados para trás com volume moderado e brilho natural. Transmite sofisticação executiva.',
-          imageUrl: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=600&auto=format&fit=crop',
-          recommendedStylingProduct: 'Pasta Modeladora Base Água com Brilho Médio',
-        ),
-      ]);
-    }
+    // Fake haircuts removed in favor of real HaircutService from Firestore.
+    _savedHaircuts.clear();
 
     if (_savedFragrances.isEmpty) {
       _savedFragrances.addAll([

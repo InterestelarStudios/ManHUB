@@ -359,8 +359,10 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
 
                     const SizedBox(height: 20),
 
-                    // BOTÃO DE PLAY PRINCIPAL (CONTINUAR OU INICIAR TREINAMENTO)
-                    _buildPlayResumeButton(progress),
+                    // BOTÃO PRINCIPAL (PLAY/CONTINUAR OU ADQUIRIR TREINAMENTO)
+                    hasFullAccess
+                        ? _buildPlayResumeButton(progress)
+                        : _buildPurchaseCourseButton(),
 
                     const SizedBox(height: 24),
 
@@ -510,6 +512,164 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
               const SliverToBoxAdapter(
                 child: SizedBox(height: 40),
               ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildPurchaseCourseButton() {
+    final originalPriceStr = widget.training.price != null
+        ? 'R\$ ${widget.training.price!.toStringAsFixed(2).replaceAll('.', ',')}'
+        : 'R\$ 97,00';
+
+    return InkWell(
+      onTap: _showPurchaseBottomSheet,
+      borderRadius: BorderRadius.circular(16),
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              AppColors.neonPrimary.withValues(alpha: 0.16),
+              AppColors.card,
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: AppColors.neonPrimary.withValues(alpha: 0.6),
+            width: 1.5,
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.neonPrimary.withValues(alpha: 0.18),
+              blurRadius: 18,
+              spreadRadius: 2,
+            ),
+          ],
+        ),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Container(
+                  width: 48,
+                  height: 48,
+                  decoration: BoxDecoration(
+                    gradient: const LinearGradient(
+                      colors: [AppColors.neonPrimary, AppColors.neonLight],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.neonPrimary.withValues(alpha: 0.4),
+                        blurRadius: 12,
+                        spreadRadius: 1,
+                      ),
+                    ],
+                  ),
+                  child: const Icon(
+                    Icons.lock_open_rounded,
+                    color: Colors.black,
+                    size: 26,
+                  ),
+                ),
+                const SizedBox(width: 14),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          const Expanded(
+                            child: Text(
+                              'Adquirir Treinamento',
+                              style: TextStyle(
+                                color: AppColors.textPrimary,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 0.3,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 3,
+                            ),
+                            decoration: BoxDecoration(
+                              color: AppColors.neonPrimary.withValues(alpha: 0.2),
+                              borderRadius: BorderRadius.circular(6),
+                              border: Border.all(
+                                color: AppColors.neonPrimary.withValues(alpha: 0.5),
+                                width: 1,
+                              ),
+                            ),
+                            child: Text(
+                              originalPriceStr,
+                              style: const TextStyle(
+                                color: AppColors.neonLight,
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        'Acesso vitalício por $originalPriceStr ou tudo no Pass (R\$ 49,90/mês)',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          color: AppColors.textSecondary,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(width: 8),
+                const Icon(
+                  Icons.arrow_forward_ios_rounded,
+                  color: AppColors.neonLight,
+                  size: 14,
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+              decoration: BoxDecoration(
+                color: Colors.black.withValues(alpha: 0.25),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: const Row(
+                children: [
+                  Icon(
+                    Icons.remove_red_eye_outlined,
+                    size: 13,
+                    color: AppColors.neonPrimary,
+                  ),
+                  SizedBox(width: 6),
+                  Expanded(
+                    child: Text(
+                      'Módulo 1 liberado para degustação gratuita logo abaixo',
+                      style: TextStyle(
+                        color: AppColors.textSecondary,
+                        fontSize: 11,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),

@@ -12,6 +12,9 @@ class TrainingDetailsDialog extends StatefulWidget {
     String? duration,
     String? coverImageUrl,
     String? requirements,
+    double? price,
+    String? category,
+    List<String>? categories,
   }) onSave;
 
   const TrainingDetailsDialog({
@@ -28,28 +31,54 @@ class TrainingDetailsDialog extends StatefulWidget {
 class _TrainingDetailsDialogState extends State<TrainingDetailsDialog> {
   late final TextEditingController _titleController;
   late final TextEditingController _subtitleController;
+  late final TextEditingController _priceController;
   late final TextEditingController _descriptionController;
   late final TextEditingController _whatYouWillLearnController;
   late final TextEditingController _durationController;
   late final TextEditingController _coverImageUrlController;
   late final TextEditingController _requirementsController;
+  late final List<String> _selectedCategories;
+
+  final List<String> _availableCategories = const [
+    'Jornada',
+    'Estilo',
+    'Visagismo',
+    'Perfumes',
+    'Skincare',
+    'Corpo',
+    'Comunicação',
+    'Shopping',
+  ];
 
   @override
   void initState() {
     super.initState();
     _titleController = TextEditingController(text: widget.training?.title ?? '');
     _subtitleController = TextEditingController(text: widget.training?.subtitle ?? '');
+    _priceController = TextEditingController(
+      text: widget.training?.price != null
+          ? widget.training!.price!.toStringAsFixed(2)
+          : '97.00',
+    );
     _descriptionController = TextEditingController(text: widget.training?.description ?? '');
     _whatYouWillLearnController = TextEditingController(text: widget.training?.whatYouWillLearn ?? '');
     _durationController = TextEditingController(text: widget.training?.duration ?? '');
     _coverImageUrlController = TextEditingController(text: widget.training?.coverImageUrl ?? '');
     _requirementsController = TextEditingController(text: widget.training?.requirements ?? '');
+
+    final initialCats = widget.training?.categories.isNotEmpty == true
+        ? widget.training!.categories
+        : (widget.training?.category != null && widget.training!.category!.trim().isNotEmpty
+            ? [widget.training!.category!]
+            : <String>['Jornada']);
+    _selectedCategories = List<String>.from(initialCats);
   }
 
   @override
   void dispose() {
     _titleController.dispose();
     _subtitleController.dispose();
+    _priceController.dispose();
     _descriptionController.dispose();
     _whatYouWillLearnController.dispose();
     _durationController.dispose();
@@ -67,6 +96,10 @@ class _TrainingDetailsDialogState extends State<TrainingDetailsDialog> {
       return;
     }
 
+    final priceText = _priceController.text.trim().replaceAll('R\$', '').replaceAll(',', '.').trim();
+    final price = double.tryParse(priceText);
+    final primaryCategory = _selectedCategories.isNotEmpty ? _selectedCategories.first : 'Jornada';
+
     widget.onSave(
       title: title,
       subtitle: _subtitleController.text.trim().isNotEmpty ? _subtitleController.text.trim() : null,
@@ -75,6 +108,9 @@ class _TrainingDetailsDialogState extends State<TrainingDetailsDialog> {
       duration: _durationController.text.trim().isNotEmpty ? _durationController.text.trim() : null,
       coverImageUrl: _coverImageUrlController.text.trim().isNotEmpty ? _coverImageUrlController.text.trim() : null,
       requirements: _requirementsController.text.trim().isNotEmpty ? _requirementsController.text.trim() : null,
+      price: price,
+      category: primaryCategory,
+      categories: _selectedCategories,
     );
 
     Navigator.pop(context);
@@ -85,9 +121,9 @@ class _TrainingDetailsDialogState extends State<TrainingDetailsDialog> {
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: Container(
-        width: 650,
+        width: 680,
         constraints: BoxConstraints(
-          maxHeight: MediaQuery.of(context).size.height * 0.85,
+          maxHeight: MediaQuery.of(context).size.height * 0.9,
         ),
         padding: const EdgeInsets.all(24.0),
         child: Column(
@@ -141,11 +177,26 @@ class _TrainingDetailsDialogState extends State<TrainingDetailsDialog> {
                     ),
                     const SizedBox(height: 16),
 
-                    // Duração e Imagem
+                    // Preço de Venda e Duração
                     Row(
                       children: [
                         Expanded(
-                          flex: 2,
+                          flex: 1,
+                          child: TextField(
+                            controller: _priceController,
+                            keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                            decoration: const InputDecoration(
+                              labelText: r'Preço Individual (R$) *',
+                              hintText: '97.00',
+                              prefixText: r'R$ ',
+                              border: OutlineInputBorder(),
+                              prefixIcon: Icon(Icons.monetization_on_outlined, color: Colors.greenAccent),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          flex: 1,
                           child: TextField(
                             controller: _durationController,
                             decoration: const InputDecoration(
@@ -156,21 +207,76 @@ class _TrainingDetailsDialogState extends State<TrainingDetailsDialog> {
                             ),
                           ),
                         ),
-                        const SizedBox(width: 16),
-                        Expanded(
-                          flex: 3,
-                          child: TextField(
-                            controller: _coverImageUrlController,
-                            decoration: const InputDecoration(
-                              labelText: 'URL da Imagem Principal (Capa)',
-                              hintText: 'https://...',
-                              border: OutlineInputBorder(),
-                              prefixIcon: Icon(Icons.image_outlined),
-                            ),
-                            onChanged: (_) => setState(() {}),
-                          ),
-                        ),
                       ],
+                    ),
+                    const SizedBox(height: 16),
+
+                    // Categorias do Treinamento
+                    Container(
+                      padding: const EdgeInsets.all(14),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withValues(alpha: 0.04),
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.white12),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Row(
+                            children: [
+                              Icon(Icons.category_outlined, size: 18, color: Colors.blueAccent),
+                              SizedBox(width: 8),
+                              Text(
+                                'Categorias do Treinamento (Filtros no App & Home):',
+                                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 13),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 10),
+                          Wrap(
+                            spacing: 8,
+                            runSpacing: 8,
+                            children: _availableCategories.map((cat) {
+                              final isSelected = _selectedCategories.contains(cat);
+                              return FilterChip(
+                                label: Text(cat),
+                                selected: isSelected,
+                                selectedColor: Colors.blueAccent.withValues(alpha: 0.25),
+                                checkmarkColor: Colors.blueAccent,
+                                labelStyle: TextStyle(
+                                  color: isSelected ? Colors.white : Colors.grey[400],
+                                  fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                                  fontSize: 12,
+                                ),
+                                onSelected: (selected) {
+                                  setState(() {
+                                    if (selected) {
+                                      if (!_selectedCategories.contains(cat)) {
+                                        _selectedCategories.add(cat);
+                                      }
+                                    } else {
+                                      _selectedCategories.remove(cat);
+                                    }
+                                  });
+                                },
+                              );
+                            }).toList(),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+
+                    // Imagem de Capa
+                    TextField(
+                      controller: _coverImageUrlController,
+                      decoration: const InputDecoration(
+                        labelText: 'URL da Imagem Principal (Capa)',
+                        hintText: 'https://...',
+                        border: OutlineInputBorder(),
+                        prefixIcon: Icon(Icons.image_outlined),
+                      ),
+                      onChanged: (_) => setState(() {}),
                     ),
                     if (_coverImageUrlController.text.trim().isNotEmpty) ...[
                       const SizedBox(height: 12),

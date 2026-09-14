@@ -45,6 +45,6 @@ class DefaultFirebaseOptions {
     messagingSenderId: '495141513520',
     projectId: 'man-hub-c0bef',
     storageBucket: 'man-hub-c0bef.firebasestorage.app',
-    iosBundleId: 'com.example.manHubApp',
+    iosBundleId: 'com.interestelar.manHub',
   );
 }

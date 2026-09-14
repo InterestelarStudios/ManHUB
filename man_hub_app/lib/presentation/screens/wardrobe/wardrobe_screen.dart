@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 import '../../../core/theme/app_colors.dart';
-import '../../../core/services/wardrobe_service.dart';
 import '../../../core/services/outfit_service.dart';
+import '../../../core/services/haircut_service.dart';
 import '../../../core/services/auth_service.dart';
 import '../outfits/outfit_detail_screen.dart';
+import '../outfits/haircut_detail_screen.dart';
 import '../profile/personalized_profile_screen.dart';
 
 class WardrobeScreen extends StatefulWidget {
@@ -17,41 +17,20 @@ class WardrobeScreen extends StatefulWidget {
 class _WardrobeScreenState extends State<WardrobeScreen>
     with SingleTickerProviderStateMixin {
   late final TabController _tabController;
-  final WardrobeService _wardrobeService = WardrobeService();
   final OutfitService _outfitService = OutfitService();
+  final HaircutService _haircutService = HaircutService();
   final AuthService _authService = AuthService();
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 4, vsync: this);
+    _tabController = TabController(length: 3, vsync: this);
   }
 
   @override
   void dispose() {
     _tabController.dispose();
     super.dispose();
-  }
-
-  Future<void> _launchAffiliateUrl(String url) async {
-    final uri = Uri.parse(url);
-    try {
-      if (await canLaunchUrl(uri)) {
-        await launchUrl(uri, mode: LaunchMode.externalApplication);
-      } else {
-        if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Não foi possível abrir o link do parceiro.')),
-          );
-        }
-      }
-    } catch (_) {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Erro ao abrir link externo.')),
-        );
-      }
-    }
   }
 
   @override
@@ -61,52 +40,79 @@ class _WardrobeScreenState extends State<WardrobeScreen>
       appBar: AppBar(
         backgroundColor: AppColors.backgroundMain,
         elevation: 0,
-        title: const Text(
-          'Meu Armário',
-          style: TextStyle(
-            color: AppColors.textPrimary,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 0.5,
+        scrolledUnderElevation: 0,
+        centerTitle: false,
+        toolbarHeight: 76,
+        titleSpacing: 20,
+        title: Padding(
+          padding: const EdgeInsets.only(top: 8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text(
+                'Meu Armário',
+                style: TextStyle(
+                  color: AppColors.textPrimary,
+                  fontSize: 23,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: -0.2,
+                ),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                'Sua curadoria pessoal de estilo, cortes e biometria',
+                style: TextStyle(
+                  color: AppColors.textSecondary.withValues(alpha: 0.8),
+                  fontSize: 13,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+            ],
           ),
         ),
         bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(50),
-          child: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 16),
-            decoration: BoxDecoration(
-              color: AppColors.card,
-              borderRadius: BorderRadius.circular(14),
-              border: Border.all(
-                color: AppColors.neonPrimary.withValues(alpha: 0.2),
-              ),
-            ),
-            child: TabBar(
-              controller: _tabController,
-              isScrollable: true,
-              tabAlignment: TabAlignment.start,
-              indicatorSize: TabBarIndicatorSize.tab,
-              indicator: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                gradient: LinearGradient(
-                  colors: [
-                    AppColors.neonPrimary.withValues(alpha: 0.3),
-                    AppColors.royalBlue.withValues(alpha: 0.3),
-                  ],
+          preferredSize: const Size.fromHeight(66),
+          child: Padding(
+            padding: const EdgeInsets.only(top: 10.0, bottom: 8.0),
+            child: Container(
+              margin: const EdgeInsets.symmetric(horizontal: 16),
+              decoration: BoxDecoration(
+                color: AppColors.card,
+                borderRadius: BorderRadius.circular(14),
+                border: Border.all(
+                  color: AppColors.neonPrimary.withValues(alpha: 0.2),
                 ),
-                border: Border.all(color: AppColors.neonPrimary),
               ),
-              labelColor: AppColors.neonPrimary,
-              unselectedLabelColor: AppColors.textSecondary,
-              labelStyle: const TextStyle(
-                fontSize: 13,
-                fontWeight: FontWeight.bold,
+              child: TabBar(
+                controller: _tabController,
+                dividerColor: Colors.transparent,
+                dividerHeight: 0,
+                isScrollable: true,
+                tabAlignment: TabAlignment.start,
+                indicatorSize: TabBarIndicatorSize.tab,
+                indicator: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  gradient: LinearGradient(
+                    colors: [
+                      AppColors.neonPrimary.withValues(alpha: 0.3),
+                      AppColors.royalBlue.withValues(alpha: 0.3),
+                    ],
+                  ),
+                  border: Border.all(color: AppColors.neonPrimary),
+                ),
+                labelColor: AppColors.neonPrimary,
+                unselectedLabelColor: AppColors.textSecondary,
+                labelStyle: const TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.bold,
+                ),
+                tabs: const [
+                  Tab(icon: Icon(Icons.auto_awesome_mosaic_outlined, size: 18), text: 'Outfits'),
+                  Tab(icon: Icon(Icons.content_cut_outlined, size: 18), text: 'Cortes & Visagismo'),
+                  Tab(icon: Icon(Icons.palette_outlined, size: 18), text: 'Paleta & Biometria'),
+                ],
               ),
-              tabs: const [
-                Tab(icon: Icon(Icons.auto_awesome_mosaic_outlined, size: 18), text: 'Outfits'),
-                Tab(icon: Icon(Icons.content_cut_outlined, size: 18), text: 'Cortes & Visagismo'),
-                Tab(icon: Icon(Icons.spa_outlined, size: 18), text: 'Perfumes'),
-                Tab(icon: Icon(Icons.palette_outlined, size: 18), text: 'Paleta & Biometria'),
-              ],
             ),
           ),
         ),
@@ -116,7 +122,6 @@ class _WardrobeScreenState extends State<WardrobeScreen>
         children: [
           _buildSavedOutfitsTab(),
           _buildSavedHaircutsTab(),
-          _buildSavedFragrancesTab(),
           _buildPaletteAndBiometricsTab(),
         ],
       ),
@@ -262,6 +267,29 @@ class _WardrobeScreenState extends State<WardrobeScreen>
                                 fontSize: 13,
                               ),
                             ),
+                            if (outfit.tags.isNotEmpty) ...[
+                              const SizedBox(height: 6),
+                              Wrap(
+                                spacing: 4,
+                                children: outfit.tags.take(3).map((tag) {
+                                  return Container(
+                                    padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                                    decoration: BoxDecoration(
+                                      color: AppColors.neonPrimary.withValues(alpha: 0.1),
+                                      borderRadius: BorderRadius.circular(4),
+                                    ),
+                                    child: Text(
+                                      '#$tag',
+                                      style: const TextStyle(
+                                        color: AppColors.neonLight,
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  );
+                                }).toList(),
+                              ),
+                            ],
                           ],
                         ),
                       ),
@@ -287,15 +315,51 @@ class _WardrobeScreenState extends State<WardrobeScreen>
   // ---------------------------------------------------------------------------
   Widget _buildSavedHaircutsTab() {
     return ListenableBuilder(
-      listenable: _wardrobeService,
+      listenable: _haircutService,
       builder: (context, _) {
-        final haircuts = _wardrobeService.savedHaircuts;
+        final haircuts = _haircutService.savedHaircuts;
 
         if (haircuts.isEmpty) {
-          return const Center(
-            child: Text(
-              'Nenhum corte salvo no momento.',
-              style: TextStyle(color: AppColors.textSecondary),
+          return Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 32.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      color: AppColors.neonPrimary.withValues(alpha: 0.1),
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(
+                      Icons.content_cut_rounded,
+                      size: 48,
+                      color: AppColors.neonPrimary,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  const Text(
+                    'Nenhum corte salvo no momento',
+                    style: TextStyle(
+                      color: AppColors.textPrimary,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    'Explore a galeria de Cortes de Cabelo na aba Estilos e salve seus cortes favoritos para consultar facilmente.',
+                    style: TextStyle(
+                      color: AppColors.textSecondary.withValues(alpha: 0.8),
+                      fontSize: 13,
+                      height: 1.4,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
             ),
           );
         }
@@ -305,142 +369,9 @@ class _WardrobeScreenState extends State<WardrobeScreen>
           itemCount: haircuts.length,
           itemBuilder: (context, index) {
             final haircut = haircuts[index];
-            return Container(
-              margin: const EdgeInsets.only(bottom: 18),
-              decoration: BoxDecoration(
-                color: AppColors.card,
-                borderRadius: BorderRadius.circular(16),
-                border: Border.all(
-                  color: AppColors.neonPrimary.withValues(alpha: 0.3),
-                ),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ClipRRect(
-                    borderRadius: const BorderRadius.vertical(top: Radius.circular(15)),
-                    child: Image.network(
-                      haircut.imageUrl,
-                      height: 180,
-                      width: double.infinity,
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) => Container(
-                        height: 180,
-                        color: AppColors.backgroundMain,
-                        child: const Icon(Icons.content_cut, color: AppColors.textSecondary, size: 40),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              child: Text(
-                                haircut.title,
-                                style: const TextStyle(
-                                  color: AppColors.textPrimary,
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                            IconButton(
-                              icon: const Icon(Icons.bookmark_remove, color: AppColors.neonPrimary),
-                              onPressed: () => _wardrobeService.toggleSaveHaircut(haircut),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 6),
-                        Row(
-                          children: [
-                            const Icon(Icons.face_retouching_natural, size: 16, color: AppColors.neonPrimary),
-                            const SizedBox(width: 6),
-                            Text(
-                              'Ideal para: ${haircut.faceShape}',
-                              style: const TextStyle(
-                                color: AppColors.neonPrimary,
-                                fontSize: 13,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 10),
-                        Text(
-                          haircut.description,
-                          style: const TextStyle(
-                            color: AppColors.textSecondary,
-                            fontSize: 13,
-                            height: 1.4,
-                          ),
-                        ),
-                        const SizedBox(height: 12),
-                        Container(
-                          padding: const EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            color: AppColors.backgroundMain,
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(
-                              color: AppColors.neonPrimary.withValues(alpha: 0.15),
-                            ),
-                          ),
-                          child: Row(
-                            children: [
-                              const Icon(Icons.brush_outlined, size: 18, color: AppColors.neonLight),
-                              const SizedBox(width: 8),
-                              Expanded(
-                                child: Text(
-                                  'Fixador recomendado: ${haircut.recommendedStylingProduct}',
-                                  style: const TextStyle(
-                                    color: AppColors.textPrimary,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            );
-          },
-        );
-      },
-    );
-  }
+            final hasImages = haircut.imageUrls.isNotEmpty;
+            final primaryImage = hasImages ? haircut.imageUrls.first : '';
 
-  // ---------------------------------------------------------------------------
-  // TAB 3: PERFUMES & ASSINATURA OLFATIVA
-  // ---------------------------------------------------------------------------
-  Widget _buildSavedFragrancesTab() {
-    return ListenableBuilder(
-      listenable: _wardrobeService,
-      builder: (context, _) {
-        final fragrances = _wardrobeService.savedFragrances;
-
-        if (fragrances.isEmpty) {
-          return const Center(
-            child: Text(
-              'Nenhum perfume salvo no momento.',
-              style: TextStyle(color: AppColors.textSecondary),
-            ),
-          );
-        }
-
-        return ListView.builder(
-          padding: const EdgeInsets.all(16),
-          itemCount: fragrances.length,
-          itemBuilder: (context, index) {
-            final frag = fragrances[index];
             return Container(
               margin: const EdgeInsets.only(bottom: 16),
               decoration: BoxDecoration(
@@ -450,143 +381,172 @@ class _WardrobeScreenState extends State<WardrobeScreen>
                   color: AppColors.neonPrimary.withValues(alpha: 0.3),
                 ),
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+              child: InkWell(
+                borderRadius: BorderRadius.circular(16),
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => HaircutDetailScreen(haircut: haircut),
+                    ),
+                  );
+                },
+                child: Row(
                   children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(12),
-                          child: Image.network(
-                            frag.imageUrl,
-                            width: 80,
-                            height: 90,
-                            fit: BoxFit.cover,
-                            errorBuilder: (context, error, stackTrace) => Container(
-                              width: 80,
-                              height: 90,
+                    ClipRRect(
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(15),
+                        bottomLeft: Radius.circular(15),
+                      ),
+                      child: Stack(
+                        children: [
+                          if (hasImages)
+                            Image.network(
+                              primaryImage,
+                              width: 110,
+                              height: 120,
+                              fit: BoxFit.cover,
+                              errorBuilder: (context, error, stackTrace) => Container(
+                                width: 110,
+                                height: 120,
+                                color: AppColors.backgroundMain,
+                                child: const Icon(Icons.content_cut, color: AppColors.textSecondary),
+                              ),
+                            )
+                          else
+                            Container(
+                              width: 110,
+                              height: 120,
                               color: AppColors.backgroundMain,
-                              child: const Icon(Icons.spa, color: AppColors.textSecondary),
+                              child: const Icon(Icons.content_cut, color: AppColors.textSecondary),
                             ),
-                          ),
-                        ),
-                        const SizedBox(width: 16),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                frag.brand.toUpperCase(),
+                          if (haircut.imageUrls.length > 1)
+                            Positioned(
+                              bottom: 4,
+                              right: 4,
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+                                decoration: BoxDecoration(
+                                  color: Colors.black.withValues(alpha: 0.75),
+                                  borderRadius: BorderRadius.circular(6),
+                                ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    const Icon(Icons.photo_library_rounded, size: 10, color: Colors.white),
+                                    const SizedBox(width: 3),
+                                    Text(
+                                      '${haircut.imageUrls.length}',
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 9,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 12),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                              decoration: BoxDecoration(
+                                color: AppColors.neonPrimary.withValues(alpha: 0.15),
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                              child: Text(
+                                'CABELO ${haircut.hairType.toUpperCase()}',
                                 style: const TextStyle(
                                   color: AppColors.neonPrimary,
                                   fontSize: 11,
                                   fontWeight: FontWeight.bold,
-                                  letterSpacing: 1.0,
                                 ),
                               ),
-                              const SizedBox(height: 4),
+                            ),
+                            const SizedBox(height: 6),
+                            Text(
+                              haircut.title.trim().isNotEmpty
+                                  ? haircut.title
+                                  : 'Corte ${haircut.hairType}',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                color: AppColors.textPrimary,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            if (haircut.faceShapes.isNotEmpty)
                               Text(
-                                frag.name,
+                                'Ideal para: ${haircut.faceShapes.join(' • ')}',
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
                                 style: const TextStyle(
-                                  color: AppColors.textPrimary,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.textSecondary,
+                                  fontSize: 13,
                                 ),
-                              ),
-                              const SizedBox(height: 4),
+                              )
+                            else if (haircut.recommendedStylingProduct.isNotEmpty)
                               Text(
-                                frag.family,
+                                haircut.recommendedStylingProduct,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
                                 style: const TextStyle(
                                   color: AppColors.textSecondary,
                                   fontSize: 13,
                                 ),
                               ),
-                            ],
-                          ),
-                        ),
-                        IconButton(
-                          icon: const Icon(Icons.bookmark_remove, color: AppColors.neonPrimary),
-                          onPressed: () => _wardrobeService.toggleSaveFragrance(frag),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 12),
-                    Container(
-                      padding: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        color: AppColors.backgroundMain,
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(
-                          color: AppColors.neonPrimary.withValues(alpha: 0.15),
-                        ),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              const Icon(Icons.event_note, size: 14, color: AppColors.neonPrimary),
-                              const SizedBox(width: 6),
-                              Expanded(
-                                child: Text(
-                                  'Ocasião: ${frag.occasion}',
-                                  style: const TextStyle(
-                                    color: AppColors.textPrimary,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
+                            if (haircut.tags.isNotEmpty) ...[
+                              const SizedBox(height: 6),
+                              Wrap(
+                                spacing: 4,
+                                children: haircut.tags.take(3).map((tag) {
+                                  return Container(
+                                    padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                                    decoration: BoxDecoration(
+                                      color: AppColors.neonPrimary.withValues(alpha: 0.1),
+                                      borderRadius: BorderRadius.circular(4),
+                                    ),
+                                    child: Text(
+                                      '#$tag',
+                                      style: const TextStyle(
+                                        color: AppColors.neonLight,
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  );
+                                }).toList(),
                               ),
                             ],
-                          ),
-                          const SizedBox(height: 6),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Icon(Icons.bubble_chart_outlined, size: 14, color: AppColors.textSecondary),
-                              const SizedBox(width: 6),
-                              Expanded(
-                                child: Text(
-                                  'Notas: ${frag.notes}',
-                                  style: const TextStyle(
-                                    color: AppColors.textSecondary,
-                                    fontSize: 12,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    if (frag.affiliateUrl != null && frag.affiliateUrl!.isNotEmpty) ...[
-                      const SizedBox(height: 12),
-                      SizedBox(
-                        width: double.infinity,
-                        child: OutlinedButton.icon(
-                          style: OutlinedButton.styleFrom(
-                            side: const BorderSide(color: AppColors.neonPrimary),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            padding: const EdgeInsets.symmetric(vertical: 10),
-                          ),
-                          onPressed: () => _launchAffiliateUrl(frag.affiliateUrl!),
-                          icon: const Icon(Icons.shopping_bag_outlined, color: AppColors.neonPrimary, size: 16),
-                          label: const Text(
-                            'Ver Oferta na Loja Parceira',
-                            style: TextStyle(
-                              color: AppColors.neonPrimary,
-                              fontSize: 13,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
+                          ],
                         ),
                       ),
-                    ],
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.bookmark_remove, color: AppColors.neonPrimary),
+                      tooltip: 'Remover do armário',
+                      onPressed: () {
+                        _haircutService.toggleSaveHaircut(haircut.id);
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            backgroundColor: AppColors.card,
+                            content: Text('Corte removido do armário.'),
+                            duration: Duration(seconds: 2),
+                          ),
+                        );
+                      },
+                    ),
+                    const SizedBox(width: 8),
                   ],
                 ),
               ),
@@ -598,7 +558,7 @@ class _WardrobeScreenState extends State<WardrobeScreen>
   }
 
   // ---------------------------------------------------------------------------
-  // TAB 4: PALETA & BIOMETRIA
+  // TAB 3: PALETA & BIOMETRIA
   // ---------------------------------------------------------------------------
   Widget _buildPaletteAndBiometricsTab() {
     return ListenableBuilder(

@@ -16,28 +16,28 @@ interface SlideData {
 
 const SLIDES: SlideData[] = [
   {
-    id: "visagismo",
-    courseTitle: "Pele, Cabelo & Barba",
-    badge: "Visagismo Facial",
-    title: "Formato de Rosto Diamante",
-    text: "Maçãs do rosto proeminentes exigem cortes com volume lateral e textura no topo, equilibrados com barba de linhas retas na mandíbula.",
+    id: "imagem",
+    courseTitle: "Transformação de Imagem",
+    badge: "Impacto Visual",
+    title: "A Linha da Autoridade",
+    text: "Alinhamento milimétrico de ombros, porte corporal e caimento adequado transmitem liderança e respeito antes mesmo de você falar.",
     imageUrl: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=800&auto=format&fit=crop",
   },
   {
-    id: "estilo",
-    courseTitle: "O Homem Bem-Vestido",
-    badge: "Caimento Perfeito",
-    title: "A Regra de Ouro do Ombro",
-    text: "A costura da camisa ou paletó deve repousar com precisão cirúrgica sobre o osso do ombro (acrômio), desenhando a clássica proporção em 'V'.",
+    id: "homem-de-valor",
+    courseTitle: "Homem de Alto Valor",
+    badge: "Princípios & Conduta",
+    title: "Autodomínio & Firmeza",
+    text: "A verdadeira elegância nasce no autocontrole. Clareza de propósito, integridade e postura inabalável definem um homem respeitado em qualquer mesa.",
     imageUrl: "https://images.unsplash.com/photo-1593032465175-481ac7f401a0?q=80&w=800&auto=format&fit=crop",
   },
   {
-    id: "perfumes",
-    courseTitle: "Perfumaria Masculina",
-    badge: "Pirâmide Olfativa",
-    title: "Notas de Fundo & Assinatura",
-    text: "O âmbar, cedro atlas e vetiver são responsáveis pela fixação de até 12 horas e criam sua verdadeira aura de autoridade e magnetismo.",
-    imageUrl: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?q=80&w=800&auto=format&fit=crop",
+    id: "presenca",
+    courseTitle: "Presença de Alto Nível",
+    badge: "Liderança & Magnetismo",
+    title: "Postura e Olhar Firme",
+    text: "Contato visual inabalável, comunicação não-verbal assertiva e serenidade sob pressão impõem respeito natural onde quer que você esteja.",
+    imageUrl: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=800&auto=format&fit=crop",
   },
 ];
 
@@ -73,7 +73,7 @@ export default function PhoneMockup() {
 
   return (
     <div className={styles.mockupContainer}>
-      {/* Floating Badge 1 - AI Visagism */}
+      {/* Floating Badge 1 - Masculine Development */}
       <div className={styles.floatingBadge1}>
         <div
           className={styles.badgeIconCircle}
@@ -82,8 +82,8 @@ export default function PhoneMockup() {
           <Sparkles size={16} />
         </div>
         <div className={styles.badgeText}>
-          <span className={styles.badgeLabel}>IA Visagismo</span>
-          <span className={styles.badgeVal}>Análise Facial 3D</span>
+          <span className={styles.badgeLabel}>Desenvolvimento</span>
+          <span className={styles.badgeVal}>Academia Masculina</span>
         </div>
       </div>
 
@@ -186,12 +186,8 @@ export default function PhoneMockup() {
               <span>Treinos</span>
             </div>
             <div className={styles.navItem}>
-              <Scissors size={18} />
-              <span>Visagismo</span>
-            </div>
-            <div className={styles.navItem}>
               <Shirt size={18} />
-              <span>Looks</span>
+              <span>Armário</span>
             </div>
             <div className={styles.navItem}>
               <User size={18} />

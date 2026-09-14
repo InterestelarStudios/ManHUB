@@ -51,7 +51,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyD8mJIcIkghuugvu-kHQby3RBnz9f97uZo',
-    appId: '1:495141513520:android:3f760fbd7d25b62e5340f5',
+    appId: '1:495141513520:android:eedbe1776eefea9f5340f5',
     messagingSenderId: '495141513520',
     projectId: 'man-hub-c0bef',
     storageBucket: 'man-hub-c0bef.firebasestorage.app',
@@ -59,10 +59,13 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyC499lCUYpcbLG3_YdK674I6xvCmoftkks',
-    appId: '1:495141513520:ios:8940410af2d3f3915340f5',
+    appId: '1:495141513520:ios:813201fddb77f0805340f5',
     messagingSenderId: '495141513520',
     projectId: 'man-hub-c0bef',
     storageBucket: 'man-hub-c0bef.firebasestorage.app',
-    iosBundleId: 'com.example.manHubApp',
+    androidClientId: '495141513520-cqkdhnhqlbl78q9r7uvj62b2u2s24iml.apps.googleusercontent.com',
+    iosClientId: '495141513520-mjibivud0p8vjfp9otuloec6vtuikipe.apps.googleusercontent.com',
+    iosBundleId: 'com.interestelar.manHub',
   );
+
 }

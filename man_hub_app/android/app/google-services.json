@@ -7,12 +7,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:495141513520:android:3f760fbd7d25b62e5340f5",
+        "mobilesdk_app_id": "1:495141513520:android:eedbe1776eefea9f5340f5",
         "android_client_info": {
-          "package_name": "com.example.man_hub_app"
+          "package_name": "com.interestelar.manhub"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "495141513520-l9al5b7r2gfe1bsqeopnsjrjvb7bbrsf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyD8mJIcIkghuugvu-kHQby3RBnz9f97uZo"
@@ -20,7 +25,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "495141513520-l9al5b7r2gfe1bsqeopnsjrjvb7bbrsf.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "495141513520-fhboaom3uu69b1f31f6do3vt9e77cfmr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.manHubApp"
+              }
+            }
+          ]
         }
       }
     }

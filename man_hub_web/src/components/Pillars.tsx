@@ -1,5 +1,5 @@
 import styles from "./Pillars.module.css";
-import { Scissors, Shirt, Sparkles, Compass, CheckCircle2 } from "lucide-react";
+import { Sparkles, Shield, Trophy, Users, CheckCircle2 } from "lucide-react";
 
 interface PillarItem {
   number: string;
@@ -12,54 +12,54 @@ interface PillarItem {
 const PILLARS: PillarItem[] = [
   {
     number: "01",
-    icon: <Scissors size={26} />,
-    title: "Visagismo Facial & Autocuidado",
+    icon: <Sparkles size={26} />,
+    title: "Transformando sua Imagem",
     description:
-      "Descubra a geometria do seu rosto e elimine a dúvida ao sentar na cadeira do barbeiro. Saiba exatamente qual corte e formato de barba realçam sua estrutura óssea.",
+      "A sua imagem é seu cartão de visitas imediato. Alinhe proporções corporais, corte, estilo e caimento para transmitir autoridade, elegância e respeito instantâneo.",
     highlights: [
-      "Identificação do formato facial (Diamante, Quadrado, Oval, etc.)",
-      "Projeção e alinhamento de barba para formato de mandíbula",
-      "Skincare masculino minimalista de 3 passos sem complicação",
-      "Tratamento de pele, poros e prevenção de oleosidade",
+      "Construção de uma identidade visual marcante e de alta liderança",
+      "Domínio de caimento, proporções da silhueta e paleta de cores",
+      "Cuidado estético, harmonia facial e higiene pessoal estratégica",
+      "Do casual refinado ao traje formal sem cometer erros básicos",
     ],
   },
   {
     number: "02",
-    icon: <Shirt size={26} />,
-    title: "Alfaiataria, Caimento & Silhueta",
+    icon: <Shield size={26} />,
+    title: "Ensinando a Ser um Homem de Valor",
     description:
-      "A roupa mais cara do mundo parece barata se o caimento estiver errado. Aprenda a regra do acrômio, linhas verticais e a teoria das cores para qualquer ocasião.",
+      "Princípios inegociáveis, palavra sustentada e caráter forjado na disciplina. Um homem de alto valor governa a si mesmo antes de liderar qualquer outra pessoa.",
     highlights: [
-      "Acrômio, caimento de ombro e silhueta em 'V'",
-      "Decodificação dos 5 dress codes (do casual ao Black Tie)",
-      "Cores neutras, contrastes e guarda-roupa cápsula",
-      "Guia prático de tecidos nobres e longevidade das peças",
+      "Maturidade emocional, integridade inabalável e firmeza moral",
+      "Autodomínio sobre impulsos e superação definitiva da procrastinação",
+      "Clareza de propósito, determinação e foco brutal em objetivos",
+      "Construção de patrimônio, respeito familiar e legado duradouro",
     ],
   },
   {
     number: "03",
-    icon: <Sparkles size={26} />,
-    title: "Perfumaria de Assinatura & Niche",
+    icon: <Trophy size={26} />,
+    title: "Presença de Alto Nível",
     description:
-      "O perfume é sua impressão digital invisível. Entenda a pirâmide olfativa, notas de saída a fundo e descubra fragrâncias com projeção e fixação de até 12 horas.",
+      "Magnetismo natural e respeito sem precisar forçar a barra. Domine a linguagem corporal, postura firme e comunicação verbal que comandam qualquer ambiente.",
     highlights: [
-      "Pirâmide olfativa completa e famílias aromáticas",
-      "Seleção ideal para clima tropical, frio, trabalho e encontros",
-      "Pontos de pulsação e técnicas de aplicação para máxima fixação",
-      "Biblioteca olfativa com notas e referências do Fragrantica",
+      "Linguagem corporal de autoridade, tônus firme e contato visual",
+      "Comunicação assertiva, voz ressonante e dicção clara",
+      "Autoconfiança inabalável em negociações e situações de pressão",
+      "Inteligência social para transitar com elegância em mesas de topo",
     ],
   },
   {
     number: "04",
-    icon: <Compass size={26} />,
-    title: "Postura, Presença & Mentalidade",
+    icon: <Users size={26} />,
+    title: "Esteja Entre os Lobos Grandes",
     description:
-      "A transformação que começa no espelho ganha força na sua atitude diária. Desenvolva autoconfiança inabalável, comunicação assertiva e respeito onde você pisar.",
+      "Você é a média dos homens que tolera ao seu redor. Rompa com a mediocridade, cerque-se de homens que exigem o seu melhor e construa um círculo forte.",
     highlights: [
-      "Linguagem corporal de autoridade natural e contato visual",
-      "Comunicação firme, voz ressonante e dicção clara",
-      "Disciplina, rotina de treino e condicionamento físico",
-      "Filosofia de homens ajudando homens a evoluírem",
+      "Mentalidade de matilha: homens fortes que puxam homens para cima",
+      "Rompimento definitivo com amizades tóxicas e ambientes acomodados",
+      "Acesso a networking qualificado, negócios e parcerias estratégicas",
+      "Conexão diária com uma irmandade que busca excelência contínua",
     ],
   },
 ];
@@ -69,13 +69,13 @@ export default function Pillars() {
     <section id="pilares" className={styles.pillarsSection}>
       <div className="container">
         <div className={styles.headerWrap}>
-          <span className="badge-neon">Fundamentos Inabaláveis</span>
+          <span className="badge-neon">Academia Masculina</span>
           <h2 className={styles.sectionTitle}>
             Os 4 Pilares da Nova <span className="text-gradient">Presença Masculina</span>
           </h2>
           <p className={styles.sectionSubtitle}>
-            Desenvolvido por especialistas em imagem, alfaiataria e comportamento para entregar um método
-            estruturado de evolução integral, sem teorias vazias.
+            Um método estruturado de evolução integral: transforme sua imagem, forje seus princípios
+            e desenvolva a mentalidade dos homens que estão no topo.
           </p>
         </div>
 
