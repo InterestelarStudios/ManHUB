@@ -84,6 +84,51 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
+  bool _isSyncingEntitlements = false;
+
+  Future<void> _syncWebEntitlements() async {
+    if (_isSyncingEntitlements) return;
+    setState(() => _isSyncingEntitlements = true);
+
+    try {
+      await _authService.syncEntitlements();
+      if (!mounted) return;
+
+      final isSub = _authService.isSubscribed;
+      final unlockedCount = _authService.currentUser?.unlockedTrainingIds.length ?? 0;
+
+      String message = 'Acessos verificados com sucesso!';
+      if (isSub) {
+        message = 'Assinatura Man Hub Pass ativa e sincronizada!';
+      } else if (unlockedCount > 0) {
+        message = '$unlockedCount treinamento(s) vitalício(s) vinculado(s) à sua conta.';
+      } else {
+        message = 'Nenhuma nova matrícula pendente encontrada para ${_authService.currentUser?.email}.';
+      }
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(message),
+          backgroundColor: AppColors.card,
+          duration: const Duration(seconds: 4),
+        ),
+      );
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Falha ao sincronizar acessos: $e'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    } finally {
+      if (mounted) {
+        setState(() => _isSyncingEntitlements = false);
+      }
+    }
+  }
+
   void _handleLogout() {
     showDialog(
       context: context,
@@ -526,6 +571,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ],
           const SizedBox(height: 12),
           _buildProfileOption(
+            icon: Icons.sync_rounded,
+            title: 'Sincronizar Acessos da Web',
+            subtitle: 'Atualize matrículas e assinaturas da sua conta',
+            onTap: _syncWebEntitlements,
+          ),
+          const SizedBox(height: 12),
+          _buildProfileOption(
             icon: Icons.info_outline_rounded,
             title: 'Sobre o Man Hub',
             subtitle: 'Proposta, versão e Interestelar Studios',
@@ -648,7 +700,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Row(
                       children: [
                         const Text(
-                          'Assinar Man Hub Pass',
+                          'Acesso de Membro',
                           style: TextStyle(
                             color: AppColors.textPrimary,
                             fontSize: 15,
@@ -660,23 +712,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                           decoration: BoxDecoration(
                             color: AppColors.neonLight.withValues(alpha: 0.2),
-                            borderRadius: BorderRadius.circular(6),
+                            borderRadius: BorderRadius.circular(4),
                           ),
                           child: const Text(
-                            'PRO',
+                            'CLUBE',
                             style: TextStyle(
                               color: AppColors.neonLight,
-                              fontSize: 10,
-                              fontWeight: FontWeight.w800,
+                              fontSize: 9,
+                              fontWeight: FontWeight.bold,
                               letterSpacing: 0.5,
                             ),
                           ),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 3),
+                    const SizedBox(height: 4),
                     const Text(
-                      'Desbloqueie todos os treinamentos por R\$ 49,90/mês',
+                      'Desbloqueie todos os cursos e recursos',
                       style: TextStyle(
                         color: AppColors.textSecondary,
                         fontSize: 12,

@@ -87,14 +87,17 @@ export default function CheckoutModal({
     setLoading(true);
     setErrorMsg("");
 
+    const normalizedEmail = email.trim().toLowerCase();
+    const cleanName = name.trim();
+
     try {
       const res = await fetch("/api/payments/create-preference", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           userId: `web_${Date.now()}`,
-          userName: name,
-          userEmail: email,
+          userName: cleanName,
+          userEmail: normalizedEmail,
           itemType: planType,
           itemId: planType === "pass" ? "man_hub_pass" : selectedTraining,
           title: currentTitle,
@@ -203,6 +206,9 @@ export default function CheckoutModal({
               placeholder="Ex: seuemail@exemplo.com"
               className={styles.input}
             />
+            <span style={{ color: "var(--neon-light)", fontSize: "11px", marginTop: "4px", opacity: 0.9 }}>
+              * Seus treinamentos serão liberados automaticamente neste e-mail ao entrar no app.
+            </span>
           </div>
 
           {errorMsg && (

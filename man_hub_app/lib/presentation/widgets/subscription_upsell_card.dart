@@ -106,11 +106,12 @@ class SubscriptionUpsellCard extends StatelessWidget {
                             ),
                           ),
                           child: const Text(
-                            'R\$ 49,90/mês',
+                            'ACESSO TOTAL',
                             style: TextStyle(
                               color: AppColors.neonLight,
-                              fontSize: 13,
+                              fontSize: 11,
                               fontWeight: FontWeight.bold,
+                              letterSpacing: 0.5,
                             ),
                           ),
                         ),
@@ -121,7 +122,7 @@ class SubscriptionUpsellCard extends StatelessWidget {
 
                     // Título persuasivo induzindo a assinatura
                     const Text(
-                      'Quer economizar e ter acesso a todos os treinamentos?',
+                      'Desbloqueie todo o acervo de evolução masculina',
                       style: TextStyle(
                         color: AppColors.textPrimary,
                         fontSize: 19,
@@ -135,7 +136,7 @@ class SubscriptionUpsellCard extends StatelessWidget {
 
                     // Subtítulo explicativo
                     const Text(
-                      'Sabia que você não precisa comprar cada curso separado? Com o Pass você desbloqueia todo o acervo de evolução masculina por um valor único.',
+                      'Com o Man Hub Pass você tem acesso ilimitado a todos os cursos atuais, looks, quizzes e futuros lançamentos.',
                       style: TextStyle(
                         color: AppColors.textSecondary,
                         fontSize: 13,
@@ -147,8 +148,8 @@ class SubscriptionUpsellCard extends StatelessWidget {
 
                     // Micro-bullets de benefícios
                     _benefitLine('Acesso irrestrito a todos os cursos atuais e futuros'),
-                    _benefitLine('Economize mais de 80% em relação aos cursos avulsos'),
-                    _benefitLine('Cancele quando quiser, sem nenhuma fidelidade'),
+                    _benefitLine('Armário virtual de estilo, looks e recomendações diárias'),
+                    _benefitLine('Sincronização imediata com sua conta de membro'),
 
                     const SizedBox(height: 18),
 
@@ -175,13 +176,13 @@ class SubscriptionUpsellCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(
-                            Icons.lock_open_rounded,
+                            Icons.workspace_premium_rounded,
                             color: Colors.black,
                             size: 18,
                           ),
                           SizedBox(width: 8),
                           Text(
-                            'Desbloquear Todos os Cursos',
+                            'Conhecer Acesso de Membro',
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: 14,

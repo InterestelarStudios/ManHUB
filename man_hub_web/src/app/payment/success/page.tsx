@@ -65,33 +65,55 @@ export default function PaymentSuccessPage() {
         </h1>
 
         <p style={{ color: "var(--text-secondary)", fontSize: "15px", lineHeight: 1.6 }}>
-          Seu acesso já foi liberado no ecossistema <strong>Man Hub</strong>. Se você realizou a compra
-          pelo smartphone, basta retornar ao aplicativo — seu treinamento ou assinatura já está
-          desbloqueado em tempo real!
+          Seu acesso já foi liberado no ecossistema <strong>Man Hub</strong>! O conteúdo adquirido está
+          vinculado diretamente ao seu e-mail de compra para consumo imediato no aplicativo.
         </p>
 
         <div
           style={{
-            padding: "14px 20px",
+            padding: "18px 20px",
             background: "rgba(0, 191, 255, 0.08)",
-            border: "1px solid rgba(0, 191, 255, 0.2)",
+            border: "1px solid rgba(0, 191, 255, 0.25)",
             borderRadius: "var(--radius-md)",
             fontSize: "13px",
-            color: "var(--neon-light)",
+            color: "var(--text-primary)",
             width: "100%",
+            textAlign: "left",
+            display: "flex",
+            flexDirection: "column",
+            gap: "8px",
           }}
         >
-          Enviamos os detalhes do pedido e o comprovante para o seu e-mail cadastrado.
+          <strong style={{ color: "var(--neon-light)", fontSize: "14px" }}>
+            Passos para começar agora mesmo:
+          </strong>
+          <div style={{ color: "var(--text-secondary)", fontSize: "13px", lineHeight: 1.5 }}>
+            1. Abra o aplicativo <strong>Man Hub</strong> no seu celular.<br />
+            2. Faça login ou crie sua conta utilizando o <strong>mesmo e-mail</strong> desta compra.<br />
+            3. Pronto! Seus treinamentos e o <strong>Man Hub Pass</strong> estarão liberados automaticamente.
+          </div>
         </div>
 
-        <Link
-          href="/"
-          className="btn btn-primary"
-          style={{ width: "100%", marginTop: "10px", padding: "16px" }}
-        >
-          <span>Retornar ao Início</span>
-          <ArrowRight size={18} />
-        </Link>
+        <div style={{ display: "flex", flexDirection: "column", width: "100%", gap: "10px", marginTop: "10px" }}>
+          <a
+            href="https://play.google.com/store/apps/details?id=com.interestelar.manhub"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-primary"
+            style={{ width: "100%", padding: "16px", justifyContent: "center" }}
+          >
+            <span>Baixar / Abrir na Google Play</span>
+            <ArrowRight size={18} />
+          </a>
+
+          <Link
+            href="/"
+            className="btn btn-secondary"
+            style={{ width: "100%", padding: "14px", justifyContent: "center" }}
+          >
+            <span>Retornar ao Site</span>
+          </Link>
+        </div>
       </div>
     </main>
   );

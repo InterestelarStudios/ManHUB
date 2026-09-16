@@ -8,6 +8,10 @@ import {
   arrayUnion,
   serverTimestamp,
   Timestamp,
+  collection,
+  query,
+  where,
+  getDocs,
 } from "firebase/firestore";
 
 export async function POST(req: NextRequest) {
@@ -70,12 +74,28 @@ export async function POST(req: NextRequest) {
           ref = JSON.parse(paymentData.external_reference);
         }
       } catch (e) {
-        console.warn("[Webhook] external_reference não era um JSON válido:", paymentData.external_reference);
+        // Fallback caso venha no formato userId___itemType___itemId
+        const parts = String(paymentData.external_reference || "").split("___");
+        if (parts.length >= 2) {
+          ref = {
+            userId: parts[0],
+            itemType: parts[1],
+            itemId: parts.length >= 3 ? parts[2] : undefined,
+          };
+        }
       }
 
-      const userId = ref?.userId;
-      const itemType = ref?.itemType; // 'training' | 'pass'
-      const itemId = ref?.itemId;
+      const metadata = paymentData.metadata || {};
+      const userId = ref?.userId || metadata.user_id;
+      let itemType = ref?.itemType || metadata.item_type; // 'training' | 'pass'
+      const itemId = ref?.itemId || metadata.item_id;
+      const payerEmail = (ref?.userEmail || metadata.user_email || paymentData.payer?.email || "")
+        .trim()
+        .toLowerCase();
+
+      if (!itemType && paymentData.description && paymentData.description.includes("Man Hub Pass")) {
+        itemType = "pass";
+      }
 
       // 1. Registra a ordem no Firestore para auditoria
       const orderRef = doc(db, "orders", String(paymentId));
@@ -84,7 +104,8 @@ export async function POST(req: NextRequest) {
         {
           paymentId: String(paymentId),
           userId: userId || null,
-          userEmail: ref?.userEmail || paymentData.payer?.email || null,
+          userEmail: payerEmail || null,
+          payerEmail: payerEmail || null,
           itemType: itemType || "unknown",
           itemId: itemId || null,
           transactionAmount: paymentData.transaction_amount,
@@ -104,13 +125,65 @@ export async function POST(req: NextRequest) {
         { merge: true }
       );
 
-      // 2. Desbloqueia o conteúdo do usuário no Firestore
+      const expiresAt = new Date();
+      expiresAt.setDate(expiresAt.getDate() + 32);
+
+      // 2. Registra o entitlement por e-mail para sincronização imediata
+      if (payerEmail) {
+        const entRef = doc(db, "entitlements", payerEmail);
+        if (itemType === "training" && itemId) {
+          await setDoc(
+            entRef,
+            {
+              email: payerEmail,
+              unlockedTrainingIds: arrayUnion(String(itemId)),
+              updatedAt: serverTimestamp(),
+            },
+            { merge: true }
+          );
+        } else if (itemType === "pass") {
+          await setDoc(
+            entRef,
+            {
+              email: payerEmail,
+              isSubscribed: true,
+              subscriptionExpiresAt: Timestamp.fromDate(expiresAt),
+              updatedAt: serverTimestamp(),
+            },
+            { merge: true }
+          );
+        }
+
+        // 3. Atualiza usuários que já possuam esse e-mail no Firestore
+        try {
+          const usersQ = query(collection(db, "users"), where("email", "==", payerEmail));
+          const usersSnap = await getDocs(usersQ);
+          for (const userDoc of usersSnap.docs) {
+            if (itemType === "training" && itemId) {
+              await updateDoc(userDoc.ref, {
+                unlockedTrainingIds: arrayUnion(String(itemId)),
+                updatedAt: serverTimestamp(),
+              });
+            } else if (itemType === "pass") {
+              await updateDoc(userDoc.ref, {
+                isSubscribed: true,
+                subscriptionExpiresAt: Timestamp.fromDate(expiresAt),
+                memberType: "Assinante Man Hub Pass",
+                updatedAt: serverTimestamp(),
+              });
+            }
+          }
+        } catch (uErr) {
+          console.warn("[Webhook] Aviso ao atualizar usuários por email:", uErr);
+        }
+      }
+
+      // 4. Se houver userId direto, atualiza o documento correspondente
       if (userId) {
         const userRef = doc(db, "users", String(userId));
         const userSnap = await getDoc(userRef);
 
         if (itemType === "training" && itemId) {
-          // Desbloqueia treinamento individual
           if (userSnap.exists()) {
             await updateDoc(userRef, {
               unlockedTrainingIds: arrayUnion(String(itemId)),
@@ -121,7 +194,7 @@ export async function POST(req: NextRequest) {
               userRef,
               {
                 uid: String(userId),
-                email: ref?.userEmail || paymentData.payer?.email || "",
+                email: payerEmail,
                 unlockedTrainingIds: [String(itemId)],
                 memberType: "Membro Vitalício",
                 updatedAt: serverTimestamp(),
@@ -129,12 +202,7 @@ export async function POST(req: NextRequest) {
               { merge: true }
             );
           }
-          console.log(`[Webhook] Treinamento ${itemId} desbloqueado para o usuário ${userId}`);
         } else if (itemType === "pass") {
-          // Desbloqueia assinatura Man Hub Pass por 30 dias
-          const expiresAt = new Date();
-          expiresAt.setDate(expiresAt.getDate() + 30);
-
           if (userSnap.exists()) {
             await updateDoc(userRef, {
               isSubscribed: true,
@@ -147,7 +215,7 @@ export async function POST(req: NextRequest) {
               userRef,
               {
                 uid: String(userId),
-                email: ref?.userEmail || paymentData.payer?.email || "",
+                email: payerEmail,
                 isSubscribed: true,
                 subscriptionExpiresAt: Timestamp.fromDate(expiresAt),
                 memberType: "Assinante Man Hub Pass",
@@ -156,7 +224,6 @@ export async function POST(req: NextRequest) {
               { merge: true }
             );
           }
-          console.log(`[Webhook] Man Hub Pass ativado por 30 dias para o usuário ${userId}`);
         }
       }
     }

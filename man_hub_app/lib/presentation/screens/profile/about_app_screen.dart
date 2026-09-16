@@ -234,11 +234,11 @@ class AboutAppScreen extends StatelessWidget {
             ),
             const SizedBox(height: 24),
 
-            // Links de Contato & Redes
+            // Links Legais e Políticas
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'CANAIS OFICIAIS & CONTATO',
+                'LEGAL & POLÍTICAS',
                 style: TextStyle(
                   color: AppColors.neonLight.withValues(alpha: 0.8),
                   fontSize: 11,
@@ -249,11 +249,79 @@ class AboutAppScreen extends StatelessWidget {
             ),
             const SizedBox(height: 12),
 
-            // Item: Website Oficial
+            // Item: Política de Privacidade
+            _buildLinkTile(
+              context: context,
+              icon: Icons.privacy_tip_outlined,
+              title: 'Política de Privacidade',
+              subtitle: 'manhub.app/politica-de-privacidade',
+              badge: 'LGPD',
+              onTap: () => _openUrl(
+                context,
+                'https://manhub.app/politica-de-privacidade',
+              ),
+            ),
+            const SizedBox(height: 12),
+
+            // Item: Termos de Uso
+            _buildLinkTile(
+              context: context,
+              icon: Icons.gavel_rounded,
+              title: 'Termos de Uso',
+              subtitle: 'manhub.app/termos-de-uso',
+              badge: 'CONTRATO',
+              onTap: () => _openUrl(
+                context,
+                'https://manhub.app/termos-de-uso',
+              ),
+            ),
+            const SizedBox(height: 12),
+
+            // Item: Exclusão de Conta / Dados
+            _buildLinkTile(
+              context: context,
+              icon: Icons.delete_sweep_outlined,
+              title: 'Solicitação de Exclusão de Dados',
+              subtitle: 'manhub.app/exclusao-de-conta',
+              badge: 'GOOGLE PLAY',
+              onTap: () => _openUrl(
+                context,
+                'https://manhub.app/exclusao-de-conta',
+              ),
+            ),
+            const SizedBox(height: 28),
+
+            // Links de Contato & Redes
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'CANAIS OFICIAIS & SUPORTE',
+                style: TextStyle(
+                  color: AppColors.neonLight.withValues(alpha: 0.8),
+                  fontSize: 11,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 1.1,
+                ),
+              ),
+            ),
+            const SizedBox(height: 12),
+
+            // Item: Website Oficial Man Hub
             _buildLinkTile(
               context: context,
               icon: Icons.language_rounded,
-              title: 'Website Oficial',
+              title: 'Website Oficial Man Hub',
+              subtitle: 'manhub.app',
+              badge: 'OFICIAL',
+              onTap: () => _openUrl(context, 'https://manhub.app'),
+            ),
+            const SizedBox(height: 12),
+
+            // Item: Portal Interestelar Studios
+            _buildLinkTile(
+              context: context,
+              icon: Icons.business_rounded,
+              title: 'Interestelar Studios',
               subtitle: 'interestelar.studio',
               badge: 'PORTAL',
               onTap: () => _openUrl(context, 'https://interestelar.studio'),

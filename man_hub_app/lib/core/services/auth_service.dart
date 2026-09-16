@@ -312,6 +312,10 @@ class AuthService extends ChangeNotifier {
           }
           _currentUser = profile;
           notifyListeners();
+          // Sincroniza em segundo plano quaisquer matrículas ou assinaturas do site
+          if (user.email != null && user.email!.isNotEmpty) {
+            syncEntitlements();
+          }
         } else {
           // Se o documento ainda não existir no Firestore, cria com dados iniciais
           final initialProfile = UserProfile(
@@ -328,6 +332,10 @@ class AuthService extends ChangeNotifier {
           }
           _currentUser = initialProfile;
           notifyListeners();
+          // Sincroniza em segundo plano quaisquer compras feitas no site antes da criação da conta
+          if (user.email != null && user.email!.isNotEmpty) {
+            syncEntitlements();
+          }
         }
       },
       onError: (error) {
@@ -698,6 +706,119 @@ class AuthService extends ChangeNotifier {
       notifyListeners();
     } catch (e) {
       throw 'Erro ao ativar assinatura mensal: $e';
+    }
+  }
+
+  /// Sincroniza ativamente matrículas e assinaturas adquiridas pelo site oficial
+  /// consultando o e-mail do usuário em entitlements e orders
+  Future<bool> syncEntitlements() async {
+    final user = _auth?.currentUser;
+    final firestore = _firestore;
+    if (user == null || firestore == null || user.email == null || user.email!.isEmpty) {
+      return false;
+    }
+
+    final normalizedEmail = user.email!.trim().toLowerCase();
+    bool updated = false;
+
+    try {
+      final userRef = firestore.collection('users').doc(user.uid);
+      final List<String> currentUnlocked = List<String>.from(_currentUser?.unlockedTrainingIds ?? []);
+      bool isSub = _currentUser?.isSubscribed ?? false;
+      DateTime? subExpiry = _currentUser?.subscriptionExpiresAt;
+      String memberType = _currentUser?.memberType ?? 'Visitante';
+
+      // 1. Consulta documento específico em 'entitlements/{normalizedEmail}'
+      final entDoc = await firestore.collection('entitlements').doc(normalizedEmail).get();
+      if (entDoc.exists && entDoc.data() != null) {
+        final data = entDoc.data()!;
+        final rawCourses = data['unlockedTrainingIds'];
+        if (rawCourses is List) {
+          for (final c in rawCourses) {
+            final cStr = c.toString();
+            if (!currentUnlocked.contains(cStr)) {
+              currentUnlocked.add(cStr);
+              updated = true;
+            }
+          }
+        }
+
+        if (data['isSubscribed'] == true) {
+          final exp = data['subscriptionExpiresAt'];
+          DateTime? newExpiry;
+          if (exp is Timestamp) {
+            newExpiry = exp.toDate();
+          } else if (exp is String) {
+            newExpiry = DateTime.tryParse(exp);
+          }
+          if (newExpiry == null || newExpiry.isAfter(DateTime.now())) {
+            if (!isSub || (subExpiry != null && newExpiry != null && newExpiry.isAfter(subExpiry))) {
+              isSub = true;
+              subExpiry = newExpiry ?? DateTime.now().add(const Duration(days: 30));
+              memberType = 'Assinante Man Hub Pass';
+              updated = true;
+            }
+          }
+        }
+      }
+
+      // 2. Consulta ordens aprovadas associadas a este e-mail
+      try {
+        final ordersSnap = await firestore
+            .collection('orders')
+            .where('payerEmail', isEqualTo: normalizedEmail)
+            .get();
+
+        for (final doc in ordersSnap.docs) {
+          final order = doc.data();
+          if (order['status'] == 'approved') {
+            final itemType = order['itemType'] as String?;
+            final itemId = order['itemId'] as String?;
+            if (itemType == 'training' && itemId != null && itemId.isNotEmpty) {
+              if (!currentUnlocked.contains(itemId)) {
+                currentUnlocked.add(itemId);
+                updated = true;
+              }
+            } else if (itemType == 'pass') {
+              isSub = true;
+              subExpiry = DateTime.now().add(const Duration(days: 30));
+              memberType = 'Assinante Man Hub Pass';
+              updated = true;
+            }
+          }
+        }
+      } catch (orderErr) {
+        debugPrint('Aviso ao consultar orders: $orderErr');
+      }
+
+      if (updated) {
+        final updateData = <String, dynamic>{
+          'unlockedTrainingIds': currentUnlocked,
+          'isSubscribed': isSub,
+          'memberType': isSub
+              ? 'Assinante Man Hub Pass'
+              : (currentUnlocked.isNotEmpty ? 'Membro Vitalício' : memberType),
+          'updatedAt': FieldValue.serverTimestamp(),
+        };
+        if (subExpiry != null) {
+          updateData['subscriptionExpiresAt'] = Timestamp.fromDate(subExpiry);
+        }
+
+        await userRef.set(updateData, SetOptions(merge: true));
+
+        _currentUser = _currentUser?.copyWith(
+          unlockedTrainingIds: currentUnlocked,
+          isSubscribed: isSub,
+          subscriptionExpiresAt: subExpiry,
+          memberType: updateData['memberType'] as String?,
+        );
+        notifyListeners();
+      }
+
+      return true;
+    } catch (e) {
+      debugPrint('Erro ao sincronizar acessos: $e');
+      return false;
     }
   }
 

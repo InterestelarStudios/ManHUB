@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/services/auth_service.dart';
 import '../../widgets/google_logo.dart';
@@ -436,6 +437,45 @@ class _AuthScreenState extends State<AuthScreen> {
                     ),
                   ],
                 ),
+                const SizedBox(height: 16),
+
+                // Termos de Uso e Política de Privacidade
+                Center(
+                  child: Wrap(
+                    alignment: WrapAlignment.center,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    children: [
+                      GestureDetector(
+                        onTap: () => _openUrl('https://manhub.app/termos-de-uso'),
+                        child: const Text(
+                          'Termos de Uso',
+                          style: TextStyle(
+                            color: AppColors.textSecondary,
+                            fontSize: 11,
+                            decoration: TextDecoration.underline,
+                            decorationColor: AppColors.textSecondary,
+                          ),
+                        ),
+                      ),
+                      const Text(
+                        '  •  ',
+                        style: TextStyle(color: AppColors.textSecondary, fontSize: 11),
+                      ),
+                      GestureDetector(
+                        onTap: () => _openUrl('https://manhub.app/politica-de-privacidade'),
+                        child: const Text(
+                          'Política de Privacidade',
+                          style: TextStyle(
+                            color: AppColors.textSecondary,
+                            fontSize: 11,
+                            decoration: TextDecoration.underline,
+                            decorationColor: AppColors.textSecondary,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                 const SizedBox(height: 24),
               ],
             ),
@@ -476,5 +516,29 @@ class _AuthScreenState extends State<AuthScreen> {
               ],
             ),
     );
+  }
+
+  Future<void> _openUrl(String urlString) async {
+    final uri = Uri.parse(urlString);
+    try {
+      final launched = await launchUrl(uri, mode: LaunchMode.externalApplication);
+      if (!launched && mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Não foi possível abrir o link.'),
+            backgroundColor: AppColors.error,
+          ),
+        );
+      }
+    } catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Não foi possível abrir o navegador.'),
+            backgroundColor: AppColors.error,
+          ),
+        );
+      }
+    }
   }
 }

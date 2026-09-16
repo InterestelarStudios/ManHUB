@@ -322,6 +322,20 @@ exports.mercadoPagoWebhook = onRequest((req, res) => {
                   {merge: true},
               );
 
+              if (subData.payer_email) {
+                const normEmail = subData.payer_email.trim().toLowerCase();
+                await db.collection("entitlements").doc(normEmail).set(
+                    {
+                      email: normEmail,
+                      isSubscribed: true,
+                      subscriptionExpiresAt:
+                        admin.firestore.Timestamp.fromDate(expiresAt),
+                      updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+                    },
+                    {merge: true},
+                );
+              }
+
               logger.info(
                   `Assinatura ${dataId} AUTORIZADA para ${userId}`,
               );
@@ -446,6 +460,53 @@ exports.mercadoPagoWebhook = onRequest((req, res) => {
           );
         }
 
+        const payerEmail = (
+          (paymentData.payer && paymentData.payer.email) ||
+          ""
+        ).trim().toLowerCase();
+
+        // Grava entitlement e atualiza usuários correspondentes por e-mail
+        if (payerEmail) {
+          const entRef = db.collection("entitlements").doc(payerEmail);
+          if (itemType === "pass") {
+            const expiresAt = new Date(now.getTime() + 32 * 24 * 60 * 60 * 1000);
+            await entRef.set({
+              email: payerEmail,
+              isSubscribed: true,
+              subscriptionExpiresAt: admin.firestore.Timestamp.fromDate(expiresAt),
+              updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+            }, {merge: true});
+          } else if (itemType === "training" && itemId) {
+            await entRef.set({
+              email: payerEmail,
+              unlockedTrainingIds: admin.firestore.FieldValue.arrayUnion(itemId),
+              updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+            }, {merge: true});
+          }
+
+          try {
+            const userSnaps = await db.collection("users").where("email", "==", payerEmail).get();
+            for (const docSnap of userSnaps.docs) {
+              if (itemType === "pass") {
+                const expiresAt = new Date(now.getTime() + 32 * 24 * 60 * 60 * 1000);
+                await docSnap.ref.set({
+                  isSubscribed: true,
+                  subscriptionExpiresAt: admin.firestore.Timestamp.fromDate(expiresAt),
+                  memberType: "Assinante Man Hub Pass",
+                  updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+                }, {merge: true});
+              } else if (itemType === "training" && itemId) {
+                await docSnap.ref.set({
+                  unlockedTrainingIds: admin.firestore.FieldValue.arrayUnion(itemId),
+                  updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+                }, {merge: true});
+              }
+            }
+          } catch (e) {
+            logger.warn("Aviso ao sincronizar usuarios por email:", e);
+          }
+        }
+
         // Salva histórico de transação auditável no Firestore
         await db.collection("orders").doc(String(paymentId)).set({
           paymentId: String(paymentId),
@@ -455,10 +516,7 @@ exports.mercadoPagoWebhook = onRequest((req, res) => {
           amount: paymentData.transaction_amount || 0,
           status: paymentData.status,
           paymentMethod: paymentData.payment_method_id || "unknown",
-          payerEmail:
-            paymentData.payer && paymentData.payer.email ?
-              paymentData.payer.email :
-              "",
+          payerEmail: payerEmail,
           createdAt: admin.firestore.FieldValue.serverTimestamp(),
         });
       } else if (

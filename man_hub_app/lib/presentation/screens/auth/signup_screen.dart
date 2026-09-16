@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/services/auth_service.dart';
 import '../../widgets/google_logo.dart';
@@ -350,7 +351,56 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                 // Botão Social Google
                 _buildGoogleButton(),
-                const SizedBox(height: 28),
+                const SizedBox(height: 24),
+
+                // Termos de Uso e Política de Privacidade
+                Center(
+                  child: Wrap(
+                    alignment: WrapAlignment.center,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    children: [
+                      const Text(
+                        'Ao se cadastrar, você concorda com os ',
+                        style: TextStyle(color: AppColors.textSecondary, fontSize: 12),
+                      ),
+                      GestureDetector(
+                        onTap: () => _openUrl('https://manhub.app/termos-de-uso'),
+                        child: const Text(
+                          'Termos de Uso',
+                          style: TextStyle(
+                            color: AppColors.neonLight,
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                            decoration: TextDecoration.underline,
+                            decorationColor: AppColors.neonLight,
+                          ),
+                        ),
+                      ),
+                      const Text(
+                        ' e a ',
+                        style: TextStyle(color: AppColors.textSecondary, fontSize: 12),
+                      ),
+                      GestureDetector(
+                        onTap: () => _openUrl('https://manhub.app/politica-de-privacidade'),
+                        child: const Text(
+                          'Política de Privacidade',
+                          style: TextStyle(
+                            color: AppColors.neonLight,
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                            decoration: TextDecoration.underline,
+                            decorationColor: AppColors.neonLight,
+                          ),
+                        ),
+                      ),
+                      const Text(
+                        '.',
+                        style: TextStyle(color: AppColors.textSecondary, fontSize: 12),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 20),
 
                 // Link para voltar ao Login
                 Row(
@@ -413,5 +463,29 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ],
             ),
     );
+  }
+
+  Future<void> _openUrl(String urlString) async {
+    final uri = Uri.parse(urlString);
+    try {
+      final launched = await launchUrl(uri, mode: LaunchMode.externalApplication);
+      if (!launched && mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Não foi possível abrir o link.'),
+            backgroundColor: AppColors.error,
+          ),
+        );
+      }
+    } catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Não foi possível abrir o navegador.'),
+            backgroundColor: AppColors.error,
+          ),
+        );
+      }
+    }
   }
 }

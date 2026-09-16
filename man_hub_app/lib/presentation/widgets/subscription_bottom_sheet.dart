@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/services/auth_service.dart';
-import '../../core/services/payment_service.dart';
 import '../screens/auth/auth_screen.dart';
 
 class SubscriptionBottomSheet extends StatelessWidget {
@@ -22,66 +21,52 @@ class SubscriptionBottomSheet extends StatelessWidget {
 
     return StatefulBuilder(
       builder: (context, setSheetState) {
-        bool isProcessing = false;
+        bool isSyncing = false;
 
-        void handleSubscription() async {
-          if (!authService.isLoggedIn) {
-            Navigator.of(context).pop();
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text(
-                  'Faça login ou cadastre-se para assinar o plano.',
-                ),
-                backgroundColor: AppColors.card,
-              ),
-            );
-            Navigator.of(
-              context,
-            ).push(MaterialPageRoute(builder: (_) => const AuthScreen()));
-            return;
-          }
+        void handleLogin() {
+          Navigator.of(context).pop();
+          Navigator.of(context).push(
+            MaterialPageRoute(builder: (_) => const AuthScreen()),
+          );
+        }
 
-          setSheetState(() {
-            isProcessing = true;
-          });
-
-          try {
-            final launched = await PaymentService().startCheckout(
-              itemType: 'pass',
-              itemId: 'man_hub_pass',
-              title: 'Man Hub Pass (Acesso Ilimitado)',
-              price: 49.90,
-              userId: authService.currentUser?.uid ?? '',
-              userEmail: authService.currentUser?.email,
-            );
-
-            if (context.mounted) {
+        void handleSync() async {
+          setSheetState(() => isSyncing = true);
+          final success = await authService.syncEntitlements();
+          if (context.mounted) {
+            setSheetState(() => isSyncing = false);
+            final isSubscribed = authService.isSubscribed;
+            if (isSubscribed) {
               Navigator.of(context).pop();
-              if (launched) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    backgroundColor: AppColors.card,
-                    duration: Duration(seconds: 6),
-                    content: Text(
-                      'Checkout de assinatura aberto no Mercado Pago! Assim que a contratação for confirmada, seu plano será ativado imediatamente.',
-                      style: TextStyle(color: Colors.white),
-                    ),
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  backgroundColor: AppColors.neonPrimary,
+                  content: Text(
+                    'Man Hub Pass ATIVO! Todos os cursos e recursos foram liberados.',
+                    style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
                   ),
-                );
-              }
-            }
-          } catch (e) {
-            if (context.mounted) {
-              setSheetState(() => isProcessing = false);
+                ),
+              );
+            } else {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: Text('Erro ao abrir checkout: $e'),
-                  backgroundColor: Colors.red,
+                  backgroundColor: AppColors.card,
+                  duration: const Duration(seconds: 5),
+                  content: Text(
+                    success
+                        ? 'Nenhuma assinatura ativa encontrada para ${authService.currentUser?.email}. Se você assinou recentemente pelo portal web, aguarde alguns instantes.'
+                        : 'Não foi possível verificar no momento. Verifique sua conexão.',
+                    style: const TextStyle(color: Colors.white),
+                  ),
                 ),
               );
             }
           }
         }
+
+        final isLoggedIn = authService.isLoggedIn;
+        final isSubscribed = authService.isSubscribed;
+        final userEmail = authService.currentUser?.email ?? '';
 
         return Container(
           decoration: const BoxDecoration(
@@ -111,18 +96,12 @@ class SubscriptionBottomSheet extends StatelessWidget {
 
                 // Cabeçalho com botão fechar
                 Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 8,
-                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 10,
-                          vertical: 5,
-                        ),
+                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                         decoration: BoxDecoration(
                           color: AppColors.neonPrimary.withValues(alpha: 0.15),
                           borderRadius: BorderRadius.circular(8),
@@ -190,17 +169,14 @@ class SubscriptionBottomSheet extends StatelessWidget {
                         Row(
                           children: [
                             Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 10,
-                                vertical: 4,
-                              ),
+                              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                               decoration: BoxDecoration(
-                                color: AppColors.neonPrimary,
+                                color: isSubscribed ? Colors.green : AppColors.neonPrimary,
                                 borderRadius: BorderRadius.circular(6),
                               ),
-                              child: const Text(
-                                'ECONOMIA MÁXIMA',
-                                style: TextStyle(
+                              child: Text(
+                                isSubscribed ? 'PLANO ATIVO' : 'ACESSO TOTAL',
+                                style: const TextStyle(
                                   color: Colors.black,
                                   fontSize: 10,
                                   fontWeight: FontWeight.bold,
@@ -209,11 +185,11 @@ class SubscriptionBottomSheet extends StatelessWidget {
                               ),
                             ),
                             const Spacer(),
-                            const Text(
-                              'R\$ 49,90/mês',
-                              style: TextStyle(
+                            Text(
+                              isSubscribed ? 'Membro Ativo' : 'Clube de Membros',
+                              style: const TextStyle(
                                 color: AppColors.neonLight,
-                                fontSize: 20,
+                                fontSize: 14,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -231,7 +207,7 @@ class SubscriptionBottomSheet extends StatelessWidget {
                         ),
                         const SizedBox(height: 8),
                         const Text(
-                          'Em vez de comprar cada curso separadamente, tenha acesso completo a todo o catálogo atual e futuros lançamentos.',
+                          'O Man Hub Pass desbloqueia todos os cursos, quizzes, looks recomendados e o armário virtual de estilo em uma única experiência contínua.',
                           style: TextStyle(
                             color: AppColors.textSecondary,
                             fontSize: 13,
@@ -239,49 +215,88 @@ class SubscriptionBottomSheet extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 18),
-                        _benefitRow(
-                          'Desbloqueio de todos os módulos de todos os cursos',
-                        ),
-                        _benefitRow(
-                          'Visagismo, Perfumes, Estilo, Skincare, Comunicação e mais',
-                        ),
-                        _benefitRow(
-                          'Aulas atualizadas e novos lançamentos inclusos',
-                        ),
-                        _benefitRow('Sem fidelidade nem taxa de cancelamento'),
-                        const SizedBox(height: 22),
-                        SizedBox(
-                          width: double.infinity,
-                          child: ElevatedButton(
-                            onPressed: isProcessing ? null : handleSubscription,
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: AppColors.neonPrimary,
-                              foregroundColor: Colors.black,
-                              padding: const EdgeInsets.symmetric(vertical: 16),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(14),
+                        _benefitRow('Desbloqueio de todos os módulos de todos os cursos'),
+                        _benefitRow('Visagismo, Perfumes, Estilo, Skincare, Presença e Postura'),
+                        _benefitRow('Aulas imersivas estilo stories atualizadas com frequência'),
+                        _benefitRow('Sincronização imediata entre seus dispositivos pelo seu e-mail'),
+                        const SizedBox(height: 20),
+
+                        if (!isLoggedIn) ...[
+                          SizedBox(
+                            width: double.infinity,
+                            child: ElevatedButton(
+                              onPressed: handleLogin,
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: AppColors.neonPrimary,
+                                foregroundColor: Colors.black,
+                                padding: const EdgeInsets.symmetric(vertical: 15),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(14),
+                                ),
+                                elevation: 4,
                               ),
-                              elevation: 4,
+                              child: const Text(
+                                'Entrar com Minha Conta',
+                                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                              ),
                             ),
-                            child: isProcessing
-                                ? const SizedBox(
-                                    height: 22,
-                                    width: 22,
-                                    child: CircularProgressIndicator(
-                                      strokeWidth: 2,
-                                      color: Colors.black,
-                                    ),
-                                  )
-                                : const Text(
-                                    'Assinar Man Hub Pass Agora',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16,
-                                      letterSpacing: 0.3,
+                          ),
+                        ] else ...[
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                            margin: const EdgeInsets.only(bottom: 14),
+                            decoration: BoxDecoration(
+                              color: AppColors.backgroundMain,
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(color: AppColors.neonPrimary.withValues(alpha: 0.2)),
+                            ),
+                            child: Row(
+                              children: [
+                                const Icon(Icons.person_outline, size: 18, color: AppColors.neonLight),
+                                const SizedBox(width: 8),
+                                Expanded(
+                                  child: Text(
+                                    userEmail,
+                                    style: const TextStyle(
+                                      color: AppColors.textPrimary,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w500,
                                     ),
                                   ),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
+                          SizedBox(
+                            width: double.infinity,
+                            child: ElevatedButton.icon(
+                              onPressed: isSyncing ? null : handleSync,
+                              icon: isSyncing
+                                  ? const SizedBox(
+                                      height: 18,
+                                      width: 18,
+                                      child: CircularProgressIndicator(strokeWidth: 2, color: Colors.black),
+                                    )
+                                  : const Icon(Icons.sync_rounded, color: Colors.black, size: 18),
+                              label: Text(
+                                isSyncing ? 'Verificando...' : 'Sincronizar Minha Assinatura',
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15,
+                                ),
+                              ),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: AppColors.neonPrimary,
+                                padding: const EdgeInsets.symmetric(vertical: 15),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(14),
+                                ),
+                                elevation: 4,
+                              ),
+                            ),
+                          ),
+                        ],
                       ],
                     ),
                   ),
@@ -289,21 +304,21 @@ class SubscriptionBottomSheet extends StatelessWidget {
 
                 const SizedBox(height: 16),
 
-                // Selo de garantia e pagamento seguro
+                // Selo informativo
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(
-                        Icons.verified_user_outlined,
+                        Icons.shield_outlined,
                         size: 14,
                         color: AppColors.textSecondary.withValues(alpha: 0.7),
                       ),
                       const SizedBox(width: 6),
                       Flexible(
                         child: Text(
-                          'Assinatura recorrente mensal segura via Mercado Pago (Cancele quando quiser)',
+                          'Assinaturas realizadas no portal manhub.app sincronizam automaticamente.',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: AppColors.textSecondary.withValues(alpha: 0.7),
