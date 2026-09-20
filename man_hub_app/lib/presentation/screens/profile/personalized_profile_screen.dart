@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/services/auth_service.dart';
+import 'face_scan_capture_screen.dart';
 
 class PersonalizedProfileScreen extends StatefulWidget {
   final UserProfile? user;
@@ -419,8 +420,13 @@ class _PersonalizedProfileScreenState extends State<PersonalizedProfileScreen> {
             title: 'Formato do Rosto',
             subtitle: 'O formato ósseo do seu rosto determina a geometria ideal dos cortes de cabelo, desenho de barba e armações de óculos.',
           ),
+          const SizedBox(height: 20),
+
+          // Banner de Ação para o Scan Facial com IA
+          _buildAiScanBanner(),
           const SizedBox(height: 24),
-          _buildSectionLabel('SELECIONE O FORMATO PREDOMINANTE'),
+
+          _buildSectionLabel('OU SELECIONE O FORMATO MANUALMENTE'),
           const SizedBox(height: 14),
 
           // Grade 2 Colunas com os Ícones Personalizados
@@ -500,6 +506,135 @@ class _PersonalizedProfileScreenState extends State<PersonalizedProfileScreen> {
             ),
           ],
         ],
+      ),
+    );
+  }
+
+  Future<void> _openFaceScanner() async {
+    final result = await Navigator.of(context).push<String>(
+      MaterialPageRoute(
+        builder: (_) => const FaceScanCaptureScreen(),
+      ),
+    );
+    if (result != null && mounted) {
+      setState(() {
+        _selectedFaceShape = result;
+      });
+    }
+  }
+
+  Widget _buildAiScanBanner() {
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            AppColors.royalBlue.withValues(alpha: 0.35),
+            AppColors.card,
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: AppColors.neonPrimary.withValues(alpha: 0.4),
+          width: 1.2,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.neonPrimary.withValues(alpha: 0.12),
+            blurRadius: 16,
+            spreadRadius: 1,
+          ),
+        ],
+      ),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: _openFaceScanner,
+          borderRadius: BorderRadius.circular(16),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Row(
+              children: [
+                Container(
+                  width: 46,
+                  height: 46,
+                  decoration: BoxDecoration(
+                    color: AppColors.royalBlue.withValues(alpha: 0.3),
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: AppColors.neonPrimary,
+                      width: 1.5,
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.neonPrimary.withValues(alpha: 0.3),
+                        blurRadius: 10,
+                      ),
+                    ],
+                  ),
+                  child: const Icon(
+                    Icons.face_retouching_natural_rounded,
+                    color: AppColors.neonPrimary,
+                    size: 22,
+                  ),
+                ),
+                const SizedBox(width: 14),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          const Text(
+                            'SCAN FACIAL POR IA',
+                            style: TextStyle(
+                              color: AppColors.neonLight,
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 0.8,
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 6, vertical: 2),
+                            decoration: BoxDecoration(
+                              color: AppColors.neonPrimary.withValues(alpha: 0.2),
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                            child: const Text(
+                              'RECOMENDADO',
+                              style: TextStyle(
+                                color: AppColors.neonPrimary,
+                                fontSize: 9,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 4),
+                      const Text(
+                        'Descubra seu formato exato por biometria e visagismo',
+                        style: TextStyle(
+                          color: AppColors.textSecondary,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const Icon(
+                  Icons.arrow_forward_ios_rounded,
+                  color: AppColors.neonPrimary,
+                  size: 15,
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

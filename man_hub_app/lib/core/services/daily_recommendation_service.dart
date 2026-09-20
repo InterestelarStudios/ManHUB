@@ -41,7 +41,10 @@ class DailyRecommendationService extends ChangeNotifier {
     }
 
     try {
-      final col = fs.collection(collectionName);
+      final col = fs
+          .collection(collectionName)
+          .orderBy('createdAt', descending: true)
+          .limit(10);
       _collectionSubscription = col.snapshots().listen(
         (snapshot) {
           final list = <DailyRecommendation>[];

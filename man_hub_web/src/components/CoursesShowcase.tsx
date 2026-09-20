@@ -3,7 +3,8 @@
 import { useState, useEffect } from "react";
 import styles from "./CoursesShowcase.module.css";
 import Image from "next/image";
-import { Clock, Layers, ArrowRight, PlayCircle } from "lucide-react";
+import Link from "next/link";
+import { Clock, Layers, ArrowRight, PlayCircle, Sparkles } from "lucide-react";
 import { db } from "@/lib/firebase";
 import { collection, onSnapshot } from "firebase/firestore";
 
@@ -32,7 +33,7 @@ const DEFAULT_COURSES: Course[] = [
     modulesCount: 11,
     imageUrl:
       "https://images.unsplash.com/photo-1593032465175-481ac7f401a0?q=80&w=800&auto=format&fit=crop",
-    price: 97,
+    price: 249.9,
     topics: [
       "Caimento exato de ombros, mangas e barras",
       "Equilíbrio de proporção e silhueta em 'V'",
@@ -51,7 +52,7 @@ const DEFAULT_COURSES: Course[] = [
     modulesCount: 13,
     imageUrl:
       "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=800&auto=format&fit=crop",
-    price: 97,
+    price: 79.9,
     topics: [
       "Mapeamento geométrico e proporções faciais",
       "Harmonia de corte de cabelo e barba na mandíbula",
@@ -70,7 +71,7 @@ const DEFAULT_COURSES: Course[] = [
     modulesCount: 12,
     imageUrl:
       "https://images.unsplash.com/photo-1523293182086-7651a899d37f?q=80&w=800&auto=format&fit=crop",
-    price: 97,
+    price: 159.9,
     topics: [
       "Pirâmide olfativa (saída, coração e fundo)",
       "Seleção de perfumes para calor vs. noites frias",
@@ -180,66 +181,78 @@ export default function CoursesShowcase({ onBuyCourse }: CoursesShowcaseProps) {
 
         <div className={styles.coursesGrid}>
           {courses.map((course) => (
-            <div key={course.id} className={styles.courseCard}>
-              <div className={styles.cardImageWrap}>
-                <Image
-                  src={course.imageUrl}
-                  alt={course.title}
-                  width={600}
-                  height={400}
-                  className={styles.cardImage}
-                  unoptimized={!course.imageUrl.includes("images.unsplash.com")}
-                />
-                <div className={styles.cardOverlay} />
-                <span className={styles.categoryBadge}>{course.category}</span>
-              </div>
-
-              <div className={styles.cardBody}>
-                <div className={styles.metaRow}>
-                  <div className={styles.metaItem}>
-                    <Clock size={14} color="var(--neon-primary)" />
-                    <span>{course.duration}</span>
-                  </div>
-                  <div className={styles.metaItem}>
-                    <Layers size={14} color="var(--neon-primary)" />
-                    <span>{course.modulesCount} Módulos</span>
-                  </div>
-                  <div className={styles.metaItem}>
-                    <PlayCircle size={14} color="var(--gold-accent)" />
-                    <span>Em Stories</span>
-                  </div>
+            <Link
+              key={course.id}
+              href={`/treinamentos/${course.id}`}
+              className={styles.courseCardLink}
+              title={`Ver detalhes do treinamento: ${course.title}`}
+            >
+              <div className={styles.courseCard}>
+                <div className={styles.cardImageWrap}>
+                  <Image
+                    src={course.imageUrl}
+                    alt={course.title}
+                    width={600}
+                    height={400}
+                    className={styles.cardImage}
+                    unoptimized={!course.imageUrl.includes("images.unsplash.com")}
+                  />
+                  <div className={styles.cardOverlay} />
+                  <span className={styles.categoryBadge}>{course.category}</span>
                 </div>
 
-                <h3 className={styles.courseTitle}>{course.title}</h3>
-                <p className={styles.courseDesc}>{course.description}</p>
+                <div className={styles.cardBody}>
+                  <div className={styles.metaRow}>
+                    <div className={styles.metaItem}>
+                      <Clock size={14} color="var(--neon-primary)" />
+                      <span>{course.duration}</span>
+                    </div>
+                    <div className={styles.metaItem}>
+                      <Layers size={14} color="var(--neon-primary)" />
+                      <span>{course.modulesCount} Módulos</span>
+                    </div>
+                    <div className={styles.metaItem}>
+                      <PlayCircle size={14} color="var(--gold-accent)" />
+                      <span>Stories</span>
+                    </div>
+                  </div>
 
-                <ul className={styles.topicsList}>
-                  {course.topics.map((topic, idx) => (
-                    <li key={idx} className={styles.topicItem}>
-                      <span className={styles.topicDot} />
-                      <span>{topic}</span>
-                    </li>
-                  ))}
-                </ul>
+                  <h3 className={styles.courseTitle}>{course.title}</h3>
+                  <p className={styles.courseDesc}>{course.description}</p>
 
-                <div className={styles.cardFooter}>
-                  <span className={styles.interactiveTag}>
-                    {course.price
-                      ? `R$ ${course.price.toLocaleString("pt-BR", { minimumFractionDigits: 2 })} vitalício`
-                      : "R$ 97,00 vitalício"}
-                  </span>
-                  <button
-                    onClick={() => onBuyCourse?.(course.id, course.title)}
-                    className={styles.openCourseBtn}
-                    style={{ background: "transparent", border: "none" }}
-                  >
-                    <span>Comprar Curso</span>
-                    <ArrowRight size={14} />
-                  </button>
+                  <ul className={styles.topicsList}>
+                    {course.topics.slice(0, 2).map((topic, idx) => (
+                      <li key={idx} className={styles.topicItem}>
+                        <span className={styles.topicDot} />
+                        <span>{topic}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className={styles.cardFooter}>
+                    <span className={styles.interactiveTag}>
+                      {course.price
+                        ? `R$ ${course.price.toFixed(2).replace(".", ",")} vitalício`
+                        : "Acesso Vitalício"}
+                    </span>
+                    <span className={styles.openCourseBtn}>
+                      <span>Ver Aulas & Detalhes</span>
+                      <ArrowRight size={14} />
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
+        </div>
+
+        {/* Botão Ver Todos os Treinamentos */}
+        <div className={styles.viewAllWrap}>
+          <Link href="/treinamentos" className={styles.viewAllBtn}>
+            <Sparkles size={18} />
+            <span>Ver Todos os Treinamentos</span>
+            <ArrowRight size={18} />
+          </Link>
         </div>
       </div>
     </section>

@@ -111,6 +111,7 @@ class OutfitService extends ChangeNotifier {
       _outfitsSubscription = fs
           .collection('outfits')
           .orderBy('createdAt', descending: true)
+          .limit(40)
           .snapshots()
           .listen((snapshot) {
         _outfits.clear();

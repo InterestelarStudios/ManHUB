@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./Hero.module.css";
 import PhoneMockup from "./PhoneMockup";
 import { ArrowRight, Sparkles, Star, ShieldCheck, Apple } from "lucide-react";
@@ -13,10 +14,10 @@ export default function Hero() {
           <div className={styles.badgeWrap}>
             <span className="badge-gold">
               <Sparkles size={13} />
-              Lançamento Oficial em Breve
+              Plataforma Oficial
             </span>
             <span className="badge-neon">
-              Acesso Antecipado
+              Treinamentos Interativos
             </span>
           </div>
 
@@ -31,10 +32,10 @@ export default function Hero() {
           </p>
 
           <div className={styles.heroCtas}>
-            <a href="#download" className="btn btn-primary">
-              <span>Garantir Acesso Antecipado</span>
+            <Link href="/treinamentos" className="btn btn-primary">
+              <span>Começar Agora</span>
               <ArrowRight size={18} />
-            </a>
+            </Link>
 
             <a href="#pilares" className="btn btn-secondary">
               <span>Explorar os 4 Pilares</span>

@@ -46,6 +46,10 @@ dependencies:
   http: ^1.6.0
   google_sign_in: ^6.2.2
   shared_preferences: ^2.5.5
+  image_picker: ^1.2.3
+  camera: ^0.12.0+2
+  google_mlkit_face_detection: ^0.14.0
+  firebase_ui_firestore: ^2.1.0
 
 dev_dependencies:
   flutter_test:

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Pillars from "@/components/Pillars";
 import AppExperience from "@/components/AppExperience";
@@ -10,7 +9,6 @@ import StyleQuiz from "@/components/StyleQuiz";
 import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
 import CtaBanner from "@/components/CtaBanner";
-import Footer from "@/components/Footer";
 import CheckoutModal from "@/components/CheckoutModal";
 
 export default function Home() {
@@ -33,7 +31,6 @@ export default function Home() {
 
   return (
     <>
-      <Header onOpenCheckout={handleOpenPass} />
       <main>
         <Hero />
         <Pillars />
@@ -44,7 +41,6 @@ export default function Home() {
         <FAQ />
         <CtaBanner />
       </main>
-      <Footer />
 
       <CheckoutModal
         isOpen={isCheckoutOpen}

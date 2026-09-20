@@ -1,5 +1,6 @@
 import styles from "./Footer.module.css";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -34,16 +35,16 @@ export default function Footer() {
             <h4 className={styles.colTitle}>Treinamentos</h4>
             <ul className={styles.linksList}>
               <li className={styles.linkItem}>
-                <a href="#treinamentos">O Homem Bem-Vestido</a>
+                <Link href="/treinamentos">Catálogo de Treinamentos</Link>
               </li>
               <li className={styles.linkItem}>
-                <a href="#treinamentos">Pele, Cabelo & Barba</a>
+                <Link href="/treinamentos/e0ee6636-cea6-4f59-8242-6b7270f8254d">O Homem Bem-Vestido</Link>
               </li>
               <li className={styles.linkItem}>
-                <a href="#treinamentos">Perfumaria Masculina</a>
+                <Link href="/treinamentos/f47a8291-3c1e-49fb-9de8-18e329ba4182">Pele, Cabelo & Barba</Link>
               </li>
               <li className={styles.linkItem}>
-                <a href="#pilares">Postura & Linguagem Corporal</a>
+                <Link href="/treinamentos/a7e14d9b-83c6-4e5a-bb44-67290f11ac38">Perfumaria Masculina</Link>
               </li>
             </ul>
           </div>
@@ -53,16 +54,16 @@ export default function Footer() {
             <h4 className={styles.colTitle}>Recursos</h4>
             <ul className={styles.linksList}>
               <li className={styles.linkItem}>
-                <a href="#diagnostico">Diagnóstico Facial & Estilo</a>
+                <Link href="/#diagnostico">Diagnóstico Facial & Estilo</Link>
               </li>
               <li className={styles.linkItem}>
-                <a href="#app">Formato Stories Interativo</a>
+                <Link href="/#app">Formato Stories Interativo</Link>
               </li>
               <li className={styles.linkItem}>
-                <a href="#app">Telas Salvas & Favoritos</a>
+                <Link href="/conta">Área do Usuário & Progresso</Link>
               </li>
               <li className={styles.linkItem}>
-                <a href="#download">Download iOS & Android</a>
+                <Link href="/#download">Download iOS & Android</Link>
               </li>
             </ul>
           </div>
@@ -72,19 +73,19 @@ export default function Footer() {
             <h4 className={styles.colTitle}>Institucional</h4>
             <ul className={styles.linksList}>
               <li className={styles.linkItem}>
-                <a href="#pilares">Metodologia</a>
+                <Link href="/#pilares">Metodologia</Link>
               </li>
               <li className={styles.linkItem}>
-                <a href="#depoimentos">Depoimentos</a>
+                <Link href="/#depoimentos">Depoimentos</Link>
               </li>
               <li className={styles.linkItem}>
-                <a href="#faq">Perguntas Frequentes</a>
+                <Link href="/#faq">Perguntas Frequentes</Link>
               </li>
               <li className={styles.linkItem}>
                 <a href="mailto:support@interestelar.studio">Suporte & Contato</a>
               </li>
               <li className={styles.linkItem}>
-                <a href="/exclusao-de-conta">Exclusão de Conta</a>
+                <Link href="/exclusao-de-conta">Exclusão de Conta</Link>
               </li>
             </ul>
           </div>
@@ -97,15 +98,15 @@ export default function Footer() {
           </span>
 
           <div className={styles.legalLinks}>
-            <a href="/termos-de-uso" className={styles.legalLink}>
+            <Link href="/termos-de-uso" className={styles.legalLink}>
               Termos de Uso
-            </a>
-            <a href="/politica-de-privacidade" className={styles.legalLink}>
+            </Link>
+            <Link href="/politica-de-privacidade" className={styles.legalLink}>
               Política de Privacidade
-            </a>
-            <a href="/exclusao-de-conta" className={styles.legalLink}>
+            </Link>
+            <Link href="/exclusao-de-conta" className={styles.legalLink}>
               Exclusão de Dados & Conta
-            </a>
+            </Link>
           </div>
         </div>
       </div>

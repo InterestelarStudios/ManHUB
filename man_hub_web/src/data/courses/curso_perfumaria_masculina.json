@@ -1,0 +1,3332 @@
+{
+  "id": "a7e14d9b-83c6-4e5a-bb44-67290f11ac38",
+  "title": "Perfumaria Masculina e Assinatura Olfativa",
+  "subtitle": "Da Pirâmide Olfativa ao Guarda-Perfumes: O Guia Definitivo do Homem Elegante",
+  "description": "O guia completo, técnico e prático sobre a arte da perfumaria masculina. Desenvolvido para ensinar a decifrar pirâmides olfativas, dominar famílias e concentrações (EDT, EDP, Parfum), aplicar nos pontos estratégicos e construir um guarda-perfumes refinado para qualquer ocasião com auxílio do Fragrantica.",
+  "whatYouWillLearn": "• A física do perfume: pirâmide olfativa (saída, coração e fundo), sillage, projeção e fixação\n• Mapeamento completo das famílias olfativas: cítricas, aromáticas, fougères, amadeiradas, orientais e gourmands\n• Atlas das matérias-primas: bergamota, sândalo, vetiver, oud, ambroxan, especiarias e almíscares\n• Concentrações decodificadas: Eau de Cologne, Eau de Toilette, Eau de Parfum e Extrait de Parfum\n• Fisiologia da pele, pontos de pulso e técnicas de fixação e layering\n• Construção de um guarda-perfumes estratégico para o dia, noite, calor e frio\n• Como pesquisar notas, acordes e longevidade no Fragrantica antes de investir",
+  "duration": "3.5 horas",
+  "coverImageUrl": "https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=800&auto=format&fit=crop",
+  "requirements": "Nenhum pré-requisito necessário. Recomendado para homens que desejam desenvolver uma assinatura olfativa marcante, sofisticada e alinhada à sua presença.",
+  "updatedAt": "2026-09-13T18:15:00.000",
+  "category": "PERFUMES",
+  "price": 0.0,
+  "isUnlocked": true,
+  "progress": 0.0,
+  "shortDescription": "Guia definitivo de perfumaria masculina, pirâmide olfativa e assinatura pessoal.",
+  "modules": [
+    {
+      "id": "b05de1d5-88dc-403d-b246-6c3464fa0c74",
+      "title": "Fundamentos da Perfumaria",
+      "sessions": [
+        {
+          "id": "2b5769d1-16ef-4572-a765-18ba27c7efa0",
+          "title": "O Que É um Perfume, de Fato",
+          "subtitle": "Naturais vs. Sintéticos e a Engenharia da Fragrância",
+          "screens": [
+            {
+              "id": "f715c395-a4c5-47ad-8922-f1b7842742c1",
+              "title": "Tela 1",
+              "contents": [
+                {
+                  "id": "4aa5770a-f558-428a-8c02-2870fddde367",
+                  "type": "title",
+                  "data": "O Que É um Perfume, de Fato: Naturais vs. Sintéticos e a Engenharia da Fragrância"
+                },
+                {
+                  "id": "57ff0c95-bb3c-4e61-93d0-fffcb8594cd7",
+                  "type": "title2",
+                  "data": "Uma composição, não um cheiro único"
+                },
+                {
+                  "id": "f1b062c9-3f07-4f64-b85e-8b9b2a882c90",
+                  "type": "image",
+                  "data": "https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=800&auto=format&fit=crop"
+                },
+                {
+                  "id": "567c46f4-361a-4f28-a0ed-60f1b8afb298",
+                  "type": "description",
+                  "data": "Um perfume comercial raramente é uma única matéria-prima — é uma composição de dezenas (às vezes centenas) de ingredientes naturais e sintéticos, dissolvidos em álcool (ou óleo, em algumas tradições), projetada para evoluir no tempo e não permanecer estática na pele."
+                },
+                {
+                  "id": "57f52a25-9685-45d4-b4e7-265457527fbe",
+                  "type": "highlighted_description",
+                  "data": "**Princípio da Composição:** Um perfume é uma história contada em camadas moleculares ao longo de horas. Nunca compre pela primeira borrifada no ar."
+                }
+              ]
+            },
+            {
+              "id": "5a5203a4-0d40-4211-a53c-b6c650f765d2",
+              "title": "Tela 2",
+              "contents": [
+                {
+                  "id": "52cec1b6-8586-4afd-b819-2e8832357cf0",
+                  "type": "title2",
+                  "data": "Naturais vs. Sintéticos"
+                },
+                {
+                  "id": "46e49f84-7dfa-459b-b7f7-c6ce1f4a1f3b",
+                  "type": "image",
+                  "data": "https://images.unsplash.com/photo-1616949755610-8c9bbc08f138?q=80&w=800&auto=format&fit=crop"
+                },
+                {
+                  "id": "ebc8a002-6fb4-4e9a-8a80-c44d6c6182e9",
+                  "type": "description",
+                  "data": "Matérias-primas naturais (extraídas de flores, madeiras, resinas) trazem complexidade e riqueza, mas são caras, instáveis e às vezes alergênicas ou de origem questionável (como certos almíscares animais, hoje majoritariamente substituídos). Sintéticos permitem criar efeitos impossíveis na natureza (como o 'ozônico' ou o algodão limpo) e são a base da perfumaria moderna — não são sinônimo de qualidade inferior."
+                },
+                {
+                  "id": "3800f2af-1f6c-4a02-a6cb-d06ad634d82a",
+                  "type": "highlighted_description",
+                  "data": "**Mito Desfeito:** Sintéticos não significam baixa qualidade; eles garantem estabilidade, recriam oásis olfativos impossíveis na natureza e preservam o meio ambiente."
+                }
+              ]
+            },
+            {
+              "id": "b1f8cff8-e12f-4f0f-8060-0bc7207ac042",
+              "title": "Tela 3",
+              "contents": [
+                {
+                  "id": "8bf778b5-79bc-4fe8-9761-47500ae975df",
+                  "type": "title2",
+                  "data": "Mudando a percepção de valor"
+                },
+                {
+                  "id": "30859df4-0612-434c-bd20-e9a11a6d51be",
+                  "type": "highlighted_description",
+                  "data": "**Dica Prática:** O preço de um perfume não é determinado apenas pela 'nobreza' das matérias-primas, mas também por marketing, embalagem e raridade de certos ingredientes (como o oud natural). Entender a composição ajuda a separar valor real de valor percebido."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "6a39b4de-c851-4dbd-b717-0c805e4e9a80",
+          "title": "A Pirâmide Olfativa",
+          "subtitle": "Saída, Coração e Fundo",
+          "screens": [
+            {
+              "id": "b4f16019-b6d4-45ca-95aa-c94573089bfb",
+              "title": "Tela 1",
+              "contents": [
+                {
+                  "id": "1566b17c-6d73-4f72-bdf7-bee7cca15987",
+                  "type": "title",
+                  "data": "A Pirâmide Olfativa: Saída, Coração e Fundo"
+                },
+                {
+                  "id": "4fdc2fc2-60eb-459b-b16d-9863e77398a9",
+                  "type": "title2",
+                  "data": "Por que o perfume 'muda' com o tempo"
+                },
+                {
+                  "id": "379e460a-15e1-46b3-a454-ade71c6f19a8",
+                  "type": "image",
+                  "data": "https://images.unsplash.com/photo-1523293182086-7651a899d37f?q=80&w=800&auto=format&fit=crop"
+                },
+                {
+                  "id": "9141e12c-8ee7-4aff-a67e-b6690900be93",
+                  "type": "description",
+                  "data": "Diferentes moléculas evaporam em velocidades diferentes. Um perfumista organiza essas moléculas em camadas — a pirâmide olfativa — para que a fragrância conte uma história em três atos ao longo de várias horas, em vez de entregar tudo de uma vez."
+                },
+                {
+                  "id": "1330ab8d-0f42-4ea1-84fd-6c317556ed51",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Por que o perfume 'muda' com o tempo transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "f484bd91-a078-4e8a-86f2-d41d0c133c4b",
+              "title": "Tela 2",
+              "contents": [
+                {
+                  "id": "e277d9a4-9f8e-4c21-865d-53c1379101bb",
+                  "type": "title2",
+                  "data": "Notas de Saída (Top Notes)"
+                },
+                {
+                  "id": "155e1e8d-6a19-4b73-96f7-d18c1797cfcc",
+                  "type": "description",
+                  "data": "As primeiras a evaporar, perceptíveis nos primeiros 5 a 15 minutos. Geralmente moléculas leves e voláteis — cítricos, ervas frescas, notas aquáticas — cuja função é causar a primeira impressão e 'convidar' para o restante da fragrância."
+                },
+                {
+                  "id": "3701d4e8-430c-4696-acb1-a996cc1bd572",
+                  "type": "highlighted_description",
+                  "data": "**Primeira Impressão (0-15 min):** Notas cítricas e frescas abrem o perfume. São o 'olá' da fragrância, mas desaparecem rapidamente para dar espaço ao coração."
+                }
+              ]
+            },
+            {
+              "id": "a819d7ac-cc28-440a-bca7-142478b85698",
+              "title": "Tela 3",
+              "contents": [
+                {
+                  "id": "3f826ad6-dc79-414d-896e-958c99bf3d7c",
+                  "type": "title2",
+                  "data": "Notas de Coração (Heart / Middle Notes)"
+                },
+                {
+                  "id": "c7dea4c2-d630-4100-b64f-389f14ebd882",
+                  "type": "description",
+                  "data": "Surgem conforme as notas de saída evaporam, entre 15 minutos e 1 hora após a aplicação, e formam o 'corpo' real do perfume — geralmente florais, especiarias e frutas mais densas. É a fase que dura mais tempo e definição da identidade da fragrância."
+                },
+                {
+                  "id": "c15ea62f-c60a-4a8a-a425-7e9d8bd840e6",
+                  "type": "highlighted_description",
+                  "data": "**A Alma do Perfume (15 min - 2h):** É a fase mais representativa do caráter da fragrância. Aqui residem as flores nobres, especiarias e frutas encorpadas."
+                }
+              ]
+            },
+            {
+              "id": "891da2a2-97f1-4d87-97e5-c73c8f17c0a2",
+              "title": "Tela 4",
+              "contents": [
+                {
+                  "id": "319f9175-95a1-4e39-8b94-584693937cab",
+                  "type": "title2",
+                  "data": "Notas de Fundo (Base Notes)"
+                },
+                {
+                  "id": "329c6796-910f-4964-8633-bd6a51f304cf",
+                  "type": "image",
+                  "data": "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=800&auto=format&fit=crop"
+                },
+                {
+                  "id": "5d47f105-cc8d-475e-9879-e8a17e0aaefe",
+                  "type": "description",
+                  "data": "As moléculas mais pesadas e menos voláteis, que aparecem a partir de 1-2 horas e podem durar o dia inteiro (ou mais) na pele — madeiras, âmbar, almíscar, baunilha, resinas. São também responsáveis pela fixação do perfume, ancorando as notas mais voláteis."
+                },
+                {
+                  "id": "26d1525d-b01e-445f-9552-69b853cfe166",
+                  "type": "highlighted_description",
+                  "data": "**A Fixação Real (2h - 12h+):** Moléculas densas de madeiras, âmbar, almíscar e resinas que ancoram a composição na sua pele pelo restante do dia."
+                }
+              ]
+            },
+            {
+              "id": "8326965f-f21b-4757-98c6-32b2d6163a21",
+              "title": "Tela 5",
+              "contents": [
+                {
+                  "id": "35ce8597-63cf-4917-9412-74826f21120c",
+                  "type": "title2",
+                  "data": "Como testar isso na prática"
+                },
+                {
+                  "id": "565273bb-2929-4e80-a993-d292b8e3cdd4",
+                  "type": "highlighted_description",
+                  "data": "**Dica Prática:** Ao experimentar um novo perfume, cheire-o aos 5 minutos, aos 30 minutos e depois de 3 horas — são três fragrâncias parcialmente diferentes, e julgar apenas pelo primeiro borrifo é o erro mais comum de quem está aprendendo a comprar perfume."
+                }
+              ]
+            },
+            {
+              "id": "d54ef863-c935-430f-97d9-2dff0d578790",
+              "title": "Tela 6",
+              "contents": [
+                {
+                  "id": "9db1b815-793f-48f3-a56d-24e56ce86d0a",
+                  "type": "title2",
+                  "data": "Fragrantica: A Enciclopédia da Pirâmide Olfativa"
+                },
+                {
+                  "id": "849224d2-a0a7-46e9-ad2b-3c77fac780ee",
+                  "type": "description",
+                  "data": "O portal Fragrantica (fragrantica.com.br / fragrantica.com) é a maior base de dados global sobre perfumaria do planeta.\n\nNele, qualquer homem pode pesquisar o nome de um perfume e visualizar imediatamente o gráfico da pirâmide olfativa dividida em Saída (topo), Coração e Fundo, além dos votos dos usuários sobre quais notas são mais perceptíveis na prática.\n\nConsultar a pirâmide no Fragrantica antes de ir a uma loja permite antecipar se o perfume tem as notas que você gosta (ex: cedro, bergamota, fava tonka) ou se possui elementos que você rejeita."
+                },
+                {
+                  "id": "ad5452d3-3529-4def-b3f0-f578ea07ef11",
+                  "type": "highlighted_description",
+                  "data": "**Pesquisa Inteligente no Fragrantica:** Consulte o Fragrantica para analisar a pirâmide, as notas dominantes e as resenhas da comunidade antes de investir em um frasco."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "703a883f-1159-4824-9989-ce65e510c77c",
+          "title": "Sillage, Projeção e Longevidade",
+          "subtitle": "Rastro, Distância de Projeção e Tempo de Fixação Real",
+          "screens": [
+            {
+              "id": "15bfbc66-f916-45a4-8cb6-af9482c19e10",
+              "title": "Tela 1",
+              "contents": [
+                {
+                  "id": "a5013396-2717-4519-b413-b439cf2ef1e2",
+                  "type": "title",
+                  "data": "Sillage, Projeção e Longevidade: Rastro, Distância de Projeção e Tempo de Fixação Real"
+                },
+                {
+                  "id": "d0e2fb2f-5755-405b-8422-273861709650",
+                  "type": "title2",
+                  "data": "Três métricas, três significados diferentes"
+                },
+                {
+                  "id": "c4a1d16f-e26b-443c-8edd-e7db6c4d436d",
+                  "type": "image",
+                  "data": "https://images.unsplash.com/photo-1583445013765-46c20c4a6772?q=80&w=800&auto=format&fit=crop"
+                },
+                {
+                  "id": "e23a213a-662f-4f7f-825d-233e5b07bf4d",
+                  "type": "description",
+                  "data": "Esses termos técnicos descrevem como o perfume se comporta no espaço e no tempo, e são frequentemente confundidos entre si por quem está começando a estudar perfumaria."
+                },
+                {
+                  "id": "e57ed076-bcea-44d1-ba2b-c1de557a8f04",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Três métricas, três significados diferentes transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "1ea4a24d-9512-4ff5-b991-a38c5d2fe964",
+              "title": "Tela 2",
+              "contents": [
+                {
+                  "id": "858b9afe-9fbb-4c04-9712-f31c1025ec50",
+                  "type": "title2",
+                  "data": "Sillage"
+                },
+                {
+                  "id": "6849eacf-9737-4030-aa90-55610ba67cd9",
+                  "type": "description",
+                  "data": "O 'rastro' que o perfume deixa no ar conforme a pessoa se movimenta — o quanto ele permanece perceptível no ambiente mesmo depois que a pessoa já passou por ali."
+                },
+                {
+                  "id": "08271c70-03fb-4ff8-a126-8cdb3cdf16c5",
+                  "type": "highlighted_description",
+                  "data": "**O Rastro Elegante:** Sillage é a memória que você deixa no ambiente quando passa. Em ambientes profissionais, prefira um rastro contido e polido."
+                }
+              ]
+            },
+            {
+              "id": "33312335-a924-497e-9b8c-c16df35eb1fd",
+              "title": "Tela 3",
+              "contents": [
+                {
+                  "id": "689274fb-9d8d-4b7e-9684-2f60a7c11fb2",
+                  "type": "title2",
+                  "data": "Projeção"
+                },
+                {
+                  "id": "bfcd420f-8970-4ab1-a7f9-5749aa50234a",
+                  "type": "description",
+                  "data": "A distância a partir do corpo em que o perfume pode ser sentido por outra pessoa em um dado momento — uma fragrância de alta projeção é sentida a um braço de distância; uma de baixa projeção, só de perto."
+                },
+                {
+                  "id": "e2a7c25b-2c91-4a0c-9937-881b963ac960",
+                  "type": "highlighted_description",
+                  "data": "**Raio de Presença:** Uma boa projeção para o homem sofisticado alcança a distância de um aperto de mão (meio metro), convidando à proximidade sem invadir o espaço alheio."
+                }
+              ]
+            },
+            {
+              "id": "e5462b57-fcce-4d9d-8eb1-67001f8d1539",
+              "title": "Tela 4",
+              "contents": [
+                {
+                  "id": "ff5c765b-7dae-497c-8187-63d6cce23cf1",
+                  "type": "title2",
+                  "data": "Longevidade"
+                },
+                {
+                  "id": "7d200cb2-38e5-464e-b9bf-c6b4128fa689",
+                  "type": "description",
+                  "data": "O tempo total que o perfume permanece perceptível na pele, do primeiro borrifo até deixar de ser sentido mesmo aproximando o nariz do pulso."
+                },
+                {
+                  "id": "c320fd6c-b4fb-40c1-906e-51d6f9ec4559",
+                  "type": "highlighted_description",
+                  "data": "**Tempo na Pele:** Depende da concentração de óleos, densidade das notas de fundo e hidratação da sua pele. Não confunda longevidade com projeção estridente."
+                }
+              ]
+            },
+            {
+              "id": "4bfc793a-2ae9-4f0c-ac30-a0179266d769",
+              "title": "Tela 5",
+              "contents": [
+                {
+                  "id": "d5249819-54d1-4510-9039-1c8ac5dc6f5e",
+                  "type": "title2",
+                  "data": "Fatores que influenciam os três"
+                },
+                {
+                  "id": "e1f368d2-02d6-4188-a975-f1353a18af92",
+                  "type": "highlighted_description",
+                  "data": "**Dica Prática:** Concentração do perfume, tipo de pele, temperatura ambiente e até a formulação específica (mesmo dentro da mesma concentração) alteram sillage, projeção e longevidade — por isso o mesmo perfume performa de forma diferente em pessoas e climas distintos."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bf7281b3-3ed7-40e0-9ca9-8a8c78e0d5fd",
+      "title": "Famílias Olfativas",
+      "sessions": [
+        {
+          "id": "d817fa85-22b6-4d68-bfdc-1886cc70e223",
+          "title": "Cítrica e Aromática/Fresca",
+          "subtitle": "Bergamota, Limão, Ervas Frescas e Versatilidade",
+          "screens": [
+            {
+              "id": "f3235510-7873-4686-92bb-46b9678c8dad",
+              "title": "Tela 1",
+              "contents": [
+                {
+                  "id": "ea440168-3402-4cf6-8544-b6b5ed3b87fc",
+                  "type": "title",
+                  "data": "Cítrica e Aromática/Fresca: Bergamota, Limão, Ervas Frescas e Versatilidade"
+                },
+                {
+                  "id": "c4e7bbab-604b-4bed-9f33-59eedac88d9f",
+                  "type": "title2",
+                  "data": "As famílias mais leves e universais"
+                },
+                {
+                  "id": "86b92292-f845-4ac1-8eb0-5dee43d4c353",
+                  "type": "image",
+                  "data": "https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?q=80&w=800&auto=format&fit=crop"
+                },
+                {
+                  "id": "1f1ff12f-471e-4f46-a561-fa823a320451",
+                  "type": "description",
+                  "data": "São as famílias mais fáceis de usar no dia a dia por serem discretas, refrescantes e raramente ofensivas em ambientes profissionais."
+                },
+                {
+                  "id": "3aa56254-5efb-4231-9e54-5b61d4f56407",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de As famílias mais leves e universais transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "86e990bb-a71b-4d27-80ce-d177d0f46f2d",
+              "title": "Tela 2",
+              "contents": [
+                {
+                  "id": "6cc137ad-7615-4d95-b518-0aedf4e11d8c",
+                  "type": "title2",
+                  "data": "Família Cítrica"
+                },
+                {
+                  "id": "29473be1-5c0f-48c7-a83a-f33898b7514c",
+                  "type": "description",
+                  "data": "Dominada por notas de bergamota, limão, laranja e toranja. Historicamente a base das colônias mais antigas (como a 4711 e a água de colônia clássica), transmite uma sensação de limpeza e energia, mas tem baixa longevidade natural por serem moléculas voláteis."
+                },
+                {
+                  "id": "63ef6142-c218-4bd4-a7b6-05f7fd6961e8",
+                  "type": "highlighted_description",
+                  "data": "**Versatilidade Diurna:** Imbatíveis para dias quentes e escritórios. Passam sensação imediata de energia, higiene, dinamismo e elegância limpa."
+                }
+              ]
+            },
+            {
+              "id": "745f2915-a84d-4da8-801f-cf29e1e7c977",
+              "title": "Tela 3",
+              "contents": [
+                {
+                  "id": "740ddc0a-dfb0-4286-9779-cb05d633d50f",
+                  "type": "title2",
+                  "data": "Família Aromática/Fresca"
+                },
+                {
+                  "id": "8b812312-6a82-438b-b2db-e077a4ffe14f",
+                  "type": "description",
+                  "data": "Construída sobre ervas como lavanda, alecrim, manjericão e notas 'verdes', com frequência combinada com cítricos. Passa uma imagem clássica, másculina no sentido tradicional e versátil para o dia a dia."
+                },
+                {
+                  "id": "cab34c71-ddd1-4378-a496-8276addf93a0",
+                  "type": "highlighted_description",
+                  "data": "**Versatilidade Diurna:** Imbatíveis para dias quentes e escritórios. Passam sensação imediata de energia, higiene, dinamismo e elegância limpa."
+                }
+              ]
+            },
+            {
+              "id": "fbb57cc1-29c8-4ab5-be55-8cae17a7b330",
+              "title": "Tela 4",
+              "contents": [
+                {
+                  "id": "c6d9c87b-71db-4fa1-b941-b93e5d6dcaf5",
+                  "type": "title2",
+                  "data": "Melhor uso"
+                },
+                {
+                  "id": "909898ee-c20f-4de1-8127-d6813739bd49",
+                  "type": "highlighted_description",
+                  "data": "**Dica Prática:** Ambas as famílias funcionam muito bem em climas quentes e em ambientes profissionais, por serem discretas e não causarem saturação olfativa em espaços fechados como escritórios."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "2de7817b-2698-4b71-b9e0-3e2d4a0844ed",
+          "title": "Floral e Fougère",
+          "subtitle": "A Espinha Dorsal da Barbearia Clássica e Elegância",
+          "screens": [
+            {
+              "id": "5ccfbb2e-1e6e-4711-9ce4-48c59fc694bb",
+              "title": "Tela 1",
+              "contents": [
+                {
+                  "id": "13f4b0c4-389a-482e-97b8-ff5e6b06bee5",
+                  "type": "title",
+                  "data": "Floral e Fougère: A Espinha Dorsal da Barbearia Clássica e Elegância"
+                },
+                {
+                  "id": "7e39aa37-1229-4ed4-9128-e89511da1173",
+                  "type": "title2",
+                  "data": "Do delicado ao clássico masculino"
+                },
+                {
+                  "id": "d65dc821-1140-45ae-9470-c85136a52d7f",
+                  "type": "image",
+                  "data": "https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?q=80&w=800&auto=format&fit=crop"
+                },
+                {
+                  "id": "e842ecb7-9603-41c0-b6da-81929e1f3aa2",
+                  "type": "description",
+                  "data": "O floral é frequentemente associado ao universo feminino, mas floras específicas (como a lavanda e o geranio) são centrais também em composições masculinas — especialmente na família fougère."
+                },
+                {
+                  "id": "fc8bf607-58c1-4a09-b058-7fb3f236e609",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Do delicado ao clássico masculino transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "4bea23fd-96d5-479e-932a-c1e3d58ae939",
+              "title": "Tela 2",
+              "contents": [
+                {
+                  "id": "9d76ee22-9c0c-4d4f-bbc9-088ccb731dd9",
+                  "type": "title2",
+                  "data": "Família Floral"
+                },
+                {
+                  "id": "cf5c943b-9524-4104-8501-4fea1618f4b7",
+                  "type": "description",
+                  "data": "Construída sobre uma ou mais flores centrais — rosa, jasmim, flor de laranjeira, íris. Em perfumaria masculina aparece quase sempre combinada com notas amadeiradas ou aromáticas, raramente pura."
+                },
+                {
+                  "id": "7216ad35-ce86-4306-a998-cf6c1385a9d3",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Família Floral transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "58051d79-92b9-4eb7-a22e-021a1220773a",
+              "title": "Tela 3",
+              "contents": [
+                {
+                  "id": "afa8cbbb-f247-4cda-a039-29f1f9f0e623",
+                  "type": "title2",
+                  "data": "Família Fougère"
+                },
+                {
+                  "id": "d9fc2676-fcf6-4728-bcad-d26946428304",
+                  "type": "description",
+                  "data": "Literalmente 'samambaia' em francês (uma referência abstrata, já que samambaias não têm cheiro perceptível). Combina lavanda, cumarina (nota amadeirada-adocicada da fava tonka) e musgo de carvalho — é a família mais tradicionalmente associada à perfumaria masculina clássica desde o século XIX."
+                },
+                {
+                  "id": "96d7e6ef-3edf-4095-99a4-e24f29a1113f",
+                  "type": "highlighted_description",
+                  "data": "**O Padrão Clássico:** A combinação atemporal de lavanda, fava tonka e musgo. É o aroma definitivo do homem maduro, confiante e asseado."
+                }
+              ]
+            },
+            {
+              "id": "f76f4f19-16ae-4670-a4e8-34a0f82123bc",
+              "title": "Tela 4",
+              "contents": [
+                {
+                  "id": "cd800318-df06-40f9-a74e-93d88d9ff58d",
+                  "type": "title2",
+                  "data": "Como reconhecer um fougère"
+                },
+                {
+                  "id": "eb9ebf54-9ff7-4a40-895f-612db3f857ab",
+                  "type": "highlighted_description",
+                  "data": "**Dica Prática:** Se a combinação de lavanda com uma base adocicada e amadeirada lembra imediatamente um 'perfume de barbearia clássica', é quase certo que se trata de um fougère — a família mais influente da história da perfumaria masculina."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "6c51268f-b5aa-4296-9af7-6d7ceb2dc823",
+          "title": "Amadeirada, Chipre e Oriental/Ambarada",
+          "subtitle": "Densidade, Nobreza, Calor e Presença Marcante",
+          "screens": [
+            {
+              "id": "ba59e976-9036-415e-a40c-94c1c67cb56d",
+              "title": "Tela 1",
+              "contents": [
+                {
+                  "id": "a2799e10-9ef0-4501-bb78-498c68d5399b",
+                  "type": "title",
+                  "data": "Amadeirada, Chipre e Oriental/Ambarada: Densidade, Nobreza, Calor e Presença Marcante"
+                },
+                {
+                  "id": "6564026f-5e32-4299-913d-e178fddae7a2",
+                  "type": "title2",
+                  "data": "As famílias de maior presença e sofisticação"
+                },
+                {
+                  "id": "6efb1e4e-f390-404a-b777-0fce0527e1d7",
+                  "type": "image",
+                  "data": "https://images.unsplash.com/photo-1615397349754-cfa2066a298e?q=80&w=800&auto=format&fit=crop"
+                },
+                {
+                  "id": "f28db6ff-c1b8-4937-8307-86db87bbe616",
+                  "type": "description",
+                  "data": "Essas três famílias tendem a ter maior densidade, sillage mais marcante e são associadas a ocasiões noturnas ou climas mais frios."
+                },
+                {
+                  "id": "2a3c56d3-bab1-4960-ad49-5173609c7a80",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de As famílias de maior presença e sofisticação transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "f8d9cea6-5aa0-4873-bbb8-a3d5633aa58e",
+              "title": "Tela 2",
+              "contents": [
+                {
+                  "id": "2dfc5fd6-72df-4ae5-8067-9f5c381f4ea1",
+                  "type": "title2",
+                  "data": "Família Amadeirada (Woody)"
+                },
+                {
+                  "id": "93f4e67e-6eec-4e12-a49c-d197ceeeedbd",
+                  "type": "description",
+                  "data": "Centrada em madeiras como sândalo, cedro, vetiver e, mais recentemente, oud — transmite sofisticação, calor e uma sensação de solidez. É hoje uma das famílias mais populares em lançamentos masculinos."
+                },
+                {
+                  "id": "3986f004-664f-4bdd-bb89-cc14fb7d6536",
+                  "type": "highlighted_description",
+                  "data": "**Solidez & Respeito:** Cedro, sândalo e vetiver transmitem estabilidade, autoridade executiva e serenidade em qualquer época do ano."
+                }
+              ]
+            },
+            {
+              "id": "2020af93-f6b4-4634-8fdc-eb59f20e8304",
+              "title": "Tela 3",
+              "contents": [
+                {
+                  "id": "f2582057-0510-44e2-9c80-4eebb9efa111",
+                  "type": "title2",
+                  "data": "Família Chipre (Chypre)"
+                },
+                {
+                  "id": "1478520d-2fb8-4b1d-967d-bd55edb18937",
+                  "type": "description",
+                  "data": "Estrutura clássica que combina bergamota no topo, um coração floral e uma base de musgo de carvalho, labdano e patchouli. Transmite sofisticação e um caráter mais 'adulto' e complexo que o fougère."
+                },
+                {
+                  "id": "4b29d89d-84df-4c1d-aea4-e01400e960d7",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Família Chipre (Chypre) transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "78936f26-3e02-460d-a7d0-9a788826a0ab",
+              "title": "Tela 4",
+              "contents": [
+                {
+                  "id": "4a84ed1d-d2ca-4e6c-9ae2-219e7a873d56",
+                  "type": "title2",
+                  "data": "Família Oriental/Ambarada"
+                },
+                {
+                  "id": "2c2dae9b-8ea8-46f5-92b3-49ac8ee8c7c6",
+                  "type": "description",
+                  "data": "Construída sobre resinas quentes (âmbar, benjoim, labdano), especiarias e frequentemente baunilha — a família mais associada a sensualidade, calor e presença marcante, ideal para noite e climas frios."
+                },
+                {
+                  "id": "8f28e72d-1072-4823-be4f-b1c8e4c24e1e",
+                  "type": "highlighted_description",
+                  "data": "**Sedução & Clima Frio:** Resinas ricas e especiarias quentes que envelopam o corpo. Perfeitas para encontros, jantares noturnos e temperaturas amenas."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "461ed940-3a71-44ff-a2c5-d0d277b63262",
+          "title": "Gourmand e Aquática",
+          "subtitle": "Sensação Oceânica, Conforto Doce e Contemporaneidade",
+          "screens": [
+            {
+              "id": "e975efd5-4266-49eb-b6ab-d776c575726b",
+              "title": "Tela 1",
+              "contents": [
+                {
+                  "id": "c26985ba-96ba-4d92-ba4d-1728168e6ab5",
+                  "type": "title",
+                  "data": "Gourmand e Aquática: Sensação Oceânica, Conforto Doce e Contemporaneidade"
+                },
+                {
+                  "id": "ad2a380c-16ac-4674-8189-505cc6dc48e9",
+                  "type": "title2",
+                  "data": "Duas famílias mais recentes na história da perfumaria"
+                },
+                {
+                  "id": "d547a520-a865-456b-8cdb-e4ec6543c31d",
+                  "type": "image",
+                  "data": "https://images.unsplash.com/photo-1547887537-6158d64c35b3?q=80&w=800&auto=format&fit=crop"
+                },
+                {
+                  "id": "cf9e67c9-d12f-482c-9bc2-3376f0101a6f",
+                  "type": "description",
+                  "data": "Diferente das famílias clássicas, gourmand e aquática ganharam força principalmente a partir das décadas de 1990 e 2000, impulsionadas por novas moléculas sintéticas."
+                },
+                {
+                  "id": "a5869051-2e55-43ac-8316-030ac13cf386",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Duas famílias mais recentes na história da perfumaria transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "0eda7037-70e4-48ff-a5fa-19ed5d19513b",
+              "title": "Tela 2",
+              "contents": [
+                {
+                  "id": "625ad739-998e-4e29-b5fe-156b166df63f",
+                  "type": "title2",
+                  "data": "Família Gourmand"
+                },
+                {
+                  "id": "dbcea230-52b1-42bc-9d79-0ccff78960f0",
+                  "type": "description",
+                  "data": "Inclui notas que lembram comida e doces — baunilha, caramelo, chocolate, tonka — criando uma sensação de conforto e indulgência. Popularizada a partir dos anos 1990."
+                },
+                {
+                  "id": "b954c26b-a44c-4a0c-a3ab-4f96c06bb4ff",
+                  "type": "highlighted_description",
+                  "data": "**Identidade Contemporânea:** O frescor oceânico revigora nos esportes; acordes doces de fava tonka e baunilha criam conforto e magnetismo casual."
+                }
+              ]
+            },
+            {
+              "id": "43408837-f3d5-48f0-9e6b-2ac820898daa",
+              "title": "Tela 3",
+              "contents": [
+                {
+                  "id": "3d547469-c1df-40e7-b392-3d0cb53c72ef",
+                  "type": "title2",
+                  "data": "Família Aquática"
+                },
+                {
+                  "id": "6a8ff810-d665-4458-ae3b-0dfec85c762d",
+                  "type": "description",
+                  "data": "Construída sobre moléculas sintéticas que evocam a sensação de 'brisa do mar' ou 'ar limpo' (como a calone), sem correspondência direta com nenhum ingrediente natural. Dominou os anos 1990-2000 e ainda hoje define parte do universo de fragrâncias esportivas."
+                },
+                {
+                  "id": "ff3c7b3d-9749-4aac-94da-e214a602da3e",
+                  "type": "highlighted_description",
+                  "data": "**Identidade Contemporânea:** O frescor oceânico revigora nos esportes; acordes doces de fava tonka e baunilha criam conforto e magnetismo casual."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "11385e8f-353c-43c9-9cd7-3b6829c9fadd",
+      "title": "Atlas de Notas e Matérias-Primas",
+      "sessions": [
+        {
+          "id": "86661246-81e4-46a4-a331-58b9151a7c90",
+          "title": "Notas Cítricas",
+          "subtitle": "Bergamota, Mandarina, Toranja e Alta Volatilidade",
+          "screens": [
+            {
+              "id": "e8ca1cd3-cdf0-4ca0-b04e-abb6fa863a73",
+              "title": "Tela 1",
+              "contents": [
+                {
+                  "id": "2c7d7046-60c6-416b-94a7-ff65f03ed0d0",
+                  "type": "title",
+                  "data": "Notas Cítricas: Bergamota, Mandarina, Toranja e Alta Volatilidade"
+                },
+                {
+                  "id": "d3b13ce4-48df-46b4-8bc8-5a6054fcf85c",
+                  "type": "title2",
+                  "data": "As notas mais voláteis da pirâmide"
+                },
+                {
+                  "id": "3227256a-be64-490d-9fa6-ac2adac147a3",
+                  "type": "image",
+                  "data": "https://images.unsplash.com/photo-1536511135899-79f94532c525?q=80&w=800&auto=format&fit=crop"
+                },
+                {
+                  "id": "704936d2-e5a9-467a-81a2-644395b35fd7",
+                  "type": "description",
+                  "data": "Extraídas majoritariamente da casca de frutas cítricas por prensagem a frio, são quase sempre notas de saída devido à sua alta volatilidade."
+                },
+                {
+                  "id": "3824fa30-007b-47a0-b50d-5f8f717ffd61",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de As notas mais voláteis da pirâmide transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "2f45dbb6-bcca-49aa-8179-4d6c44e303cf",
+              "title": "Tela 2",
+              "contents": [
+                {
+                  "id": "634064f3-9b9d-4c5f-b426-8aa73041ec15",
+                  "type": "title2",
+                  "data": "Bergamota"
+                },
+                {
+                  "id": "6bbbb360-5bd7-4901-9fcf-cb7ed2852015",
+                  "type": "description",
+                  "data": "A cítrica mais nobre e usada em perfumaria — mais complexa e menos ácida que o limão, com um leve toque floral. Está presente em uma proporção enorme dos perfumes já lançados, incluindo o icônico Eau de Cologne original."
+                },
+                {
+                  "id": "ebbdc502-cfe4-4a25-9cff-51d3f77d2271",
+                  "type": "highlighted_description",
+                  "data": "**A Rainha dos Cítricos:** A mais complexa das notas de saída cítricas, equilibrando frescor brilhante com um toque floral aristocrático."
+                }
+              ]
+            },
+            {
+              "id": "f60ae3f5-6fe0-4862-bca2-65f678050134",
+              "title": "Tela 3",
+              "contents": [
+                {
+                  "id": "c328ae59-ef2d-40ed-9a17-357ec92e702f",
+                  "type": "title2",
+                  "data": "Limão e Laranja"
+                },
+                {
+                  "id": "98e30cd9-358e-4971-95ab-0a46eb8a5f4b",
+                  "type": "description",
+                  "data": "Notas cítricas mais diretas e reconhecíveis, usadas para dar uma primeira impressão de frescor e energia imediata."
+                },
+                {
+                  "id": "17ea7c87-2cde-439d-bb83-8379c0cf2a9b",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Limão e Laranja transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "791e433c-8897-4217-9655-f06e817ecf5a",
+              "title": "Tela 4",
+              "contents": [
+                {
+                  "id": "baf370bf-938d-46dd-8d90-6777451b3f1b",
+                  "type": "title2",
+                  "data": "Por que somem tão rápido"
+                },
+                {
+                  "id": "87eb17b1-2e74-49e5-96b6-13b26b1a5a9c",
+                  "type": "highlighted_description",
+                  "data": "**Dica Prática:** As moléculas cítricas são pequenas e evaporam rapidamente — por isso raramente aparecem como base de um perfume, servindo quase sempre como abertura."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "086f9800-57a3-4740-adaf-2eca117507e1",
+          "title": "Notas Florais",
+          "subtitle": "Rosa, Jasmim, Lavanda e a Nobreza da Íris (Orris)",
+          "screens": [
+            {
+              "id": "4f62242b-c545-4911-8c33-16a356693e28",
+              "title": "Tela 1",
+              "contents": [
+                {
+                  "id": "7970f609-8326-4584-aaa0-f8078b3f14ac",
+                  "type": "title",
+                  "data": "Notas Florais: Rosa, Jasmim, Lavanda e a Nobreza da Íris (Orris)"
+                },
+                {
+                  "id": "a630f69f-bdf4-484e-847b-2a36ef7dbe38",
+                  "type": "title2",
+                  "data": "O coração mais comum da perfumaria"
+                },
+                {
+                  "id": "5660fe94-579f-4909-86a3-e1767e90c7ab",
+                  "type": "image",
+                  "data": "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=800&auto=format&fit=crop"
+                },
+                {
+                  "id": "986c14d1-6064-4405-8634-61d6f2a2d94a",
+                  "type": "description",
+                  "data": "Flores fornecem algumas das moléculas mais complexas e caras da perfumaria — muitas vezes é mais barato recriar sinteticamente o cheiro de uma flor do que extraí-lo naturalmente dela."
+                },
+                {
+                  "id": "5aa26987-f808-4186-b2c4-7e4badd4c781",
+                  "type": "highlighted_description",
+                  "data": "**A Alma do Perfume (15 min - 2h):** É a fase mais representativa do caráter da fragrância. Aqui residem as flores nobres, especiarias e frutas encorpadas."
+                }
+              ]
+            },
+            {
+              "id": "bcbeb582-3501-46fb-94cb-e969a83671de",
+              "title": "Tela 2",
+              "contents": [
+                {
+                  "id": "3855eaeb-d9b3-447c-a316-74e23a1e1a50",
+                  "type": "title2",
+                  "data": "Rosa"
+                },
+                {
+                  "id": "ee10414f-aad9-40af-9fe5-5585e82a7643",
+                  "type": "description",
+                  "data": "Uma das notas florais mais versáteis, aparecendo tanto em fragrâncias femininas quanto, combinada com especiarias e oud, em composições masculinas contemporâneas."
+                },
+                {
+                  "id": "17762c97-e960-4157-9c3d-1b4e946490e5",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Rosa transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "7a8e7f91-c19e-46c5-8cfd-d252011d48e3",
+              "title": "Tela 3",
+              "contents": [
+                {
+                  "id": "ef839fe8-bf53-4eaa-9678-e806640c65ba",
+                  "type": "title2",
+                  "data": "Jasmim"
+                },
+                {
+                  "id": "4cdebb1e-7fe0-49fc-8771-e6114cf907a3",
+                  "type": "description",
+                  "data": "Nota floral intensa e levemente animálica em sua forma natural (absoluta), usada com moderação por sua força — presente em pequenas quantidades até em muitos perfumes masculinos, dando profundidade ao coração da fragrância."
+                },
+                {
+                  "id": "ee446c14-b681-4e30-937e-8f4a7f1392e7",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Jasmim transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "a17e762a-7895-4045-8fcf-8b2217853442",
+              "title": "Tela 4",
+              "contents": [
+                {
+                  "id": "ae67ecca-4af6-4777-88a0-7a0a0e095f6e",
+                  "type": "title2",
+                  "data": "Lavanda"
+                },
+                {
+                  "id": "07f1d119-8be4-4551-a37c-b6ebf7a3527f",
+                  "type": "description",
+                  "data": "Tecnicamente floral-aromática, é a espinha dorsal da família fougère e uma das notas mais reconhecíveis e associadas à perfumaria masculina clássica."
+                },
+                {
+                  "id": "45d49cc5-df12-4174-9d82-ea2391741615",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Lavanda transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "29e9499f-e940-4417-8fa7-e6b83d30649b",
+              "title": "Tela 5",
+              "contents": [
+                {
+                  "id": "17533dfa-d62f-49fe-9d36-29c6ecf42eac",
+                  "type": "title2",
+                  "data": "Íris (Orris)"
+                },
+                {
+                  "id": "1d16103b-143f-43c0-ada7-a75ae24d71d4",
+                  "type": "description",
+                  "data": "Extraída da raiz do rizoma, é uma das matérias-primas mais caras da perfumaria — cheiro pulverulento, levemente terroso e amanteigado."
+                },
+                {
+                  "id": "92b98369-a4fa-4a57-9768-ff77b2eb1cc1",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Íris (Orris) transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "5639327f-118c-4602-a155-16d5c6c44f7f",
+          "title": "Notas Amadeiradas",
+          "subtitle": "Sândalo Cremoso, Cedro Seco, Vetiver e o Lendário Oud",
+          "screens": [
+            {
+              "id": "e68c2cdf-da4c-4859-b1bc-eef542f4d3cb",
+              "title": "Tela 1",
+              "contents": [
+                {
+                  "id": "1a7112a7-b4cc-4381-8542-ac4611e2663f",
+                  "type": "title",
+                  "data": "Notas Amadeiradas: Sândalo Cremoso, Cedro Seco, Vetiver e o Lendário Oud"
+                },
+                {
+                  "id": "43685429-6e96-4490-92d3-f39184208f27",
+                  "type": "title2",
+                  "data": "A espinha dorsal de grande parte das fragrâncias masculinas"
+                },
+                {
+                  "id": "4b1e519a-e863-4a08-ba41-070792e04a2e",
+                  "type": "image",
+                  "data": "https://images.unsplash.com/photo-1616949755610-8c9bbc08f138?q=80&w=800&auto=format&fit=crop"
+                },
+                {
+                  "id": "4de4f318-5633-453b-8122-06e6ce4ef161",
+                  "type": "description",
+                  "data": "Madeiras costumam aparecer nas notas de fundo, dando sustentação e um caráter mais sério e sofisticado à composição."
+                },
+                {
+                  "id": "cb438eff-7623-408e-b4ed-8f98195d5332",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de A espinha dorsal de grande parte das fragrâncias masculinas transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "32cffdaf-8df2-423f-877c-07f586946738",
+              "title": "Tela 2",
+              "contents": [
+                {
+                  "id": "d69a203c-5a0b-458a-b0ba-3d4e4d4deeb5",
+                  "type": "title2",
+                  "data": "Sândalo"
+                },
+                {
+                  "id": "754bf4ab-04d3-4bee-8c10-15cc3e323103",
+                  "type": "description",
+                  "data": "Cremoso, quente e levemente lácteo. O sândalo indiano tradicional (Mysore) é hoje raro e caro devido à exploração excessiva; a maioria dos perfumes modernos usa sândalo australiano ou versões sintéticas."
+                },
+                {
+                  "id": "1df70647-ce0b-4ea3-8d06-e29e8fc3db55",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Sândalo transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "8bacd0f2-e211-43ea-9853-c2d124d81d06",
+              "title": "Tela 3",
+              "contents": [
+                {
+                  "id": "cb204529-2871-4bca-ae29-63e737a2e3d0",
+                  "type": "title2",
+                  "data": "Cedro"
+                },
+                {
+                  "id": "d7e3e6de-8662-4d56-b308-fe8b17f0a8fe",
+                  "type": "description",
+                  "data": "Mais seco e 'lápis-de-cor' que o sândalo, com um caráter limpo e menos adocicado — muito usado como estrutura de base em fragrâncias masculinas do dia a dia."
+                },
+                {
+                  "id": "5e1fc3bd-555d-43d5-8e28-3595c09404e8",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Cedro transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "85045853-dd46-48af-b26d-d685524abd99",
+              "title": "Tela 4",
+              "contents": [
+                {
+                  "id": "8c45f0ca-5b0a-4413-a0d6-62c87aeeb75a",
+                  "type": "title2",
+                  "data": "Vetiver"
+                },
+                {
+                  "id": "ae927c2f-d3df-4eab-9f1e-00745f90bbb8",
+                  "type": "description",
+                  "data": "Raiz de origem terrosa, esfumaçada e levemente amarga — considerado um dos ingredientes mais 'másculinos' da perfumaria clássica, presente em fragrâncias icônicas de vetiver puro."
+                },
+                {
+                  "id": "df64219e-6054-4e17-9b75-4403e936e1d8",
+                  "type": "highlighted_description",
+                  "data": "**Raiz Terrosa Clássica:** Transmite sobriedade terrosa e masculinidade madura. A nota favorita de líderes e diplomatas."
+                }
+              ]
+            },
+            {
+              "id": "c74e0f08-9848-4504-835a-7b7a13232568",
+              "title": "Tela 5",
+              "contents": [
+                {
+                  "id": "187350d9-f704-4a2f-aa11-3b65b40fad62",
+                  "type": "title2",
+                  "data": "Oud (Agarwood)"
+                },
+                {
+                  "id": "917f8367-3d15-463d-9c7e-4a4b031f90cb",
+                  "type": "description",
+                  "data": "Resina aromática formada dentro de certas árvores de agar infectadas por fungo, extremamente rara e cara em sua forma natural. Tem cheiro complexo, entre amadeirado, animálico e levemente medicinal — hoje amplamente recriado por moléculas sintéticas para viabilizar seu uso comercial em larga escala."
+                },
+                {
+                  "id": "d3228bce-54ad-476c-ab49-297d2e3b1e57",
+                  "type": "highlighted_description",
+                  "data": "**O Ouro Líquido:** Uma das matérias-primas mais reverenciadas do Oriente Médio. Amadeirado, escuro, misterioso e de fixação monumental."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "925ddc74-a216-40c8-9ceb-65455a36b5fd",
+          "title": "Especiarias",
+          "subtitle": "Pimenta Rosa, Cardamomo Quente, Cravo e Canela",
+          "screens": [
+            {
+              "id": "32096995-7ad1-4811-a216-6493ce5b4030",
+              "title": "Tela 1",
+              "contents": [
+                {
+                  "id": "3b9f90ad-a578-4a3e-b2a0-bb883a8e10db",
+                  "type": "title",
+                  "data": "Especiarias: Pimenta Rosa, Cardamomo Quente, Cravo e Canela"
+                },
+                {
+                  "id": "c4f8d80f-6ee6-4937-8deb-5814525558f6",
+                  "type": "title2",
+                  "data": "O tempero que dá caráter ao coração da fragrância"
+                },
+                {
+                  "id": "dfb8e443-ad6f-4d70-9bc4-54f98420e2b1",
+                  "type": "image",
+                  "data": "https://images.unsplash.com/photo-1509358271058-acd22cc93898?q=80&w=800&auto=format&fit=crop"
+                },
+                {
+                  "id": "f532272c-eec4-4d94-ba5b-b2a3df625276",
+                  "type": "description",
+                  "data": "Especiarias costumam aparecer no coração da pirâmide, adicionando complexidade e calor a uma composição que, sem elas, poderia parecer plana."
+                },
+                {
+                  "id": "b20e2619-733c-4f34-996f-f5bfdc8ec287",
+                  "type": "highlighted_description",
+                  "data": "**A Alma do Perfume (15 min - 2h):** É a fase mais representativa do caráter da fragrância. Aqui residem as flores nobres, especiarias e frutas encorpadas."
+                }
+              ]
+            },
+            {
+              "id": "5985cb61-4779-4a24-a1e2-b55b9bdfd280",
+              "title": "Tela 2",
+              "contents": [
+                {
+                  "id": "c189af33-c130-4872-8413-bcdcfcc35320",
+                  "type": "title2",
+                  "data": "Pimenta Rosa"
+                },
+                {
+                  "id": "972692b6-718e-461c-ac31-a53beda3eee6",
+                  "type": "description",
+                  "data": "Nota moderna muito popular em lançamentos contemporâneos, com um frescor picante que faz a ponte entre as notas de saída cítricas e o coração mais denso."
+                },
+                {
+                  "id": "94fb6f58-d2f2-4788-9d44-895cb1e4984b",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Pimenta Rosa transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "d8bf7542-186d-4c63-81d6-8a0cb6185a4d",
+              "title": "Tela 3",
+              "contents": [
+                {
+                  "id": "07ad4cbf-51b5-40f8-bdfe-e7c23ce26d41",
+                  "type": "title2",
+                  "data": "Cardamomo"
+                },
+                {
+                  "id": "0eace208-2124-41db-b268-674f6a6ae9c4",
+                  "type": "description",
+                  "data": "Especiaria quente e levemente cítrica ao mesmo tempo, muito usada em fragrâncias amadeiradas e orientais contemporâneas."
+                },
+                {
+                  "id": "a86cc4b9-9075-4063-84d8-dc7ca26bcb14",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Cardamomo transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "7de5d983-82a3-4e61-a793-a22006d88c90",
+              "title": "Tela 4",
+              "contents": [
+                {
+                  "id": "c9523bef-a214-45c7-81fe-15a732db027b",
+                  "type": "title2",
+                  "data": "Canela e Cravo"
+                },
+                {
+                  "id": "01713aac-b71f-4113-8924-0c6dc8e02503",
+                  "type": "description",
+                  "data": "Especiarias mais quentes e doces, comuns em composições orientais e gourmand, trazendo sensação de aconchego."
+                },
+                {
+                  "id": "ce35570f-f157-4fd9-98ca-4ebc6e48d595",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Canela e Cravo transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "fd0e8bed-f43d-4e80-83e6-02ab97f726c2",
+          "title": "Âmbar, Resinas e Notas Balsâmicas",
+          "subtitle": "O Acorde Âmbar, Olíbano (Incenso) e Resinas Orientais",
+          "screens": [
+            {
+              "id": "cb19295a-52d9-499b-a9b6-150c2185f05d",
+              "title": "Tela 1",
+              "contents": [
+                {
+                  "id": "283a1d34-b801-4bf1-913f-4909153bf7b9",
+                  "type": "title",
+                  "data": "Âmbar, Resinas e Notas Balsâmicas: O Acorde Âmbar, Olíbano (Incenso) e Resinas Orientais"
+                },
+                {
+                  "id": "042dc15b-7f3b-44bf-9413-9cca85b99835",
+                  "type": "title2",
+                  "data": "O calor e a densidade da base"
+                },
+                {
+                  "id": "d1f28f7d-8cf5-4087-93dc-48d95fb9d73b",
+                  "type": "image",
+                  "data": "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=800&auto=format&fit=crop"
+                },
+                {
+                  "id": "8546cf5d-8e86-49bc-9366-526a7147da5f",
+                  "type": "description",
+                  "data": "Essas notas formam a espinha dorsal de fragrâncias orientais e amadeiradas quentes, sendo responsáveis por grande parte da sensação de 'presença' de um perfume."
+                },
+                {
+                  "id": "d9552a3b-89d9-4f21-b31a-5175d590636b",
+                  "type": "highlighted_description",
+                  "data": "**A Fixação Real (2h - 12h+):** Moléculas densas de madeiras, âmbar, almíscar e resinas que ancoram a composição na sua pele pelo restante do dia."
+                }
+              ]
+            },
+            {
+              "id": "9694a3fe-afcb-4d53-9fe9-7a3fc7cab855",
+              "title": "Tela 2",
+              "contents": [
+                {
+                  "id": "87cb773b-41c8-47aa-b996-844d58c28ba7",
+                  "type": "title2",
+                  "data": "Âmbar"
+                },
+                {
+                  "id": "e4b399e3-e437-42cb-80d9-215a6b0b78be",
+                  "type": "description",
+                  "data": "Termo usado em perfumaria para um acorde (não uma matéria-prima única) que combina labdano, baunilha e resinas, criando uma sensação quente, doce e envolvente — não deve ser confundido com o âmbar mineral fóssil, que não tem cheiro utilizável."
+                },
+                {
+                  "id": "24dd093f-367b-4a8c-886a-0d72ed649bbf",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Âmbar transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "a55452dd-8c6f-47a4-b6d0-dd8333cb7af0",
+              "title": "Tela 3",
+              "contents": [
+                {
+                  "id": "fa13a0c5-e67c-4718-8349-fa1ff8a8f1b5",
+                  "type": "title2",
+                  "data": "Incenso (Olíbano)"
+                },
+                {
+                  "id": "b090435a-ab71-407c-ad00-c99726022b18",
+                  "type": "description",
+                  "data": "Resina extraída de árvores do gênero Boswellia, com cheiro esfumaçado, levemente cítrico e espiritual — associado historicamente a rituais religiosos e hoje muito presente em fragrâncias amadeiradas contemporâneas."
+                },
+                {
+                  "id": "b0f5dd6b-eb7d-41dc-903d-173f07c3a1f6",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Incenso (Olíbano) transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "cb7a42e6-5e91-4eef-81da-3c1904d8af5b",
+              "title": "Tela 4",
+              "contents": [
+                {
+                  "id": "efb45047-8c0a-4085-a935-62ab4f808304",
+                  "type": "title2",
+                  "data": "Benjoim e Labdano"
+                },
+                {
+                  "id": "4d013027-0b8f-4809-923e-7f1231be4b4d",
+                  "type": "description",
+                  "data": "Resinas balsâmicas e adocicadas, frequentemente combinadas para formar acordes de âmbar e adicionar riqueza e fixação à base de um perfume."
+                },
+                {
+                  "id": "4afe06ec-9b62-4fa4-8fc7-dadad3e3281e",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Benjoim e Labdano transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "9b16cad5-5e8f-4fad-918c-de04cf80abd4",
+          "title": "Almíscares e Notas Animálicas",
+          "subtitle": "Almíscar Branco (Pele Limpa), Ambroxan e Couro Seco",
+          "screens": [
+            {
+              "id": "8b489f5d-e45c-45f4-9283-d294beb346a5",
+              "title": "Tela 1",
+              "contents": [
+                {
+                  "id": "5d9978fc-0db2-4d00-92d6-b9ab5cc7f094",
+                  "type": "title",
+                  "data": "Almíscares e Notas Animálicas: Almíscar Branco (Pele Limpa), Ambroxan e Couro Seco"
+                },
+                {
+                  "id": "237edb52-a620-4395-b419-2da423c10761",
+                  "type": "title2",
+                  "data": "A sensualidade discreta da base"
+                },
+                {
+                  "id": "b4b6544a-7574-40b4-9ec9-2c025c17b37c",
+                  "type": "image",
+                  "data": "https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=800&auto=format&fit=crop"
+                },
+                {
+                  "id": "07bda37f-a879-4af0-9066-2bd1f296cc55",
+                  "type": "description",
+                  "data": "Historicamente extraídas de glândulas animais (almíscar do veado-almiscareiro, âmbar-cinzento de baleias), essas notas hoje são quase inteiramente substituídas por versões sintéticas, tanto por questões éticas quanto de disponibilidade."
+                },
+                {
+                  "id": "40bf8fe7-a6c4-4cc9-909f-421355a3aa04",
+                  "type": "highlighted_description",
+                  "data": "**A Fixação Real (2h - 12h+):** Moléculas densas de madeiras, âmbar, almíscar e resinas que ancoram a composição na sua pele pelo restante do dia."
+                }
+              ]
+            },
+            {
+              "id": "43a5d0d9-48cf-439c-87ae-b6b970a40a42",
+              "title": "Tela 2",
+              "contents": [
+                {
+                  "id": "d1238614-badd-4da6-b9f8-2723d7b9aa32",
+                  "type": "title2",
+                  "data": "Almíscar (Musk)"
+                },
+                {
+                  "id": "7ad0146a-cd91-426a-8628-d0d8c178a45f",
+                  "type": "description",
+                  "data": "Nota quente, sensual e levemente 'pele limpa' em sua versão sintética moderna (como os musks brancos) — usada para dar suavidade e um efeito de 'segunda pele' na base de praticamente qualquer categoria de perfume."
+                },
+                {
+                  "id": "74cb014f-86c9-4302-bd58-9c291028f138",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Almíscar (Musk) transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "4b875d88-5027-48c8-83b9-e3e109c4f24c",
+              "title": "Tela 3",
+              "contents": [
+                {
+                  "id": "1d621e5b-08a6-4b2e-871a-627d6b21c061",
+                  "type": "title2",
+                  "data": "Ambroxan"
+                },
+                {
+                  "id": "ed261017-952f-4c6d-8452-d04927976ac7",
+                  "type": "description",
+                  "data": "Molécula sintética derivada da ambreína, que substitui o âmbar-cinzento natural. Tem um cheiro amadeirado-almiscarado com excelente fixação, e é hoje uma das moléculas mais usadas na perfumaria masculina contemporânea de alta performance."
+                },
+                {
+                  "id": "5d52de00-8a0d-4bd3-92b1-2f9c6c244893",
+                  "type": "highlighted_description",
+                  "data": "**A Molécula Moderna:** Confere uma aura limpa, amadeirada-almiscarada magnética com altíssima difusão e excelente durabilidade na pele."
+                }
+              ]
+            },
+            {
+              "id": "fa0fc14e-3497-40a6-9bee-07264ef6d337",
+              "title": "Tela 4",
+              "contents": [
+                {
+                  "id": "e25f0279-184f-4567-a45c-c229501faa5f",
+                  "type": "title2",
+                  "data": "Couro (Leather)"
+                },
+                {
+                  "id": "9f0f2393-82d5-4e88-9ec4-ff7c00d3acb9",
+                  "type": "description",
+                  "data": "Nota que recria o cheiro de couro curtido, geralmente através de moléculas sintéticas (como certas quinolinas), trazendo um caráter másculino, seco e um pouco defumado."
+                },
+                {
+                  "id": "4071dbbd-5b8e-4126-8be9-b851b81e8264",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Couro (Leather) transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "df7dd513-9f21-42dc-98cd-80a6af833571",
+          "title": "Notas Gourmand",
+          "subtitle": "Baunilha Arredondada, Fava Tonka (Cumarina) e Cacau",
+          "screens": [
+            {
+              "id": "064327d0-667e-4cc3-9397-6894e9c141bb",
+              "title": "Tela 1",
+              "contents": [
+                {
+                  "id": "4a09eef3-5fa1-4b45-883f-bae6e1d880c1",
+                  "type": "title",
+                  "data": "Notas Gourmand: Baunilha Arredondada, Fava Tonka (Cumarina) e Cacau"
+                },
+                {
+                  "id": "23147e18-670f-428a-b426-4d5d5289fd79",
+                  "type": "title2",
+                  "data": "O universo da comida em forma de perfume"
+                },
+                {
+                  "id": "31d00053-e025-4a2a-a0ad-38b95ce8996a",
+                  "type": "image",
+                  "data": "https://images.unsplash.com/photo-1587017539504-67cfbddac569?q=80&w=800&auto=format&fit=crop"
+                },
+                {
+                  "id": "c08b6fc5-f0e5-459b-a9dc-a92fa01b4be6",
+                  "type": "description",
+                  "data": "Notas gourmand ativam associações com alimentos e conforto, e por isso costumam ser as mais imediatamente reconhecíveis e queridas por quem não estuda perfumaria formalmente."
+                },
+                {
+                  "id": "1b365e66-e875-4f60-a98f-a32bc31afa3a",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de O universo da comida em forma de perfume transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "2e96435d-bbb7-4556-9260-5c045c18ee21",
+              "title": "Tela 2",
+              "contents": [
+                {
+                  "id": "507c6132-537a-4427-b734-a4ff34d72cab",
+                  "type": "title2",
+                  "data": "Baunilha"
+                },
+                {
+                  "id": "c15176b3-0e66-4944-a87b-d1a77039335f",
+                  "type": "description",
+                  "data": "Uma das notas mais versáteis e amplamente usadas da perfumaria, presente tanto em orientais quentes quanto em gourmands doces — quase nunca aparece pura, servindo como um 'facilitador' que arredonda outras notas."
+                },
+                {
+                  "id": "14f690d7-63d6-469a-9659-2367d2336f9f",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Baunilha transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "8648bd21-b5d5-4f08-80c3-3c7a3a41f8bb",
+              "title": "Tela 3",
+              "contents": [
+                {
+                  "id": "b16e5721-8134-4059-82e7-a3ff20c912cb",
+                  "type": "title2",
+                  "data": "Fava Tonka"
+                },
+                {
+                  "id": "8e320749-cc9f-464b-b8f8-2aa54774c0ff",
+                  "type": "description",
+                  "data": "Contém cumarina naturalmente, com cheiro que lembra baunilha, amêndoa e feno seco ao mesmo tempo — peça central de muitos fougères e orientais amadeirados modernos."
+                },
+                {
+                  "id": "78bc2354-4ded-47b1-991a-a52bc3d81d71",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Fava Tonka transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "adf2dc21-08a1-412f-a8d1-5e8a52bdeb5a",
+              "title": "Tela 4",
+              "contents": [
+                {
+                  "id": "5aebc40c-c9b6-46ae-8d85-e4a795d0dfe9",
+                  "type": "title2",
+                  "data": "Cacau"
+                },
+                {
+                  "id": "da42eeee-70f5-4c71-a9f5-ed8485df8a8e",
+                  "type": "description",
+                  "data": "Nota mais rara e usada com moderação, geralmente combinada com especiarias e madeiras para evitar que o perfume fique enjoativo."
+                },
+                {
+                  "id": "4d1749b6-96d1-4e52-b390-c83802476d1a",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Cacau transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "78e8ec73-3a27-4dff-b0e4-f7efc89fc4c2",
+      "title": "Acordes e Composição",
+      "sessions": [
+        {
+          "id": "a3d23ba5-0931-40f6-b160-5c9f1772a420",
+          "title": "O Que É um Acorde",
+          "subtitle": "A Sinfonia Olfativa e os Acordes Principais no Fragrantica",
+          "screens": [
+            {
+              "id": "d01f35d8-bcd3-433e-b6f8-99c6a9250108",
+              "title": "Tela 1",
+              "contents": [
+                {
+                  "id": "96a11ff7-37e2-48cc-a9aa-b036c8e34ac5",
+                  "type": "title",
+                  "data": "O Que É um Acorde: A Sinfonia Olfativa e os Acordes Principais no Fragrantica"
+                },
+                {
+                  "id": "c883a9e6-4b16-4e97-8171-3c0ef9035a19",
+                  "type": "title2",
+                  "data": "A diferença entre nota e acorde"
+                },
+                {
+                  "id": "562ce4f3-8194-484e-86dd-712e699051b4",
+                  "type": "image",
+                  "data": "https://images.unsplash.com/photo-1523293182086-7651a899d37f?q=80&w=800&auto=format&fit=crop"
+                },
+                {
+                  "id": "418e4d5c-f297-41f9-bd34-644766fb1e08",
+                  "type": "description",
+                  "data": "Uma nota é um ingrediente isolado (bergamota, sândalo, jasmim); um acorde é a combinação deliberada de duas ou mais notas que, juntas, criam um efeito olfativo reconhecível e maior que a soma das partes — de forma parecida a um acorde musical formado por notas individuais."
+                },
+                {
+                  "id": "57456fa1-f828-4eaa-b61a-e3d1c571f7ab",
+                  "type": "highlighted_description",
+                  "data": "**Harmonia Molecular:** Assim como notas musicais formam uma sinfonia, notas olfativas combinadas criam acordes únicos como Âmbar e Fougère."
+                }
+              ]
+            },
+            {
+              "id": "2d55ab6e-2d05-40a6-9365-bc8a6b20df42",
+              "title": "Tela 2",
+              "contents": [
+                {
+                  "id": "28d91ccb-b36a-46ae-8414-f2f7048341b0",
+                  "type": "title2",
+                  "data": "Por que acordes são o verdadeiro 'alfabeto' da perfumaria"
+                },
+                {
+                  "id": "fc944a8f-f29c-4fc5-b0c1-dd3fb0f24071",
+                  "type": "description",
+                  "data": "Perfumistas raramente pensam em ingredientes isolados ao criar — eles pensam em blocos de acordes já testados (como o acorde de âmbar ou o acorde chipre) e os combinam e ajustam entre si, de forma parecida a um compositor musical trabalhando com progressões de acordes conhecidas.\n\nNo Fragrantica, isso fica visível na seção 'Acordes Principais' (barras coloridas de madeira, especiarias, cítricos) que resumem a alma de um perfume antes de dissecar notas individuais."
+                },
+                {
+                  "id": "e43a0e2d-b103-4990-bed0-9b9427f4d757",
+                  "type": "highlighted_description",
+                  "data": "**Harmonia Molecular:** Assim como notas musicais formam uma sinfonia, notas olfativas combinadas criam acordes únicos como Âmbar e Fougère."
+                }
+              ]
+            },
+            {
+              "id": "b7dffa90-1091-470b-90f0-11ab4874dcb4",
+              "title": "Tela 3",
+              "contents": [
+                {
+                  "id": "cef9f880-5a87-495a-a1c4-74c747b0cf49",
+                  "type": "title2",
+                  "data": "Como isso ajuda na prática"
+                },
+                {
+                  "id": "b0443eb5-aa8b-4992-a859-c6d704111fd0",
+                  "type": "highlighted_description",
+                  "data": "**Dica Prática:** Ao reconhecer que 'âmbar' é um acorde e não uma matéria-prima única, fica mais fácil entender por que perfumes de marcas totalmente diferentes podem ter uma base parecida — eles estão usando variações do mesmo acorde estrutural."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "d8fcc3f2-2884-434f-9f32-a338dd09dbea",
+          "title": "Acordes Clássicos da Perfumaria",
+          "subtitle": "Fougère, Chypre, Âmbar e o Acorde Aquático",
+          "screens": [
+            {
+              "id": "8b6d58c0-1fa0-4136-9622-8056618dfd64",
+              "title": "Tela 1",
+              "contents": [
+                {
+                  "id": "00596b40-6f2d-4958-9109-4fcb88ab5e26",
+                  "type": "title",
+                  "data": "Acordes Clássicos da Perfumaria: Fougère, Chypre, Âmbar e o Acorde Aquático"
+                },
+                {
+                  "id": "c77d1296-81ed-46e3-8ffc-dd8d04a38383",
+                  "type": "title2",
+                  "data": "Estruturas que atravessaram décadas"
+                },
+                {
+                  "id": "72775f36-76e4-4219-8b0b-5a24906e1834",
+                  "type": "image",
+                  "data": "https://images.unsplash.com/photo-1615397349754-cfa2066a298e?q=80&w=800&auto=format&fit=crop"
+                },
+                {
+                  "id": "96199d13-a46b-4aa8-b655-09a29fd5c008",
+                  "type": "description",
+                  "data": "Alguns acordes se tornaram tão influentes que deram nome a famílias olfativas inteiras — dominar esses acordes é entender boa parte da história da perfumaria moderna."
+                },
+                {
+                  "id": "f4e83ac5-4812-4b12-8835-ce3652bad6f8",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Estruturas que atravessaram décadas transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "0df47c32-da5d-45f3-97ae-6bfacdd41e2e",
+              "title": "Tela 2",
+              "contents": [
+                {
+                  "id": "8c8eb605-b4c4-4c72-9554-9297230eb3c2",
+                  "type": "title2",
+                  "data": "Acorde Fougère"
+                },
+                {
+                  "id": "56efa30b-178f-4f49-b2fb-714b4300ae16",
+                  "type": "description",
+                  "data": "Lavanda + cumarina + musgo de carvalho. A base de praticamente toda a perfumaria masculina clássica desde o final do século XIX."
+                },
+                {
+                  "id": "f68a1042-9133-4432-abc6-a030d43b3055",
+                  "type": "highlighted_description",
+                  "data": "**O Padrão Clássico:** A combinação atemporal de lavanda, fava tonka e musgo. É o aroma definitivo do homem maduro, confiante e asseado."
+                }
+              ]
+            },
+            {
+              "id": "b5527782-f42b-4a44-94f0-92fb177d553f",
+              "title": "Tela 3",
+              "contents": [
+                {
+                  "id": "7ccdce57-491c-41f6-bc94-feeb3f605284",
+                  "type": "title2",
+                  "data": "Acorde Chypre"
+                },
+                {
+                  "id": "1bdbc2c8-0072-4b5e-8881-b901665fb931",
+                  "type": "description",
+                  "data": "Bergamota + labdano + musgo de carvalho + patchouli. Estrutura sofisticada, com contraste entre o frescor cítrico do topo e a densidade terrosa da base."
+                },
+                {
+                  "id": "704ff30b-15f2-473a-bdf4-bb8b63927a27",
+                  "type": "highlighted_description",
+                  "data": "**Harmonia Molecular:** Assim como notas musicais formam uma sinfonia, notas olfativas combinadas criam acordes únicos como Âmbar e Fougère."
+                }
+              ]
+            },
+            {
+              "id": "c2981751-7d0b-4a47-9639-dc4ca3b7f641",
+              "title": "Tela 4",
+              "contents": [
+                {
+                  "id": "be332e7d-298e-4fb8-bf65-bb34d0ca9e38",
+                  "type": "title2",
+                  "data": "Acorde de Âmbar"
+                },
+                {
+                  "id": "430233f3-830a-45b9-8119-311a509b4d1a",
+                  "type": "description",
+                  "data": "Labdano + baunilha + resinas diversas. Cria a sensação quente e envolvente associada a perfumes orientais."
+                },
+                {
+                  "id": "e7af0ef5-e1eb-41da-a27e-fd76ec7411d1",
+                  "type": "highlighted_description",
+                  "data": "**Harmonia Molecular:** Assim como notas musicais formam uma sinfonia, notas olfativas combinadas criam acordes únicos como Âmbar e Fougère."
+                }
+              ]
+            },
+            {
+              "id": "7e280306-3629-401b-bde5-f30aa6bb2f72",
+              "title": "Tela 5",
+              "contents": [
+                {
+                  "id": "0c31b2a3-847f-4b05-a74c-b4b5526da789",
+                  "type": "title2",
+                  "data": "Acorde Aquático/Ozônico"
+                },
+                {
+                  "id": "d49ca597-e9af-4ecc-af3b-699a5c57d226",
+                  "type": "description",
+                  "data": "Construído quase inteiramente com moléculas sintéticas (como a calone), criando a sensação abstrata de 'brisa do mar' sem correspondência com nenhum ingrediente natural real."
+                },
+                {
+                  "id": "38f55143-a656-4559-a1ad-6479b6713921",
+                  "type": "highlighted_description",
+                  "data": "**Harmonia Molecular:** Assim como notas musicais formam uma sinfonia, notas olfativas combinadas criam acordes únicos como Âmbar e Fougère."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "5e837e4e-416a-4bcf-a63e-f0cff82d9b23",
+          "title": "Como um Perfumista Constrói uma Fragrância",
+          "subtitle": "A Arte do Perfumista e o Papel dos Fixadores Químicos",
+          "screens": [
+            {
+              "id": "d6f7d51c-0f70-419b-b568-28f43948d3d4",
+              "title": "Tela 1",
+              "contents": [
+                {
+                  "id": "15858239-c762-44d1-a336-f941d2ef2275",
+                  "type": "title",
+                  "data": "Como um Perfumista Constrói uma Fragrância: A Arte do Perfumista e o Papel dos Fixadores Químicos"
+                },
+                {
+                  "id": "e064c519-3c17-4ca3-aa00-4e319971e1ce",
+                  "type": "title2",
+                  "data": "Uma arquitetura em camadas, não uma mistura aleatória"
+                },
+                {
+                  "id": "da8f1ede-166e-4b0f-a66a-892361a0ecab",
+                  "type": "image",
+                  "data": "https://images.unsplash.com/photo-1616949755610-8c9bbc08f138?q=80&w=800&auto=format&fit=crop"
+                },
+                {
+                  "id": "8d14bd50-7e1f-4573-ab52-dc982399566f",
+                  "type": "description",
+                  "data": "O processo criativo começa geralmente pela ideia ou conceito (um lugar, uma memória, um público-alvo), que se traduz em uma estrutura de topo-coração-fundo, testada e ajustada por meses ou anos até o equilíbrio final."
+                },
+                {
+                  "id": "afd06998-ed84-42b8-bdd4-64d22cead94e",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Uma arquitetura em camadas, não uma mistura aleatória transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "0f568877-b688-491c-824f-79cc092890eb",
+              "title": "Tela 2",
+              "contents": [
+                {
+                  "id": "fc8dc84e-a32c-46f5-b0a3-2342f5910354",
+                  "type": "title2",
+                  "data": "O papel do 'fixador'"
+                },
+                {
+                  "id": "d295d59e-4bf0-43a2-a350-d25d968dea4f",
+                  "type": "description",
+                  "data": "Notas de fundo (madeiras, âmbar, almíscar) não servem apenas para o cheiro em si — elas também retardam a evaporação das notas mais voláteis do topo e do coração, fazendo o perfume durar mais na pele. Essa é a função técnica de 'fixação'."
+                },
+                {
+                  "id": "68a05ade-02fe-4193-b104-1f17b3ec0e78",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de O papel do 'fixador' transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "47feeb07-747b-4978-975d-65e79c7bfe9e",
+              "title": "Tela 3",
+              "contents": [
+                {
+                  "id": "6218da41-7b32-4da3-a354-b2d558115ee7",
+                  "type": "title2",
+                  "data": "O que isso significa para quem compra"
+                },
+                {
+                  "id": "4837a5bd-1c32-4dad-952b-95f7810a49fa",
+                  "type": "highlighted_description",
+                  "data": "**Dica Prática:** Um perfume com poucas notas de fundo densas tende a ter menor longevidade, independentemente de quão bonita seja a composição — é um trade-off técnico, não um defeito de fabricação."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "067a3c26-320b-4f18-8980-9070073262e1",
+      "title": "Concentrações e Tipos de Formulação",
+      "sessions": [
+        {
+          "id": "91ad2592-d677-4c03-b5e9-98ff55cf94d8",
+          "title": "A Escala de Concentração de Óleo Perfumado",
+          "subtitle": "Splash, EDC, EDT, EDP e Extrait de Parfum",
+          "screens": [
+            {
+              "id": "1588bfc0-65f6-4215-927e-f1e05757bd73",
+              "title": "Tela 1",
+              "contents": [
+                {
+                  "id": "55bbecab-d426-4773-a997-cb9d04d155ec",
+                  "type": "title",
+                  "data": "A Escala de Concentração de Óleo Perfumado: Splash, EDC, EDT, EDP e Extrait de Parfum"
+                },
+                {
+                  "id": "b3b89d57-51ca-4344-8bda-8979112721b6",
+                  "type": "title2",
+                  "data": "Concentração não é sinônimo de qualidade"
+                },
+                {
+                  "id": "4c019539-8b48-4a86-b393-9f1694d3d956",
+                  "type": "image",
+                  "data": "https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=800&auto=format&fit=crop"
+                },
+                {
+                  "id": "9cd4ec6e-afdd-434a-a015-0c2ae212ea12",
+                  "type": "description",
+                  "data": "As siglas no rótulo de um perfume indicam a proporção de óleo concentrado (a 'essência') dissolvida em álcool — quanto maior a concentração, geralmente maior a longevidade e a intensidade, mas isso não significa automaticamente uma fragrância 'melhor'."
+                },
+                {
+                  "id": "0d8cb655-2474-45f1-b86e-c502fc7a41fa",
+                  "type": "highlighted_description",
+                  "data": "**Diferença Prática:** EDTs projetam mais de início mas evaporam mais cedo; EDPs e Parfums fixam por muitas horas com uma bolha aromática mais próxima e refinada."
+                }
+              ]
+            },
+            {
+              "id": "4515fdfc-fdd0-40f4-b689-aab47ee10130",
+              "title": "Tela 2",
+              "contents": [
+                {
+                  "id": "1a33917d-a2b7-4e5d-b6aa-3a8311ed20fc",
+                  "type": "title2",
+                  "data": "Parfum / Extrait de Parfum"
+                },
+                {
+                  "id": "98eba74e-3758-489f-9e86-929b72f210f7",
+                  "type": "description",
+                  "data": "A concentração mais alta, geralmente entre 20% e 40% de óleo perfumado. Maior longevidade e projeção mais próxima ao corpo (sillage discreta, mas persistente). Também a opção mais cara por usar mais matéria-prima concentrada."
+                },
+                {
+                  "id": "c3c5dfc5-4bac-4131-afe7-51d3003b9a70",
+                  "type": "highlighted_description",
+                  "data": "**Diferença Prática:** EDTs projetam mais de início mas evaporam mais cedo; EDPs e Parfums fixam por muitas horas com uma bolha aromática mais próxima e refinada."
+                }
+              ]
+            },
+            {
+              "id": "914b87e2-fba6-4c0a-90ca-fe00ca2a2659",
+              "title": "Tela 3",
+              "contents": [
+                {
+                  "id": "0959fe20-56c0-410b-8d7e-ac4317cab4bf",
+                  "type": "title2",
+                  "data": "Eau de Parfum (EDP)"
+                },
+                {
+                  "id": "b3243804-ba63-471f-ad69-e6ed2127af88",
+                  "type": "description",
+                  "data": "Entre 15% e 20% de concentração na maioria das formulações modernas. É hoje o padrão mais popular no mercado, equilibrando boa longevidade com um custo mais acessível que o Parfum."
+                },
+                {
+                  "id": "8e549e73-49bb-4c98-9ea0-6ad0f301fbb4",
+                  "type": "highlighted_description",
+                  "data": "**Diferença Prática:** EDTs projetam mais de início mas evaporam mais cedo; EDPs e Parfums fixam por muitas horas com uma bolha aromática mais próxima e refinada."
+                }
+              ]
+            },
+            {
+              "id": "bb516d45-680c-4e58-8ed0-e6b6e021300c",
+              "title": "Tela 4",
+              "contents": [
+                {
+                  "id": "9912d1f8-e118-457a-bdc1-a0b9f758ae81",
+                  "type": "title2",
+                  "data": "Eau de Toilette (EDT)"
+                },
+                {
+                  "id": "62e10230-7c7c-474f-ba5c-e9bcfea53834",
+                  "type": "description",
+                  "data": "Entre 5% e 15% de concentração. Mais leve e com menor longevidade que o EDP, tradicionalmente mais indicado para uso diurno e climas quentes."
+                },
+                {
+                  "id": "3d01f83a-87de-4757-a078-97bb1fe201f4",
+                  "type": "highlighted_description",
+                  "data": "**Diferença Prática:** EDTs projetam mais de início mas evaporam mais cedo; EDPs e Parfums fixam por muitas horas com uma bolha aromática mais próxima e refinada."
+                }
+              ]
+            },
+            {
+              "id": "a2d9e148-be13-4ae1-be2b-e9cb92729ead",
+              "title": "Tela 5",
+              "contents": [
+                {
+                  "id": "9ef0919d-8171-4b29-881e-472d88266667",
+                  "type": "title2",
+                  "data": "Eau de Cologne (EDC)"
+                },
+                {
+                  "id": "bc946160-61b6-4ab8-8ea4-898facd45e46",
+                  "type": "description",
+                  "data": "Entre 2% e 5% de concentração, historicamente associada às colônias cítricas clássicas — leve, refrescante e de baixíssima longevidade, pensada para reaplicação ao longo do dia."
+                },
+                {
+                  "id": "7a297f1c-b7f3-496c-8abe-5203eb90b424",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Eau de Cologne (EDC) transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "a1a36332-caac-4fc8-9f4a-749c61ae9eba",
+              "title": "Tela 6",
+              "contents": [
+                {
+                  "id": "6dfd10d7-c8ab-4d54-be18-cfa3dcd0e546",
+                  "type": "title2",
+                  "data": "Um detalhe pouco conhecido"
+                },
+                {
+                  "id": "a32b0335-2421-4ba5-b184-84ca3e9960a0",
+                  "type": "highlighted_description",
+                  "data": "**Dica Prática:** A mesma 'fragrância' vendida em EDT e EDP muitas vezes não é apenas a mesma fórmula em diferentes diluições — muitos fabricantes ajustam a proporção de notas entre as versões, o que explica por que o EDT de um perfume às vezes cheira perceptivelmente diferente do EDP, não apenas 'mais fraco'."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d962f766-de76-4c3d-9b49-8c04f53e3eb2",
+      "title": "Como o Perfume Interage com a Pele",
+      "sessions": [
+        {
+          "id": "99248328-fff3-4371-9cd8-1c308bd7e6e3",
+          "title": "Fatores Biológicos que Alteram o Cheiro",
+          "subtitle": "pH Cutâneo, Nível Lipídico e Temperatura Corporal",
+          "screens": [
+            {
+              "id": "0c1b7aa7-c5f0-4b33-a93e-b7887fe7e2dd",
+              "title": "Tela 1",
+              "contents": [
+                {
+                  "id": "97f12296-b476-470e-9467-148ce08cdbe1",
+                  "type": "title",
+                  "data": "Fatores Biológicos que Alteram o Cheiro: pH Cutâneo, Nível Lipídico e Temperatura Corporal"
+                },
+                {
+                  "id": "61a2f0b1-0ae2-425e-9380-e1d5a59cdc47",
+                  "type": "title2",
+                  "data": "O perfume nunca é percebido isoladamente"
+                },
+                {
+                  "id": "ecdb76ba-6346-4b4c-9c65-c6617743add6",
+                  "type": "image",
+                  "data": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=800&auto=format&fit=crop"
+                },
+                {
+                  "id": "0ac1952d-10fa-4a99-918c-0f28b6c13096",
+                  "type": "description",
+                  "data": "A composição química natural da pele de cada pessoa interage com as moléculas do perfume, o que explica por que a mesma fragrância pode cheirar de forma perceptivelmente diferente em duas pessoas distintas."
+                },
+                {
+                  "id": "be21551e-8616-49d1-b652-a79d1ad78588",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de O perfume nunca é percebido isoladamente transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "139d3a20-f227-4ce8-826f-0c6e865627eb",
+              "title": "Tela 2",
+              "contents": [
+                {
+                  "id": "099fa346-d5fa-4c18-b305-1d3463c0a3fc",
+                  "type": "title2",
+                  "data": "pH da pele"
+                },
+                {
+                  "id": "87816dec-5b68-4cd8-bca6-e57886f51d95",
+                  "type": "description",
+                  "data": "Peles com pH mais ácido tendem a metabolizar certas moléculas mais rápido, alterando a velocidade de evolução das notas ao longo do dia."
+                },
+                {
+                  "id": "7d64129d-a3dc-435b-a0df-ee09793eeb3b",
+                  "type": "highlighted_description",
+                  "data": "**O Segredo da Fixação:** Perfume evapora em minutos sobre pele seca. Passe hidratante neutro antes da fragrância para dobrar o tempo de duração."
+                }
+              ]
+            },
+            {
+              "id": "6860ac67-cf8a-487f-b5f5-33f56e5c28c9",
+              "title": "Tela 3",
+              "contents": [
+                {
+                  "id": "8c52871f-f9e0-43cb-9d44-efc4b3f9ad2f",
+                  "type": "title2",
+                  "data": "Oleosidade da pele"
+                },
+                {
+                  "id": "8c742b24-d786-47d6-bf93-3b48a11136f7",
+                  "type": "description",
+                  "data": "Peles mais oleosas retêm moléculas de perfume por mais tempo (a oleosidade funciona como um fixador natural), geralmente resultando em maior longevidade do que em peles muito secas."
+                },
+                {
+                  "id": "4b330c22-859e-41f2-830b-aba6200c6c21",
+                  "type": "highlighted_description",
+                  "data": "**O Segredo da Fixação:** Perfume evapora em minutos sobre pele seca. Passe hidratante neutro antes da fragrância para dobrar o tempo de duração."
+                }
+              ]
+            },
+            {
+              "id": "ca8033f2-4c75-441a-9cff-eb22356c455a",
+              "title": "Tela 4",
+              "contents": [
+                {
+                  "id": "f9b723ad-9580-4ade-84d6-484ffa68e863",
+                  "type": "title2",
+                  "data": "Temperatura corporal"
+                },
+                {
+                  "id": "a711622d-c861-4534-8858-7c68c6ae0241",
+                  "type": "description",
+                  "data": "Temperaturas mais altas (dia quente, exercício, febre) aceleram a evaporação das moléculas e intensificam a percepção do perfume — por isso a mesma fragrância parece mais forte no verão do que no inverno."
+                },
+                {
+                  "id": "f458cc1d-0df7-49da-b38f-61fe524283aa",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Temperatura corporal transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "5b3b0cfb-77a7-4a49-b93e-db23fc3513c8",
+              "title": "Tela 5",
+              "contents": [
+                {
+                  "id": "0ed80d2a-de3f-45c3-8750-598de348f453",
+                  "type": "title2",
+                  "data": "Implicação prática"
+                },
+                {
+                  "id": "dda8c362-9006-4400-9097-2c18b84cf416",
+                  "type": "highlighted_description",
+                  "data": "**Dica Prática:** Sempre teste um perfume na própria pele antes de decidir comprar — o teste no papel (blotter) é útil para uma primeira triagem rápida, mas não reflete como a fragrância vai realmente se comportar no seu corpo."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "826c7ae2-5eb8-4b98-b94b-149e4debf766",
+      "title": "Aplicação Correta do Perfume",
+      "sessions": [
+        {
+          "id": "c1768420-6412-49c4-ac99-941432393106",
+          "title": "Pontos de Pulso e Quantidade Ideal",
+          "subtitle": "Calor Vascular, Borrifadas Estratégicas e a Regra do Atrito",
+          "screens": [
+            {
+              "id": "3cf716bb-2e1c-4cdf-aa1d-1499aceecd5d",
+              "title": "Tela 1",
+              "contents": [
+                {
+                  "id": "18b9ac18-0195-4932-b88b-8e13ee34f604",
+                  "type": "title",
+                  "data": "Pontos de Pulso e Quantidade Ideal: Calor Vascular, Borrifadas Estratégicas e a Regra do Atrito"
+                },
+                {
+                  "id": "35b2dbac-0713-4b54-baf0-ac0be64c8e20",
+                  "type": "title2",
+                  "data": "Por que os 'pontos de pulso' funcionam melhor"
+                },
+                {
+                  "id": "75cdd63c-57c0-4c83-8a38-9c6c8f137bd5",
+                  "type": "image",
+                  "data": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=800&auto=format&fit=crop"
+                },
+                {
+                  "id": "7450953a-b79f-449c-838f-9ed3c3c15ea8",
+                  "type": "description",
+                  "data": "São regiões do corpo com maior fluxo sanguíneo superficial e, portanto, maior temperatura — o calor ajuda a volatilizar as moléculas do perfume ao longo do dia de forma mais consistente."
+                },
+                {
+                  "id": "a4b4f77c-2d1a-45e8-be6b-76d258a507b7",
+                  "type": "highlighted_description",
+                  "data": "**Pontos Térmicos Estratégicos:** Aplique nas laterais do pescoço e pulsos. JAMAIS esfregue os pulsos — o atrito aquece e destrói as notas de saída delicadas."
+                }
+              ]
+            },
+            {
+              "id": "1407e98c-044e-4fa1-be89-89624700f080",
+              "title": "Tela 2",
+              "contents": [
+                {
+                  "id": "2b4a09a0-3394-4260-a3fa-bc415c4ac644",
+                  "type": "title2",
+                  "data": "Principais pontos de aplicação"
+                },
+                {
+                  "id": "a3375e49-36e3-4b05-873d-0ac1b1e93582",
+                  "type": "description",
+                  "data": "Pulsos, lateral do pescoço, atrás das orelhas e a dobra interna do cotovelo são os pontos mais eficazes, por combinarem calor corporal e proximidade com áreas que se movimentam (ajudando a liberar o aroma ao longo do dia)."
+                },
+                {
+                  "id": "5d63b8c1-b4f2-46da-8661-eb5fcc115f04",
+                  "type": "highlighted_description",
+                  "data": "**Pontos Térmicos Estratégicos:** Aplique nas laterais do pescoço e pulsos. JAMAIS esfregue os pulsos — o atrito aquece e destrói as notas de saída delicadas."
+                }
+              ]
+            },
+            {
+              "id": "c0e3a3e4-54cd-4b36-b81e-674fca172e68",
+              "title": "Tela 3",
+              "contents": [
+                {
+                  "id": "e24a9010-426e-4d89-bea9-b73a502592fe",
+                  "type": "title2",
+                  "data": "Quantidade recomendada"
+                },
+                {
+                  "id": "9b192edc-5a27-4232-96de-bd8b9df761ce",
+                  "type": "description",
+                  "data": "De 2 a 4 borrifadas para um EDP costuma ser suficiente — o objetivo é uma presença perceptível de perto, não um rastro que preencha o ambiente inteiro, especialmente em contextos profissionais."
+                },
+                {
+                  "id": "43fed055-944c-4a47-8840-ddd01850df60",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Quantidade recomendada transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "460734a8-6d1b-4c7d-8152-474fe9f54c81",
+              "title": "Tela 4",
+              "contents": [
+                {
+                  "id": "b44b77ad-cedf-4b5d-bc5f-beebccf9bc7c",
+                  "type": "title2",
+                  "data": "O erro mais comum: esfregar os pulsos"
+                },
+                {
+                  "id": "c00293f9-3e6c-49b4-b01c-a7518ede430b",
+                  "type": "highlighted_description",
+                  "data": "**Dica Prática:** Esfregar os pulsos um no outro após aplicar gera atrito e calor que quebram as moléculas mais delicadas das notas de saída, alterando (e geralmente empobrecendo) a forma como o perfume evolui nos primeiros minutos."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "99ce32a1-c46f-4169-a2a2-3cbbc242d883",
+          "title": "Hidratação da Pele e Prolongamento da Fragrância",
+          "subtitle": "Hidratante Sem Fragrância e Fixação Prolongada",
+          "screens": [
+            {
+              "id": "2bf9e1c8-2341-4718-a6cf-e7735db5c7cf",
+              "title": "Tela 1",
+              "contents": [
+                {
+                  "id": "40c3cb06-228e-4ac0-baed-dd718c9dccf4",
+                  "type": "title",
+                  "data": "Hidratação da Pele e Prolongamento da Fragrância: Hidratante Sem Fragrância e Fixação Prolongada"
+                },
+                {
+                  "id": "9d46ba17-a434-49e1-81f8-d6f9fe523e96",
+                  "type": "title2",
+                  "data": "Pele hidratada retém perfume por mais tempo"
+                },
+                {
+                  "id": "147493dc-0531-4658-9f4e-4bdbc8f24921",
+                  "type": "image",
+                  "data": "https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?q=80&w=800&auto=format&fit=crop"
+                },
+                {
+                  "id": "423027ba-5141-48a3-9b13-b43f57de28b5",
+                  "type": "description",
+                  "data": "Pele seca tem uma superfície mais porosa e irregular, o que faz as moléculas de perfume evaporarem mais rápido; pele bem hidratada retém a fragrância de forma mais uniforme e por mais tempo."
+                },
+                {
+                  "id": "85a518a2-9b75-4b37-aa43-d2fbb40031f5",
+                  "type": "highlighted_description",
+                  "data": "**O Segredo da Fixação:** Perfume evapora em minutos sobre pele seca. Passe hidratante neutro antes da fragrância para dobrar o tempo de duração."
+                }
+              ]
+            },
+            {
+              "id": "c9595ad9-e21a-48f2-9c74-dc0735702f55",
+              "title": "Tela 2",
+              "contents": [
+                {
+                  "id": "d391fb74-5120-4249-a18d-694bc38f9408",
+                  "type": "title2",
+                  "data": "Técnica de camadas (Layering)"
+                },
+                {
+                  "id": "17014ae1-6f02-4758-9b6a-0221623a722c",
+                  "type": "description",
+                  "data": "Aplicar um hidratante corporal sem perfume (unscented) pouco antes do perfume cria uma base que retém melhor a fragrância — e, quando disponível, usar um produto perfumado da mesma linha (sabonete, hidratante) do próprio perfume reforça e prolonga a performance sem alterar o cheiro original."
+                },
+                {
+                  "id": "157cf191-f9ac-46d8-8bc3-d756bdc5243f",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Técnica de camadas (Layering) transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "bd048715-c5c6-4b58-87c1-43483d725148",
+              "title": "Tela 3",
+              "contents": [
+                {
+                  "id": "9a234a50-d610-4090-845d-0bc0db25902d",
+                  "type": "title2",
+                  "data": "Momento ideal de aplicação"
+                },
+                {
+                  "id": "d53a133e-9b28-42e8-b920-dd6101530c6d",
+                  "type": "highlighted_description",
+                  "data": "**Dica Prática:** Aplicar o perfume logo após o banho, com a pele ainda ligeiramente úmida e os poros abertos pelo calor da água, é o momento em que a fragrância costuma se fixar melhor e durar mais."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "06e273fd-0ffc-4d0e-b13a-f752cee56072",
+      "title": "Perfumes por Ocasião e Estação",
+      "sessions": [
+        {
+          "id": "5a0685dc-d02a-47a9-9fd1-4d6b716d4b3c",
+          "title": "Verão vs. Inverno",
+          "subtitle": "Densidade Molecular sob Altas e Baixas Temperaturas",
+          "screens": [
+            {
+              "id": "f3f6788b-e0c8-40ee-95d2-72cfb8698921",
+              "title": "Tela 1",
+              "contents": [
+                {
+                  "id": "b7954e00-6e47-4783-9689-4ef5b8d32445",
+                  "type": "title",
+                  "data": "Verão vs. Inverno: Densidade Molecular sob Altas e Baixas Temperaturas"
+                },
+                {
+                  "id": "8e0c3703-ad67-427e-8dc8-0065042c9303",
+                  "type": "title2",
+                  "data": "Temperatura e densidade da fragrância"
+                },
+                {
+                  "id": "74ca3777-63a8-4f31-b9ba-02cd0a9d39ce",
+                  "type": "image",
+                  "data": "https://images.unsplash.com/photo-1547887537-6158d64c35b3?q=80&w=800&auto=format&fit=crop"
+                },
+                {
+                  "id": "d708eae6-b07e-4dfb-9eb6-ca0f7621c189",
+                  "type": "description",
+                  "data": "Em climas quentes, o calor intensifica a projeção de qualquer perfume, o que favorece fragrâncias mais leves; em climas frios, o ar mais seco 'segura' menos as moléculas voláteis, favorecendo composições mais densas para serem percebidas."
+                },
+                {
+                  "id": "5637c5f2-4df5-4e6a-914a-97696b29a194",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Temperatura e densidade da fragrância transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "1a2a09c1-31b9-489e-8bd4-e620647ff95c",
+              "title": "Tela 2",
+              "contents": [
+                {
+                  "id": "24e2a25d-0eaf-4227-a80d-f3dda6fa7f8f",
+                  "type": "title2",
+                  "data": "Perfumes de verão"
+                },
+                {
+                  "id": "7ec6ab0a-1947-4b80-9235-3fa75b1638a8",
+                  "type": "description",
+                  "data": "Famílias cítricas, aromáticas e aquáticas em concentrações EDT ou EDC tendem a funcionar melhor — leves o suficiente para não saturar em ambientes quentes e fechados."
+                },
+                {
+                  "id": "983a67f3-07ee-460b-b11b-1ec327ff9f54",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Perfumes de verão transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "8c5aac9e-3f16-43c4-b1f2-ebe21b5c9f8e",
+              "title": "Tela 3",
+              "contents": [
+                {
+                  "id": "f73f3c19-f02c-4496-9ff6-ce9d0d0968ae",
+                  "type": "title2",
+                  "data": "Perfumes de inverno"
+                },
+                {
+                  "id": "bd51fd6b-55d7-4290-a33a-4ee1068a872a",
+                  "type": "description",
+                  "data": "Famílias amadeiradas, orientais e gourmand em concentração EDP ou Parfum se sustentam melhor no frio, onde a densidade da fragrância é bem-vinda e raramente incomoda."
+                },
+                {
+                  "id": "9cc9e277-e14c-4152-ab29-cc988f01c8a8",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Perfumes de inverno transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "4617711d-96f7-4657-a498-1a289ae5329d",
+          "title": "Dia vs. Noite, Escritório vs. Eventos",
+          "subtitle": "Discrição no Ambiente Corporativo vs. Potência Noturna",
+          "screens": [
+            {
+              "id": "f6e589e9-d4b8-4491-bd77-3ede2b73cc90",
+              "title": "Tela 1",
+              "contents": [
+                {
+                  "id": "9f0e5918-36b2-40d4-9e6f-7a1250678378",
+                  "type": "title",
+                  "data": "Dia vs. Noite, Escritório vs. Eventos: Discrição no Ambiente Corporativo vs. Potência Noturna"
+                },
+                {
+                  "id": "af60a8e0-1248-4993-a0b4-e7e3c6ed2b58",
+                  "type": "title2",
+                  "data": "A etiqueta olfativa em ambientes fechados"
+                },
+                {
+                  "id": "0949f9fe-b1ab-40ce-a5c9-c4545b1d46fb",
+                  "type": "image",
+                  "data": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=800&auto=format&fit=crop"
+                },
+                {
+                  "id": "ec5b714e-2165-4818-8f5b-d5be9a9f6c9d",
+                  "type": "description",
+                  "data": "Em espaços compartilhados e pouco ventilados (escritórios, elevadores, reuniões), uma sillage forte pode ser percebida como invasiva mesmo que a fragrância em si seja agradável — o contexto do ambiente pesa tanto quanto a composição do perfume."
+                },
+                {
+                  "id": "e744c6b8-6d91-4e7a-942f-a7e8463f2053",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de A etiqueta olfativa em ambientes fechados transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "38eddf85-6829-4e9c-8d3e-a750dea2e8fc",
+              "title": "Tela 2",
+              "contents": [
+                {
+                  "id": "fc133fb9-b161-49c5-97bd-d448deaa04f3",
+                  "type": "title2",
+                  "data": "Perfumes de dia/escritório"
+                },
+                {
+                  "id": "bedf0d18-5a86-4655-946c-e07f00270a4c",
+                  "type": "description",
+                  "data": "Priorizar concentrações mais leves (EDT), famílias cítricas e aromáticas, e quantidade reduzida de borrifadas — o objetivo é ser perceptível apenas a curta distância."
+                },
+                {
+                  "id": "ea35fb60-198f-4025-9d5d-a6a0cff2d1ab",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Perfumes de dia/escritório transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "ee9b5e91-cbfe-42b5-966e-137d9d39a8fb",
+              "title": "Tela 3",
+              "contents": [
+                {
+                  "id": "ae6b9d77-4687-44ad-8f00-01ebb8a5b2c6",
+                  "type": "title2",
+                  "data": "Perfumes de noite/eventos"
+                },
+                {
+                  "id": "cbc0bb3b-1bf0-4102-9a83-f2a6ed066076",
+                  "type": "description",
+                  "data": "Espaço maior para famílias orientais, amadeiradas densas e chypre em concentração EDP ou Parfum, já que ambientes abertos, com mais pessoas e menos tempo de convívio próximo toleram melhor uma sillage mais expressiva."
+                },
+                {
+                  "id": "9a710553-9885-4d1a-b0bc-7f904c01d7f4",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Perfumes de noite/eventos transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "8f4d0858-bb98-4e64-9da1-b918e8dad59f",
+      "title": "Construindo um Guarda-Perfumes (Wardrobe Olfativo)",
+      "sessions": [
+        {
+          "id": "40ca0df8-e03e-4858-804d-edd3118d303a",
+          "title": "O Princípio do Guarda-Perfumes",
+          "subtitle": "A Estratégia dos 3 a 5 Frascos para Todas as Ocasiões",
+          "screens": [
+            {
+              "id": "ca6c47ce-534c-411e-9f75-58132a3dc859",
+              "title": "Tela 1",
+              "contents": [
+                {
+                  "id": "b51aa755-a51d-4356-b89d-135bfbcd4d31",
+                  "type": "title",
+                  "data": "O Princípio do Guarda-Perfumes: A Estratégia dos 3 a 5 Frascos para Todas as Ocasiões"
+                },
+                {
+                  "id": "1adfdca9-f9bf-4bf7-9d46-a0f345d95f2b",
+                  "type": "title2",
+                  "data": "Por que um único 'perfume de assinatura' pode ser limitante"
+                },
+                {
+                  "id": "68ccc794-58ed-4db1-90c6-29fae158abc2",
+                  "type": "image",
+                  "data": "https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?q=80&w=800&auto=format&fit=crop"
+                },
+                {
+                  "id": "acf46c1f-1b1f-4acf-ba4e-fa570c0a11fb",
+                  "type": "description",
+                  "data": "Assim como o guarda-roupa tem peças para diferentes ocasiões, um conjunto pequeno e intencional de 3 a 5 perfumes cobrindo diferentes famílias e concentrações permite adequação a qualquer contexto sem depender de um único frasco para tudo."
+                },
+                {
+                  "id": "a40e7d08-ddfe-48ad-abe5-a3b02eda4a56",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Por que um único 'perfume de assinatura' pode ser limitante transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "358bcf34-93d5-453b-808c-a79786a0e654",
+              "title": "Tela 2",
+              "contents": [
+                {
+                  "id": "0fbacf8d-eab6-461d-ba19-4384a49ba4ff",
+                  "type": "title2",
+                  "data": "Estrutura básica sugerida"
+                },
+                {
+                  "id": "f2599673-42a7-40f6-82ae-7ddab8042a44",
+                  "type": "description",
+                  "data": "Um cítrico/aromático leve para o dia a dia e escritório, um amadeirado versátil para o meio-termo, e um oriental ou chypre mais denso reservado para noite e eventos especiais já cobre a maior parte das necessidades práticas."
+                },
+                {
+                  "id": "09a505bc-00cc-446f-a9f8-82ff56a2bac1",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Estrutura básica sugerida transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "555a6f53-1151-4c88-8d14-f2f0b98efb09",
+          "title": "Como Testar um Perfume Corretamente Antes de Comprar",
+          "subtitle": "A Regra das 3 Horas, Amostras e Pesquisa no Fragrantica",
+          "screens": [
+            {
+              "id": "7f36c13c-548d-4954-aafd-51a1def36aa3",
+              "title": "Tela 1",
+              "contents": [
+                {
+                  "id": "cf646af0-cfb5-4ec6-9617-00a26f877e0d",
+                  "type": "title",
+                  "data": "Como Testar um Perfume Corretamente Antes de Comprar: A Regra das 3 Horas, Amostras e Pesquisa no Fragrantica"
+                },
+                {
+                  "id": "d1df6a60-e70f-4c9a-ba74-44eb81ac57cd",
+                  "type": "title2",
+                  "data": "Evitando a decisão por impulso"
+                },
+                {
+                  "id": "8bde4344-ad2e-454a-badb-c6bbc5fedc54",
+                  "type": "image",
+                  "data": "https://images.unsplash.com/photo-1523293182086-7651a899d37f?q=80&w=800&auto=format&fit=crop"
+                },
+                {
+                  "id": "07f98c4d-16c6-4512-b34d-ee8df27810f6",
+                  "type": "description",
+                  "data": "A primeira impressão de um perfume (nos primeiros minutos) é dominada pelas notas de saída, que muitas vezes nem são as notas mais representativas ou duradouras da composição — julgar só por isso é a causa mais comum de arrependimento na compra."
+                },
+                {
+                  "id": "0fe477a3-673a-470a-b225-68b92b1aed5a",
+                  "type": "highlighted_description",
+                  "data": "**Pontos Térmicos Estratégicos:** Aplique nas laterais do pescoço e pulsos. JAMAIS esfregue os pulsos — o atrito aquece e destrói as notas de saída delicadas."
+                }
+              ]
+            },
+            {
+              "id": "8ac669d0-ca60-4394-a232-01d527fe6957",
+              "title": "Tela 2",
+              "contents": [
+                {
+                  "id": "7410f5b6-50a0-4ed7-b30d-2e06b9a876eb",
+                  "type": "title2",
+                  "data": "Regra das 3 horas"
+                },
+                {
+                  "id": "51cef730-6e81-435a-97e9-cac477a03178",
+                  "type": "description",
+                  "data": "Aplique o perfume na pele (nunca apenas no papel) e evite julgá-lo definitivamente antes de pelo menos 2-3 horas, tempo suficiente para a fragrância evoluir do topo até o coração e começar a revelar a base."
+                },
+                {
+                  "id": "88cb1f75-42ef-4e9e-baff-9a147eccf9c2",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Regra das 3 horas transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "83aa92b0-3fbd-4f00-8f92-be9047e46c21",
+              "title": "Tela 3",
+              "contents": [
+                {
+                  "id": "217316d7-3996-4462-b098-131e9e7a5eda",
+                  "type": "title2",
+                  "data": "Decants e amostras"
+                },
+                {
+                  "id": "7e7d11e1-a02f-4bba-a9fc-505bbff403ad",
+                  "type": "description",
+                  "data": "Pequenas amostras (decants) permitidas por muitas perfumarias ou vendidas separadamente possibilitam testar o perfume em diferentes dias e contextos reais antes de investir no frasco cheio — uma prática recomendada especialmente para perfumes de concentração mais alta e mais caros."
+                },
+                {
+                  "id": "422502f9-531f-4905-b936-4a6be6ae5cb3",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Decants e amostras transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "f4d7cf58-4075-419d-9d76-17e66f5bf397",
+              "title": "Tela 4",
+              "contents": [
+                {
+                  "id": "33d45b87-0664-453a-b45b-ba05dff01c83",
+                  "type": "title2",
+                  "data": "Nunca teste mais de 3 perfumes seguidos"
+                },
+                {
+                  "id": "ae988158-d689-4226-a879-dc1159b114fc",
+                  "type": "highlighted_description",
+                  "data": "**Dica Prática:** Depois de cheirar 3 fragrâncias diferentes em sequência, o nariz satura e perde sensibilidade temporária a novos aromas — pausas de alguns minutos (ou cheirar café/pele do próprio braço) ajudam a resetar a percepção olfativa."
+                }
+              ]
+            },
+            {
+              "id": "5119741c-9d9d-4cd6-b69f-c87084bfa8dc",
+              "title": "Tela 5",
+              "contents": [
+                {
+                  "id": "0d412cf7-b70a-4914-a046-2c186264a32f",
+                  "type": "title2",
+                  "data": "Pesquisa Estratégica no Fragrantica"
+                },
+                {
+                  "id": "f269414a-f5ca-4e9d-a055-c0972906e6de",
+                  "type": "description",
+                  "data": "Antes de comprar um frasco cheio ou pedir um decant, faça uma checagem rápida no Fragrantica:\n\n• **Clima e Ocasião:** Veja a votação comunitária de estação (Verão/Inverno) e dia/noite.\n\n• **Longevidade e Sillage:** Confira o gráfico de votos reais de fixação (moderada, longa, eterna) e rastro (íntimo a marcante).\n\n• **Perfumes Semelhantes:** A seção 'Este perfume me lembra de...' ajuda a identificar alternativas mais acessíveis ou entender o estilo da criação.\n\n• **Resenhas Reais:** Leia opiniões críticas para não cair apenas no discurso sedutor do marketing das grifes."
+                },
+                {
+                  "id": "7e0ab65a-0e15-49ca-945c-4d4b5532e5b1",
+                  "type": "highlighted_description",
+                  "data": "**Pesquisa Inteligente no Fragrantica:** Consulte o Fragrantica para analisar a pirâmide, as notas dominantes e as resenhas da comunidade antes de investir em um frasco."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "3e8c4f31-ae21-4ff3-995a-3ed4ec369daf",
+      "title": "Armazenamento e Conservação",
+      "sessions": [
+        {
+          "id": "76aa3723-6a53-454d-bd2a-efedb2877f56",
+          "title": "Os Três Inimigos do Perfume",
+          "subtitle": "Os Inimigos Invisíveis: Calor, Luz UV e Ar",
+          "screens": [
+            {
+              "id": "cb3d3998-6164-499d-bf7c-0bde7ba78268",
+              "title": "Tela 1",
+              "contents": [
+                {
+                  "id": "733f21c5-68a6-4808-89ad-727d2554b709",
+                  "type": "title",
+                  "data": "Os Três Inimigos do Perfume: Os Inimigos Invisíveis: Calor, Luz UV e Ar"
+                },
+                {
+                  "id": "229644c8-7791-4019-a518-8b07aa995eb3",
+                  "type": "title2",
+                  "data": "Degradação química é real e evitável"
+                },
+                {
+                  "id": "9b0d5780-43a0-41b5-b0a1-5655a0bac10a",
+                  "type": "image",
+                  "data": "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=800&auto=format&fit=crop"
+                },
+                {
+                  "id": "21d2ded9-4544-4933-a30a-5f1f58006209",
+                  "type": "description",
+                  "data": "Perfumes são soluções químicas sensíveis, e o armazenamento inadequado pode alterar irreversivelmente a composição original, mudando o cheiro e reduzindo a performance mesmo antes do prazo de validade."
+                },
+                {
+                  "id": "c754995e-9ece-40f1-a3a2-959d18a2bc46",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Degradação química é real e evitável transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "ab5e5ece-833b-4195-9e1f-b3d179c6a026",
+              "title": "Tela 2",
+              "contents": [
+                {
+                  "id": "9c75ee74-ebf7-4fb1-8a14-29a1a5b764ea",
+                  "type": "title2",
+                  "data": "Luz"
+                },
+                {
+                  "id": "fb9fa35a-db99-44b0-a351-dde8a1a6ab48",
+                  "type": "description",
+                  "data": "A exposição prolongada à luz, especialmente solar direta, degrada certas moléculas e altera a cor e o cheiro do perfume — por isso frascos de vidro colorido ou embalagens opacas ajudam a preservar a fórmula."
+                },
+                {
+                  "id": "f3636bad-24c5-45a9-b2a6-75fdc363ec8f",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Luz transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "acc87fa9-5771-4b66-82ef-88cc7da978af",
+              "title": "Tela 3",
+              "contents": [
+                {
+                  "id": "db054434-f672-4155-9dd1-2608ce572d3f",
+                  "type": "title2",
+                  "data": "Calor e variação de temperatura"
+                },
+                {
+                  "id": "e5862016-7d69-4292-a04b-87caba89bbc5",
+                  "type": "description",
+                  "data": "Ambientes quentes (como banheiros com chuveiro quente, ou dentro de carros) aceleram reações químicas indesejadas na fórmula. O ideal é armazenar em local fresco e com temperatura estável."
+                },
+                {
+                  "id": "11853f4b-2207-4110-ab9b-3433be19ae6f",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Calor e variação de temperatura transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "69e433f2-6e9a-46d4-8868-2ea016a0eafe",
+              "title": "Tela 4",
+              "contents": [
+                {
+                  "id": "6f7e4811-1e7d-4b96-896e-078cac38f8a4",
+                  "type": "title2",
+                  "data": "Ar e oxidação"
+                },
+                {
+                  "id": "fedbc500-cc01-4eb9-a17d-844a6c0d8235",
+                  "type": "description",
+                  "data": "Cada vez que o frasco é aberto, uma pequena quantidade de ar entra em contato com o líquido, promovendo oxidação gradual — frascos quase vazios com muito ar dentro tendem a se degradar mais rápido que frascos cheios."
+                },
+                {
+                  "id": "9aaafe5c-5773-4a07-81cb-ffbfd3447a87",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Ar e oxidação transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "c2311764-a235-46d5-8a3c-1e1b6e0c43af",
+              "title": "Tela 5",
+              "contents": [
+                {
+                  "id": "7dc99f8e-ea18-4f78-bc80-bfb323f86a2c",
+                  "type": "title2",
+                  "data": "Local ideal de armazenamento"
+                },
+                {
+                  "id": "0adb661d-d083-4bbb-81e6-f5c639342c8b",
+                  "type": "highlighted_description",
+                  "data": "**Dica Prática:** Um armário fechado, longe de janelas e fontes de calor, com temperatura ambiente estável, é preferível ao banheiro (calor e umidade do chuveiro) ou ao parapeito de janela (luz direta) — os dois locais mais comuns e mais equivocados para guardar perfume."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "435c8947-876b-4d20-8a46-affa4f828e96",
+          "title": "Sinais de que um Perfume 'Virou'",
+          "subtitle": "Oxidação, Alteração de Cor e Validade Prática",
+          "screens": [
+            {
+              "id": "837bab68-6c09-4c8e-a6a7-268f97290843",
+              "title": "Tela 1",
+              "contents": [
+                {
+                  "id": "a9d05f7e-97f5-4858-b1d5-670239783789",
+                  "type": "title",
+                  "data": "Sinais de que um Perfume 'Virou': Oxidação, Alteração de Cor e Validade Prática"
+                },
+                {
+                  "id": "82d1386c-ef17-41bb-93fd-b4328e9b5c17",
+                  "type": "title2",
+                  "data": "Como identificar degradação"
+                },
+                {
+                  "id": "8a5522b7-96e6-4b0c-bd55-ed0efee4d6d9",
+                  "type": "image",
+                  "data": "https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?q=80&w=800&auto=format&fit=crop"
+                },
+                {
+                  "id": "e3a78d5d-98a4-4d67-8f22-fee758dbc9ba",
+                  "type": "description",
+                  "data": "Perfumes degradados não ficam necessariamente 'estragados' no sentido de causar dano, mas perdem fidelidade à composição original, geralmente ficando com cheiro mais ácido, amadeirado-plano ou simplesmente 'errado' em comparação à lembrança do produto novo."
+                },
+                {
+                  "id": "8fdbd63e-e149-45b9-b484-92787f3d0750",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Como identificar degradação transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "9c3d492e-2d44-4357-ac79-fb7f595c6eed",
+              "title": "Tela 2",
+              "contents": [
+                {
+                  "id": "9385130f-92e1-4f14-ba83-7f16bf77502e",
+                  "type": "title2",
+                  "data": "Mudança de cor"
+                },
+                {
+                  "id": "16af407e-ce1f-47cf-b336-83ce7e628e18",
+                  "type": "description",
+                  "data": "Perfumes que escurecem visivelmente em relação à cor original (especialmente os com maior proporção de cítricos, mais suscetíveis à oxidação) são um indício visual de degradação."
+                },
+                {
+                  "id": "59e6e6eb-4fc1-47a3-9e6b-571055c30933",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Mudança de cor transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "d7680df7-bf79-4295-82aa-b804a0bbaff5",
+              "title": "Tela 3",
+              "contents": [
+                {
+                  "id": "35f6463b-2f58-40ef-8048-2b724a4b53e1",
+                  "type": "title2",
+                  "data": "Validade aproximada"
+                },
+                {
+                  "id": "54f130df-07db-484e-862f-dbcba6528740",
+                  "type": "highlighted_description",
+                  "data": "**Dica Prática:** Perfumes fechados e bem armazenados podem durar de 3 a 5 anos ou mais sem alteração perceptível; uma vez abertos, a exposição ao ar reduz essa janela — o ideal é observar cheiro e cor a cada uso, mais do que confiar cegamente em uma data fixa."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "113e2159-6ee5-4e9c-99a4-738288d4c7ba",
+      "title": "Glossário Técnico Ilustrado",
+      "sessions": [
+        {
+          "id": "4035f2d1-bb18-435d-b4c0-68fa77a72a2d",
+          "title": "Glossário de A a Z",
+          "subtitle": "Dicionário Olfativo Completo e Enciclopédia Fragrantica",
+          "screens": [
+            {
+              "id": "4225ba1f-3255-4454-8b9b-53406ce82267",
+              "title": "Tela 1",
+              "contents": [
+                {
+                  "id": "4d0e2222-d47e-46f0-9713-fa6e6aff7398",
+                  "type": "title",
+                  "data": "Glossário de A a Z: Dicionário Olfativo Completo e Enciclopédia Fragrantica"
+                },
+                {
+                  "id": "7e66796e-fd5b-4320-93b0-28ba72cd1b40",
+                  "type": "title2",
+                  "data": "Acorde"
+                },
+                {
+                  "id": "f93f9ae3-1312-49a9-a591-f1bcb5409217",
+                  "type": "image",
+                  "data": "https://images.unsplash.com/photo-1615397349754-cfa2066a298e?q=80&w=800&auto=format&fit=crop"
+                },
+                {
+                  "id": "69c89f00-c703-4d62-b11a-80221914b961",
+                  "type": "description",
+                  "data": "Combinação deliberada de duas ou mais notas que cria um efeito olfativo reconhecível, maior que a soma das partes."
+                },
+                {
+                  "id": "a68ce62d-5da1-428f-bd51-2195173d3a0c",
+                  "type": "highlighted_description",
+                  "data": "**Harmonia Molecular:** Assim como notas musicais formam uma sinfonia, notas olfativas combinadas criam acordes únicos como Âmbar e Fougère."
+                }
+              ]
+            },
+            {
+              "id": "eb790237-6e67-4029-af1f-3385db909a09",
+              "title": "Tela 2",
+              "contents": [
+                {
+                  "id": "a27b6a57-86fc-46cf-a3ed-a8b158d6ddef",
+                  "type": "title2",
+                  "data": "Ambroxan"
+                },
+                {
+                  "id": "cfd672b0-863d-4144-9121-d1f78ba0e1e2",
+                  "type": "description",
+                  "data": "Molécula sintética amadeirada-almiscarada, substituta moderna do âmbar-cinzento natural."
+                },
+                {
+                  "id": "879cd82f-d333-482f-810c-10cdecfa5f9e",
+                  "type": "highlighted_description",
+                  "data": "**A Molécula Moderna:** Confere uma aura limpa, amadeirada-almiscarada magnética com altíssima difusão e excelente durabilidade na pele."
+                }
+              ]
+            },
+            {
+              "id": "1189e00d-944e-4418-8f81-109c8155fab3",
+              "title": "Tela 3",
+              "contents": [
+                {
+                  "id": "03295cc6-a06a-412b-9790-57cf63d3a43d",
+                  "type": "title2",
+                  "data": "Blotter (Papel de teste)"
+                },
+                {
+                  "id": "cdbb8362-e8be-4d71-8063-c20f1a92bbf1",
+                  "type": "description",
+                  "data": "Tira de papel usada para testar perfumes rapidamente sem aplicar na pele."
+                },
+                {
+                  "id": "a92f34ed-5412-4902-883c-98ec10c44993",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Blotter (Papel de teste) transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "70948f84-7cef-4e83-ba8e-9695673f29e7",
+              "title": "Tela 4",
+              "contents": [
+                {
+                  "id": "ba273bcb-0677-403b-b9e9-730db85be35d",
+                  "type": "title2",
+                  "data": "Chypre"
+                },
+                {
+                  "id": "3fffcb7e-5da9-45cb-916a-9ef9106c5ade",
+                  "type": "description",
+                  "data": "Família/acorde clássico que combina bergamota, musgo de carvalho, labdano e patchouli."
+                },
+                {
+                  "id": "c1b04d9e-7f9a-4fe5-bd63-a339245742fa",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Chypre transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "8814a25b-3b55-4472-b453-9ebf7976f4f5",
+              "title": "Tela 5",
+              "contents": [
+                {
+                  "id": "b8f21e9f-e90a-4ed4-82ba-98616ca0d149",
+                  "type": "title2",
+                  "data": "Concentração (EDT, EDP, Parfum)"
+                },
+                {
+                  "id": "a63b6169-42c4-4942-9c74-b07542758a13",
+                  "type": "description",
+                  "data": "Proporção de óleo perfumado dissolvido em álcool, que determina intensidade e longevidade."
+                },
+                {
+                  "id": "51ef628e-edeb-426e-88d3-6f5a3c135c55",
+                  "type": "highlighted_description",
+                  "data": "**Diferença Prática:** EDTs projetam mais de início mas evaporam mais cedo; EDPs e Parfums fixam por muitas horas com uma bolha aromática mais próxima e refinada."
+                }
+              ]
+            },
+            {
+              "id": "ab853532-a37b-464f-9377-eee8f899020d",
+              "title": "Tela 6",
+              "contents": [
+                {
+                  "id": "53389cbf-5634-4b78-9074-baa9191b0560",
+                  "type": "title2",
+                  "data": "Decant"
+                },
+                {
+                  "id": "f549f9a1-e447-4805-bfe6-952db4031ffa",
+                  "type": "description",
+                  "data": "Pequena amostra de perfume transferida do frasco original para testes."
+                },
+                {
+                  "id": "8c44c6b4-6b0e-4842-b743-73f3c1ddf180",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Decant transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "7f7d0ee0-cf99-4a0e-b917-b86c673aec12",
+              "title": "Tela 7",
+              "contents": [
+                {
+                  "id": "6724cf81-70a3-41a7-9adc-5078e6a21991",
+                  "type": "title2",
+                  "data": "Fixador"
+                },
+                {
+                  "id": "2ad28c1f-d816-436f-bdab-13b770deaeb3",
+                  "type": "description",
+                  "data": "Ingrediente (geralmente de nota de fundo) que retarda a evaporação das notas mais voláteis."
+                },
+                {
+                  "id": "a87b59b9-9252-47e1-ae21-2adf48c2f39d",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Fixador transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "8138a21e-492a-4106-832d-86830805a987",
+              "title": "Tela 8",
+              "contents": [
+                {
+                  "id": "a9fbf0ad-c221-4011-b43f-c84ed8f5edde",
+                  "type": "title2",
+                  "data": "Fougère"
+                },
+                {
+                  "id": "f35f1598-544b-4da3-924d-a1c67cbf8c89",
+                  "type": "description",
+                  "data": "Família/acorde clássico masculino baseado em lavanda, cumarina e musgo de carvalho."
+                },
+                {
+                  "id": "3ce908a2-6af6-45db-8623-727d02920523",
+                  "type": "highlighted_description",
+                  "data": "**O Padrão Clássico:** A combinação atemporal de lavanda, fava tonka e musgo. É o aroma definitivo do homem maduro, confiante e asseado."
+                }
+              ]
+            },
+            {
+              "id": "313f6d7d-5f64-4644-b607-db9187911f1d",
+              "title": "Tela 9",
+              "contents": [
+                {
+                  "id": "8632ee06-f857-4617-8790-06158a6042ee",
+                  "type": "title2",
+                  "data": "Longevidade"
+                },
+                {
+                  "id": "2cef74ea-6c03-413b-b96c-4bb6dd3f2c14",
+                  "type": "description",
+                  "data": "Tempo total que o perfume permanece perceptível na pele."
+                },
+                {
+                  "id": "c5e03d9a-5839-4012-8395-ea25e90a3092",
+                  "type": "highlighted_description",
+                  "data": "**Tempo na Pele:** Depende da concentração de óleos, densidade das notas de fundo e hidratação da sua pele. Não confunda longevidade com projeção estridente."
+                }
+              ]
+            },
+            {
+              "id": "d2d2f505-9624-45a5-a75c-77f64be0ba73",
+              "title": "Tela 10",
+              "contents": [
+                {
+                  "id": "a5f21084-1500-4ff3-826c-b053e1c1d37d",
+                  "type": "title2",
+                  "data": "Nota de saída/coração/fundo"
+                },
+                {
+                  "id": "c8b6ef67-9b15-425b-ad0e-baa38e4da15e",
+                  "type": "description",
+                  "data": "As três camadas da pirâmide olfativa, organizadas por velocidade de evaporação."
+                },
+                {
+                  "id": "e15274b4-c38c-4e9b-ba24-aa15c2d9e8b1",
+                  "type": "highlighted_description",
+                  "data": "**Primeira Impressão (0-15 min):** Notas cítricas e frescas abrem o perfume. São o 'olá' da fragrância, mas desaparecem rapidamente para dar espaço ao coração."
+                }
+              ]
+            },
+            {
+              "id": "39a7d614-ea92-4d8c-aa5b-7e97cdac8129",
+              "title": "Tela 11",
+              "contents": [
+                {
+                  "id": "900bf0b5-a9b2-44e2-aec5-8663b5f7a758",
+                  "type": "title2",
+                  "data": "Oud (Agarwood)"
+                },
+                {
+                  "id": "3ff3c84a-7e5f-4a1f-8d2b-6747ff92e019",
+                  "type": "description",
+                  "data": "Resina aromática rara formada em árvores de agar infectadas, com cheiro amadeirado-animálico."
+                },
+                {
+                  "id": "8af8eec2-2196-4097-973b-e3a6da4db8a4",
+                  "type": "highlighted_description",
+                  "data": "**O Ouro Líquido:** Uma das matérias-primas mais reverenciadas do Oriente Médio. Amadeirado, escuro, misterioso e de fixação monumental."
+                }
+              ]
+            },
+            {
+              "id": "0906d8d1-fe51-4bbd-88c2-4dcfec24a0b7",
+              "title": "Tela 12",
+              "contents": [
+                {
+                  "id": "bbd2a94b-6bf4-470e-8260-79973826d8a7",
+                  "type": "title2",
+                  "data": "Pirâmide olfativa"
+                },
+                {
+                  "id": "08b2c772-270b-4047-a788-a8e5965bd51f",
+                  "type": "description",
+                  "data": "Estrutura em camadas (saída, coração, fundo) que organiza a evolução de um perfume no tempo."
+                },
+                {
+                  "id": "7f38b7de-5761-4590-ae75-2020c5f0b136",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Pirâmide olfativa transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "eb553c24-b1e3-4af6-8060-02cdd5cd019a",
+              "title": "Tela 13",
+              "contents": [
+                {
+                  "id": "65b6876a-59d4-42cf-a5d9-e9aee8c18e37",
+                  "type": "title2",
+                  "data": "Projeção"
+                },
+                {
+                  "id": "7b0afa23-7bca-41e9-9925-c0cd777275c4",
+                  "type": "description",
+                  "data": "Distância a partir do corpo em que o perfume pode ser sentido por outra pessoa."
+                },
+                {
+                  "id": "7c4f999a-dfb8-4bc8-bed4-9477f07a42f8",
+                  "type": "highlighted_description",
+                  "data": "**Raio de Presença:** Uma boa projeção para o homem sofisticado alcança a distância de um aperto de mão (meio metro), convidando à proximidade sem invadir o espaço alheio."
+                }
+              ]
+            },
+            {
+              "id": "5ac5e09c-8a2d-4058-8b7c-17e9780f3389",
+              "title": "Tela 14",
+              "contents": [
+                {
+                  "id": "8928bb95-ae71-416b-a714-40769fbeebe7",
+                  "type": "title2",
+                  "data": "Sillage"
+                },
+                {
+                  "id": "cfd5e336-6519-4bdd-8862-f324c54e2a8f",
+                  "type": "description",
+                  "data": "Rastro olfativo que o perfume deixa no ambiente conforme a pessoa se movimenta."
+                },
+                {
+                  "id": "fb0d1a48-0dc7-42db-9810-0a8fc618875a",
+                  "type": "highlighted_description",
+                  "data": "**O Rastro Elegante:** Sillage é a memória que você deixa no ambiente quando passa. Em ambientes profissionais, prefira um rastro contido e polido."
+                }
+              ]
+            },
+            {
+              "id": "25ebcfe4-c51b-456d-8c9f-8d7e5d587078",
+              "title": "Tela 15",
+              "contents": [
+                {
+                  "id": "27ce9d8a-c4db-4b7a-8a29-6432a34268a4",
+                  "type": "title2",
+                  "data": "Almíscar (Musk)"
+                },
+                {
+                  "id": "4ddadc13-14f0-495e-b72f-0e9ab74e83c8",
+                  "type": "description",
+                  "data": "Nota quente e envolvente, hoje majoritariamente sintética, usada como base em quase todas as famílias."
+                },
+                {
+                  "id": "688c073e-9c5c-47ff-ab29-359325266aba",
+                  "type": "highlighted_description",
+                  "data": "**Insight Olfativo:** Dominar os fundamentos de Almíscar (Musk) transforma o ato de se perfumar de uma rotina aleatória em uma assinatura consciente de poder e sofisticação."
+                }
+              ]
+            },
+            {
+              "id": "509811b3-5078-4fd4-ae82-cf97b4aee92c",
+              "title": "Tela 16",
+              "contents": [
+                {
+                  "id": "fdda2082-37ea-44c3-80e6-8bc7851fae29",
+                  "type": "title2",
+                  "data": "Fragrantica"
+                },
+                {
+                  "id": "271b1598-b563-42c7-b7d8-e90028ae3d16",
+                  "type": "description",
+                  "data": "A maior enciclopédia digital e comunidade online de perfumes do mundo. Reúne pirâmides olfativas detalhadas, perfumistas criadores, acordes dominantes, resenhas de usuários e votação de performance para dezenas de milhares de fragrâncias de designer, nicho e nacionais."
+                },
+                {
+                  "id": "56175a14-3d7e-4211-9ab6-6bbb40e343ac",
+                  "type": "highlighted_description",
+                  "data": "**Pesquisa Inteligente no Fragrantica:** Consulte o Fragrantica para analisar a pirâmide, as notas dominantes e as resenhas da comunidade antes de investir em um frasco."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "82374a40-ccf0-43f3-8a09-fa916851af63",
+      "title": "Encerramento",
+      "sessions": [
+        {
+          "id": "d1147537-ab56-48d9-bc2f-0a7e69b27d45",
+          "title": "Checklist Final",
+          "subtitle": "Autoavaliação, Próximos Passos e Domínio da Assinatura",
+          "screens": [
+            {
+              "id": "97dc14d9-b437-44ab-9000-a38bd51e6508",
+              "title": "Tela 1",
+              "contents": [
+                {
+                  "id": "67714f7d-27f8-4829-a194-ca79e2d49a0d",
+                  "type": "title",
+                  "data": "Checklist Final: Autoavaliação, Próximos Passos e Domínio da Assinatura"
+                },
+                {
+                  "id": "5da46d1f-fd83-4003-9cb2-1d0fb767c5d6",
+                  "type": "title2",
+                  "data": "Da composição à experiência"
+                },
+                {
+                  "id": "d38ff40b-61e9-4a40-be76-65cb68e64a75",
+                  "type": "image",
+                  "data": "https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=800&auto=format&fit=crop"
+                },
+                {
+                  "id": "3b59add5-0776-47c2-8909-4fc6d1416556",
+                  "type": "description",
+                  "data": "Você agora entende o que está por trás do cheiro de um perfume — da matéria-prima individual ao acorde, da concentração à forma correta de aplicar — o suficiente para escolher e usar fragrâncias com autonomia, sem depender apenas de recomendação de terceiros."
+                },
+                {
+                  "id": "c7de3724-78f0-49a3-8350-89d0531b6324",
+                  "type": "highlighted_description",
+                  "data": "**Princípio da Composição:** Um perfume é uma história contada em camadas moleculares ao longo de horas. Nunca compre pela primeira borrifada no ar."
+                }
+              ]
+            },
+            {
+              "id": "cd224c0e-a2f9-44d2-83ca-5ba53a578d2e",
+              "title": "Tela 2",
+              "contents": [
+                {
+                  "id": "d2d53d71-6522-42d7-bf9c-72761c2d2406",
+                  "type": "title2",
+                  "data": "Checklist 1"
+                },
+                {
+                  "id": "a7b9864d-e708-489c-865c-56f638742fbf",
+                  "type": "description",
+                  "data": "Sei explicar a diferença entre nota, acorde e família olfativa?"
+                },
+                {
+                  "id": "ac7c3dee-b00f-48e2-9c1a-ac9fc77702b8",
+                  "type": "highlighted_description",
+                  "data": "**Assinatura Olfativa Consolidada:** O perfume não é apenas um cheiro agradável — é uma extensão invisível e memorável da sua presença no mundo."
+                }
+              ]
+            },
+            {
+              "id": "a6cfdc7e-9e0f-4bdf-a381-f2a9672a183d",
+              "title": "Tela 3",
+              "contents": [
+                {
+                  "id": "c93258ba-346c-4cd5-9d66-d1e28904d7c4",
+                  "type": "title2",
+                  "data": "Checklist 2"
+                },
+                {
+                  "id": "da0e59e7-acf3-495e-b611-85c05ad10f25",
+                  "type": "description",
+                  "data": "Sei identificar a que família olfativa um perfume pertence só pelo cheiro?"
+                },
+                {
+                  "id": "5faa6c5a-ac20-4704-9e7b-ac9beadc5bae",
+                  "type": "highlighted_description",
+                  "data": "**Assinatura Olfativa Consolidada:** O perfume não é apenas um cheiro agradável — é uma extensão invisível e memorável da sua presença no mundo."
+                }
+              ]
+            },
+            {
+              "id": "ac3873b3-cf6c-4de5-9c6a-77c8759eb293",
+              "title": "Tela 4",
+              "contents": [
+                {
+                  "id": "85d58895-3844-46b0-8200-bd4fcf13ec13",
+                  "type": "title2",
+                  "data": "Checklist 3"
+                },
+                {
+                  "id": "87c5729a-f617-4c7f-a8a2-ede63096815c",
+                  "type": "description",
+                  "data": "Entendo a diferença prática entre EDT, EDP e Parfum na hora de comprar?"
+                },
+                {
+                  "id": "45a7785a-58d2-4bb1-a488-ac4d9dd443c6",
+                  "type": "highlighted_description",
+                  "data": "**Assinatura Olfativa Consolidada:** O perfume não é apenas um cheiro agradável — é uma extensão invisível e memorável da sua presença no mundo."
+                }
+              ]
+            },
+            {
+              "id": "d7c08207-83b4-4c8a-98a5-4258789f71fb",
+              "title": "Tela 5",
+              "contents": [
+                {
+                  "id": "b9522ca0-4f40-4b59-b6da-c62d70e12fcf",
+                  "type": "title2",
+                  "data": "Checklist 4"
+                },
+                {
+                  "id": "df0f38e7-576f-4d47-8791-d7b3d081e384",
+                  "type": "description",
+                  "data": "Sei testar um perfume corretamente (na pele, por pelo menos 2-3 horas) antes de decidir comprá-lo?"
+                },
+                {
+                  "id": "11096d9b-08fa-49b7-8f77-6694aca17e2b",
+                  "type": "highlighted_description",
+                  "data": "**Assinatura Olfativa Consolidada:** O perfume não é apenas um cheiro agradável — é uma extensão invisível e memorável da sua presença no mundo."
+                }
+              ]
+            },
+            {
+              "id": "71c3e5ba-f141-46fd-ad06-2bc437ff79cb",
+              "title": "Tela 6",
+              "contents": [
+                {
+                  "id": "a464bcb1-dc84-4281-8cb3-df2dd1ef08ff",
+                  "type": "title2",
+                  "data": "Checklist 5"
+                },
+                {
+                  "id": "fc59cb9d-799f-437d-86e8-036eec352608",
+                  "type": "description",
+                  "data": "Aplico o perfume nos pontos de pulso certos, na quantidade certa, sem esfregar os pulsos?"
+                },
+                {
+                  "id": "a1413eb5-ea5a-4f38-b21b-e51be5c75355",
+                  "type": "highlighted_description",
+                  "data": "**Assinatura Olfativa Consolidada:** O perfume não é apenas um cheiro agradável — é uma extensão invisível e memorável da sua presença no mundo."
+                }
+              ]
+            },
+            {
+              "id": "b50f2a3c-e7a3-4cdb-a996-148c97a4fad0",
+              "title": "Tela 7",
+              "contents": [
+                {
+                  "id": "b379958a-831a-4d61-9209-e606f267677e",
+                  "type": "title2",
+                  "data": "Checklist 6"
+                },
+                {
+                  "id": "1b404a14-c6b3-4a71-b3fb-6abe3db2fdda",
+                  "type": "description",
+                  "data": "Tenho pelo menos duas opções de perfume para contextos diferentes (dia/trabalho vs. noite/eventos)?"
+                },
+                {
+                  "id": "ba1441ee-4f0e-4aac-abea-9f0804055fd2",
+                  "type": "highlighted_description",
+                  "data": "**Assinatura Olfativa Consolidada:** O perfume não é apenas um cheiro agradável — é uma extensão invisível e memorável da sua presença no mundo."
+                }
+              ]
+            },
+            {
+              "id": "f445104b-05bf-4ca4-b729-4b633ebcc5cc",
+              "title": "Tela 8",
+              "contents": [
+                {
+                  "id": "2490d85f-fbee-41a2-b023-ff99ef887f11",
+                  "type": "title2",
+                  "data": "Checklist 7"
+                },
+                {
+                  "id": "662cdf52-e84f-43dc-81d4-fb33ac8af795",
+                  "type": "description",
+                  "data": "Sei guardar meus perfumes longe de luz, calor e variação de temperatura?"
+                },
+                {
+                  "id": "be4c5983-2beb-490a-90f7-c43842f7bf4f",
+                  "type": "highlighted_description",
+                  "data": "**Assinatura Olfativa Consolidada:** O perfume não é apenas um cheiro agradável — é uma extensão invisível e memorável da sua presença no mundo."
+                }
+              ]
+            },
+            {
+              "id": "86bd3990-2e99-45f6-b73f-33e789919c40",
+              "title": "Tela 9",
+              "contents": [
+                {
+                  "id": "5fc0e939-1951-4964-855c-0f2dd15f0cc3",
+                  "type": "title2",
+                  "data": "Próximo passo"
+                },
+                {
+                  "id": "9f1e060e-bfe1-4ca6-8ebf-040ca037a727",
+                  "type": "image",
+                  "data": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=800&auto=format&fit=crop"
+                },
+                {
+                  "id": "0f5a6032-a8fc-44a7-91d6-170c7a3e9f0e",
+                  "type": "highlighted_description",
+                  "data": "**Dica Prática:** Use o Módulo 2 (famílias olfativas) para mapear os perfumes que você já possui, identifique lacunas no seu guarda-perfumes e comece a testar novas fragrâncias com o método de 3 horas do Módulo 9.\n\nUma excelente prática é criar sua conta no Fragrantica e catalogar sua 'estante virtual' (perfumes que tenho, que tive e que desejo), facilitando suas próximas escolhas."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

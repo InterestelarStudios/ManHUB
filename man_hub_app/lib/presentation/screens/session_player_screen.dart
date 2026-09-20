@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import '../../domain/models/session.dart';
 import '../../domain/models/screen_model.dart';
 import '../../domain/models/content_block.dart';
@@ -269,11 +270,13 @@ class _SessionPlayerScreenState extends State<SessionPlayerScreen> {
                     imageFilter: ImageFilter.blur(sigmaX: 18, sigmaY: 18),
                     child: Opacity(
                       opacity: 0.30,
-                      child: Image.network(
-                        widget.backgroundImageUrl ??
+                      child: CachedNetworkImage(
+                        imageUrl: widget.backgroundImageUrl ??
                             'https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1200&auto=format&fit=crop',
                         fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) =>
+                        placeholder: (context, url) =>
+                            Container(color: AppColors.backgroundSecondary),
+                        errorWidget: (context, url, error) =>
                             Container(color: AppColors.backgroundSecondary),
                       ),
                     ),

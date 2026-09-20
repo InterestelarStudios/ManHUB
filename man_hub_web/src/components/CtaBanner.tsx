@@ -44,7 +44,7 @@ export default function CtaBanner() {
 
           <span className="badge-gold">
             <Sparkles size={13} />
-            Lançamento Oficial em Breve
+            Aplicativo Mobile em Homologação
           </span>
 
           <h2 className={styles.bannerTitle}>
@@ -123,7 +123,7 @@ export default function CtaBanner() {
           <div className={styles.assuranceRow}>
             <div className={styles.assuranceItem}>
               <Check size={16} color="var(--neon-primary)" />
-              <span>Acesso Antecipado Gratuito</span>
+              <span>Acesso Imediato aos Treinamentos na Web</span>
             </div>
             <div className={styles.assuranceItem}>
               <Check size={16} color="var(--neon-primary)" />

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/services/bookmark_service.dart';
 import '../../../domain/models/lesson_bookmark.dart';
@@ -327,10 +328,23 @@ class _BookmarksScreenState extends State<BookmarksScreen> {
                       child: Stack(
                         fit: StackFit.expand,
                         children: [
-                          Image.network(
-                            effectiveImage,
+                          CachedNetworkImage(
+                            imageUrl: effectiveImage,
                             fit: BoxFit.cover,
-                            errorBuilder: (_, _, _) => _buildFallbackIcon(),
+                            placeholder: (_, _) => Container(
+                              color: AppColors.backgroundSecondary,
+                              child: const Center(
+                                child: SizedBox(
+                                  width: 16,
+                                  height: 16,
+                                  child: CircularProgressIndicator(
+                                    color: AppColors.neonPrimary,
+                                    strokeWidth: 1.5,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            errorWidget: (_, _, _) => _buildFallbackIcon(),
                           ),
                           Container(
                             decoration: BoxDecoration(

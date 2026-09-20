@@ -1,0 +1,422 @@
+.wrapper {
+  position: relative;
+  width: 100vw;
+  height: 100dvh;
+  background: #02070E;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Ambient glow on desktop */
+.ambientGlow {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 191, 255, 0.12) 0%, rgba(0, 95, 158, 0.05) 50%, transparent 70%);
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Main Player Card Container */
+.playerCard {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 520px;
+  height: 94dvh;
+  max-height: 920px;
+  background: #061122;
+  border: 1px solid rgba(0, 191, 255, 0.2);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 191, 255, 0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Floating Navigation Arrows for Desktop */
+.sideArrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(6, 17, 34, 0.85);
+  border: 1px solid rgba(0, 191, 255, 0.3);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.sideArrow:hover:not(:disabled) {
+  background: var(--neon-primary);
+  color: var(--bg-main);
+  border-color: var(--neon-light);
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 0 20px rgba(0, 191, 255, 0.6);
+}
+
+.sideArrow:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+}
+
+.sideArrowLeft {
+  left: calc(50% - 330px);
+}
+
+.sideArrowRight {
+  right: calc(50% - 330px);
+}
+
+/* Header with Progress Bars */
+.playerHeader {
+  position: relative;
+  z-index: 5;
+  padding: 0.85rem 1rem 0.5rem;
+  background: linear-gradient(180deg, rgba(4, 13, 26, 0.95) 0%, rgba(4, 13, 26, 0.7) 70%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+/* Progress Bars Segments */
+.progressSegments {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+}
+
+.segmentTrack {
+  flex: 1;
+  height: 3.5px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.segmentFill {
+  height: 100%;
+  background: var(--neon-primary);
+  border-radius: 2px;
+  transition: width 0.2s linear;
+  box-shadow: 0 0 8px rgba(0, 191, 255, 0.8);
+}
+
+/* Top Meta Row */
+.metaRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.menuBtn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-primary);
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.menuBtn:hover {
+  background: rgba(0, 191, 255, 0.2);
+  color: var(--neon-primary);
+  border-color: var(--neon-primary);
+}
+
+.lessonTitles {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.lessonModuleTag {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  color: var(--neon-primary);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.lessonMainTitle {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 260px;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-shrink: 0;
+}
+
+.headerIconBtn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.headerIconBtn:hover {
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.headerIconBtn.active {
+  color: var(--neon-primary);
+}
+
+/* Touch & Click Navigation Overlay Zones */
+.touchZones {
+  position: absolute;
+  top: 65px;
+  left: 0;
+  right: 0;
+  bottom: 50px;
+  display: flex;
+  z-index: 2;
+}
+
+.zoneLeft {
+  width: 35%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.zoneRight {
+  width: 65%;
+  height: 100%;
+  cursor: pointer;
+}
+
+/* Scrollable Screen Content Container */
+.contentArea {
+  position: relative;
+  z-index: 3;
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem 1.25rem;
+  pointer-events: auto;
+}
+
+.contentArea::-webkit-scrollbar {
+  width: 4px;
+}
+
+.contentArea::-webkit-scrollbar-thumb {
+  background: rgba(0, 191, 255, 0.3);
+  border-radius: 2px;
+}
+
+.screenTransition {
+  animation: fadeIn 0.25s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Footer Controls */
+.playerFooter {
+  position: relative;
+  z-index: 5;
+  padding: 0.6rem 1rem;
+  background: #040D1A;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.screenCounter {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+.footerActions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.navActionBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.navActionBtn:hover:not(:disabled) {
+  background: rgba(0, 191, 255, 0.15);
+  border-color: var(--neon-primary);
+  color: var(--neon-primary);
+}
+
+.navActionBtn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.primaryActionBtn {
+  background: linear-gradient(135deg, var(--neon-primary) 0%, var(--royal-blue) 100%);
+  border: none;
+  color: #FFFFFF;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.45rem 0.9rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  box-shadow: 0 0 15px rgba(0, 191, 255, 0.3);
+  transition: all 0.2s ease;
+}
+
+.primaryActionBtn:hover {
+  filter: brightness(1.15);
+  box-shadow: 0 0 25px rgba(0, 191, 255, 0.5);
+  transform: translateY(-1px);
+}
+
+/* Session Finished Screen */
+.finishedContainer {
+  position: relative;
+  z-index: 4;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  animation: fadeIn 0.4s ease;
+}
+
+.trophyCircle {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: rgba(0, 191, 255, 0.15);
+  border: 2px solid var(--neon-primary);
+  color: var(--neon-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 0 30px rgba(0, 191, 255, 0.4);
+}
+
+.finishedTitle {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin-bottom: 0.5rem;
+}
+
+.finishedSubtitle {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  max-width: 320px;
+  margin-bottom: 1.75rem;
+}
+
+.finishedActions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 280px;
+}
+
+.restartBtn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--text-secondary);
+  padding: 0.65rem 1rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.restartBtn:hover {
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Mobile Full-Screen Adaptations (< 768px) */
+@media (max-width: 768px) {
+  .playerCard {
+    width: 100%;
+    height: 100dvh;
+    max-height: none;
+    border-radius: 0;
+    border: none;
+  }
+
+  .sideArrow {
+    display: none;
+  }
+}

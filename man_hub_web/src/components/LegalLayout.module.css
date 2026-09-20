@@ -5,6 +5,7 @@
   background-color: var(--bg-main);
   position: relative;
   overflow-x: hidden;
+  padding-top: var(--header-height);
 }
 
 .legalHeader {

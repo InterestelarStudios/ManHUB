@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:firebase_ui_firestore/firebase_ui_firestore.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/repositories/product_repository.dart';
@@ -71,12 +72,13 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
             ),
             const SizedBox(height: 8),
             Expanded(
-              child: StreamBuilder<List<Product>>(
-                stream: _productRepository.getProductsStream(
+              child: FirestoreQueryBuilder<Product>(
+                query: _productRepository.getProductsQuery(
                   category: _selectedCategory == 'Todos' ? null : _selectedCategory,
                 ),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
+                pageSize: 15,
+                builder: (context, snapshot, _) {
+                  if (snapshot.isFetching && snapshot.docs.isEmpty) {
                     return _buildLoadingState();
                   }
 
@@ -84,13 +86,40 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
                     return _buildErrorState();
                   }
 
-                  final products = snapshot.data ?? [];
-
-                  if (products.isEmpty) {
+                  if (snapshot.docs.isEmpty) {
                     return _buildEmptyState();
                   }
 
-                  return _buildProductList(products);
+                  return ListView.separated(
+                    physics: const BouncingScrollPhysics(),
+                    padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+                    itemCount: snapshot.docs.length + (snapshot.hasMore ? 1 : 0),
+                    separatorBuilder: (_, _) => const SizedBox(height: 16),
+                    itemBuilder: (context, index) {
+                      if (snapshot.hasMore && index + 2 >= snapshot.docs.length) {
+                        snapshot.fetchMore();
+                      }
+
+                      if (index >= snapshot.docs.length) {
+                        return const Center(
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(vertical: 16.0),
+                            child: SizedBox(
+                              width: 24,
+                              height: 24,
+                              child: CircularProgressIndicator(
+                                color: AppColors.neonPrimary,
+                                strokeWidth: 2,
+                              ),
+                            ),
+                          ),
+                        );
+                      }
+
+                      final product = snapshot.docs[index].data();
+                      return _buildProductCard(product);
+                    },
+                  );
                 },
               ),
             ),
@@ -306,19 +335,6 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildProductList(List<Product> products) {
-    return ListView.separated(
-      physics: const BouncingScrollPhysics(),
-      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
-      itemCount: products.length,
-      separatorBuilder: (_, _) => const SizedBox(height: 16),
-      itemBuilder: (context, index) {
-        final product = products[index];
-        return _buildProductCard(product);
-      },
     );
   }
 

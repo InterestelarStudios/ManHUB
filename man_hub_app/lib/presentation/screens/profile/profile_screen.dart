@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/services/auth_service.dart';
 import '../../../core/services/bookmark_service.dart';
 import '../../widgets/subscription_bottom_sheet.dart';
+import '../../widgets/profile_photo_bottom_sheet.dart';
 import '../auth/auth_screen.dart';
 import 'edit_profile_screen.dart';
 import 'personalized_profile_screen.dart';
@@ -10,6 +12,9 @@ import 'bookmarks_screen.dart';
 import 'achievements_progress_screen.dart';
 import 'account_management_screen.dart';
 import 'about_app_screen.dart';
+import 'face_scan_capture_screen.dart';
+import 'face_scan_result_screen.dart';
+import '../../../core/services/face_scan_service.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -164,6 +169,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
+  void _openVisagismSummary(String faceShape) {
+    final result = FaceScanService().getPreCalibratedResult(faceShape);
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => FaceScanResultScreen(
+          result: result,
+          isSummaryMode: true,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final isLoggedIn = _authService.isLoggedIn;
@@ -304,7 +321,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
             child: Column(
               children: [
                 GestureDetector(
-                  onTap: () => _openEditProfile(user),
+                  onTap: () => ProfilePhotoBottomSheet.show(
+                    context,
+                    currentPhotoUrl: user.profileImageUrl,
+                    onPhotoChanged: (_) {
+                      setState(() {});
+                    },
+                  ),
                   child: Stack(
                     children: [
                       Container(
@@ -329,10 +352,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         child: hasCustomPhoto
                             ? ClipOval(
-                                child: Image.network(
-                                  user.profileImageUrl!,
+                                child: CachedNetworkImage(
+                                  imageUrl: user.profileImageUrl!,
                                   fit: BoxFit.cover,
-                                  errorBuilder: (context, error, stackTrace) =>
+                                  placeholder: (context, url) => const Center(
+                                    child: SizedBox(
+                                      width: 24,
+                                      height: 24,
+                                      child: CircularProgressIndicator(
+                                        color: AppColors.neonPrimary,
+                                        strokeWidth: 2,
+                                      ),
+                                    ),
+                                  ),
+                                  errorWidget: (context, url, error) =>
                                       _buildAvatarFallback(user.name),
                                 ),
                               )
@@ -352,7 +385,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                           ),
                           child: const Icon(
-                            Icons.edit,
+                            Icons.photo_camera_rounded,
                             color: Colors.white,
                             size: 13,
                           ),
@@ -437,7 +470,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 if (user.bodyType != null && user.bodyType!.isNotEmpty)
                   _buildStatBadge(Icons.accessibility_new_rounded, user.bodyType!),
                 if (user.faceShape != null && user.faceShape!.isNotEmpty)
-                  _buildStatBadge(Icons.face_rounded, 'Rosto ${user.faceShape!}'),
+                  _buildStatBadge(
+                    Icons.face_rounded,
+                    'Rosto ${user.faceShape!}',
+                    onTap: () => _openVisagismSummary(user.faceShape!),
+                  ),
                 if (user.stylePreference != null && user.stylePreference!.isNotEmpty)
                   _buildStatBadge(Icons.style_rounded, user.stylePreference!),
               ],
@@ -531,6 +568,31 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ],
 
           const SizedBox(height: 20),
+          if (user.faceShape != null && user.faceShape!.isNotEmpty) ...[
+            _buildProfileOption(
+              icon: Icons.face_retouching_natural_rounded,
+              title: 'Meu Visagismo (${user.faceShape})',
+              subtitle: 'Recomendações de corte, barba e armações',
+              badge: 'RESUMO',
+              onTap: () => _openVisagismSummary(user.faceShape!),
+            ),
+            const SizedBox(height: 12),
+          ] else ...[
+            _buildProfileOption(
+              icon: Icons.face_retouching_natural_rounded,
+              title: 'Scan Facial por IA',
+              subtitle: 'Mapeie a geometria do seu rosto e visagismo',
+              badge: 'NOVO',
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) => const FaceScanCaptureScreen(),
+                  ),
+                );
+              },
+            ),
+            const SizedBox(height: 12),
+          ],
           _buildProfileOption(
             icon: Icons.bookmarks_outlined,
             title: 'Telas Salvas & Favoritos',
@@ -619,15 +681,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  Widget _buildStatBadge(IconData icon, String label) {
-    return Container(
+  Widget _buildStatBadge(IconData icon, String label, {VoidCallback? onTap}) {
+    final badge = Container(
       margin: const EdgeInsets.symmetric(horizontal: 4),
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
-        color: AppColors.card,
+        color: onTap != null
+            ? AppColors.royalBlue.withValues(alpha: 0.15)
+            : AppColors.card,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: AppColors.neonPrimary.withValues(alpha: 0.3),
+          color: onTap != null
+              ? AppColors.neonPrimary.withValues(alpha: 0.6)
+              : AppColors.neonPrimary.withValues(alpha: 0.3),
         ),
       ),
       child: Row(
@@ -643,9 +709,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
               fontWeight: FontWeight.w600,
             ),
           ),
+          if (onTap != null) ...[
+            const SizedBox(width: 4),
+            const Icon(
+              Icons.chevron_right_rounded,
+              size: 13,
+              color: AppColors.neonLight,
+            ),
+          ],
         ],
       ),
     );
+
+    if (onTap != null) {
+      return InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(12),
+        child: badge,
+      );
+    }
+    return badge;
   }
 
   Widget _buildSubscriptionTile() {

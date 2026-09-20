@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/services/auth_service.dart';
+import '../../widgets/profile_photo_bottom_sheet.dart';
 import 'personalized_profile_screen.dart';
 
 class EditProfileScreen extends StatefulWidget {
@@ -92,79 +94,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   }
 
   void _showChangePhotoDialog() {
-    final tempController = TextEditingController(
-      text: _imageUrlController.text,
-    );
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          backgroundColor: AppColors.card,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(18),
-          ),
-          title: const Text(
-            'Foto de Perfil',
-            style: TextStyle(color: AppColors.textPrimary),
-          ),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'Insira a URL da sua foto de perfil:',
-                style: TextStyle(color: AppColors.textSecondary, fontSize: 13),
-              ),
-              const SizedBox(height: 14),
-              TextField(
-                controller: tempController,
-                style: const TextStyle(color: AppColors.textPrimary),
-                decoration: const InputDecoration(
-                  labelText: 'URL da Imagem',
-                  hintText: 'https://...',
-                  prefixIcon: Icon(Icons.link, color: AppColors.neonPrimary),
-                ),
-              ),
-            ],
-          ),
-          actions: [
-            if (_imageUrlController.text.trim().isNotEmpty)
-              TextButton(
-                onPressed: () {
-                  setState(() {
-                    _imageUrlController.clear();
-                  });
-                  Navigator.pop(context);
-                },
-                child: const Text(
-                  'Remover Foto',
-                  style: TextStyle(color: AppColors.error),
-                ),
-              ),
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text(
-                'Cancelar',
-                style: TextStyle(color: AppColors.textSecondary),
-              ),
-            ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.royalBlue,
-              ),
-              onPressed: () {
-                setState(() {
-                  _imageUrlController.text = tempController.text.trim();
-                });
-                Navigator.pop(context);
-              },
-              child: const Text(
-                'Salvar Foto',
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
-          ],
-        );
+    ProfilePhotoBottomSheet.show(
+      context,
+      currentPhotoUrl: _imageUrlController.text.trim(),
+      onPhotoChanged: (newUrl) {
+        if (mounted) {
+          setState(() {
+            _imageUrlController.text = newUrl ?? '';
+          });
+        }
       },
     );
   }
@@ -249,10 +187,20 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         ),
                         child: hasCustomImage
                             ? ClipOval(
-                                child: Image.network(
-                                  currentImageUrl,
+                                child: CachedNetworkImage(
+                                  imageUrl: currentImageUrl,
                                   fit: BoxFit.cover,
-                                  errorBuilder: (context, error, stackTrace) =>
+                                  placeholder: (context, url) => const Center(
+                                    child: SizedBox(
+                                      width: 24,
+                                      height: 24,
+                                      child: CircularProgressIndicator(
+                                        color: AppColors.neonPrimary,
+                                        strokeWidth: 2,
+                                      ),
+                                    ),
+                                  ),
+                                  errorWidget: (context, url, error) =>
                                       _buildDefaultAvatar(),
                                 ),
                               )

@@ -110,6 +110,7 @@ class HaircutService extends ChangeNotifier {
       _haircutsSubscription = fs
           .collection('haircuts')
           .orderBy('createdAt', descending: true)
+          .limit(40)
           .snapshots()
           .listen((snapshot) {
         _haircuts.clear();

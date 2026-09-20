@@ -553,6 +553,37 @@ class AuthService extends ChangeNotifier {
     }
   }
 
+  /// Atualiza exclusivamente a foto de perfil sem interferir nos outros campos do usuário
+  Future<void> updateProfilePhoto(String? profileImageUrl) async {
+    final user = _auth?.currentUser;
+    final firestore = _firestore;
+    final trimmedUrl = (profileImageUrl != null && profileImageUrl.trim().isNotEmpty)
+        ? profileImageUrl.trim()
+        : null;
+
+    try {
+      if (user != null && firestore != null) {
+        await firestore.collection('users').doc(user.uid).set({
+          'profileImageUrl': trimmedUrl,
+          'updatedAt': FieldValue.serverTimestamp(),
+        }, SetOptions(merge: true));
+
+        try {
+          await user.updatePhotoURL(trimmedUrl);
+        } catch (_) {
+          // Ignora se der erro pontual na sincronização de displayName/photoURL do Firebase Auth
+        }
+      }
+
+      if (_currentUser != null) {
+        _currentUser = _currentUser!.copyWith(profileImageUrl: trimmedUrl);
+        notifyListeners();
+      }
+    } catch (e) {
+      throw 'Erro ao atualizar foto de perfil: $e';
+    }
+  }
+
   /// Salva especificamente o diagnóstico personalizado do usuário
   Future<void> updatePersonalizedProfile({
     String? height,

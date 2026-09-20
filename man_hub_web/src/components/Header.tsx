@@ -1,17 +1,28 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import styles from "./Header.module.css";
 import Image from "next/image";
-import { Sparkles, Menu, X } from "lucide-react";
+import { Sparkles, Menu, X, User } from "lucide-react";
+import { useAuth } from "@/lib/context/AuthContext";
+import UserMenu from "@/components/auth/UserMenu";
+import AuthModal from "@/components/auth/AuthModal";
 
 interface HeaderProps {
   onOpenCheckout?: () => void;
 }
 
 export default function Header({ onOpenCheckout }: HeaderProps) {
+  const pathname = usePathname();
+  const { isLoggedIn } = useAuth();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+
+  const isHome = pathname === "/";
+  const isTrainings = pathname?.startsWith("/treinamentos");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,7 +35,7 @@ export default function Header({ onOpenCheckout }: HeaderProps) {
   return (
     <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
       <div className={`container ${styles.inner}`}>
-        <a href="#" className={styles.logo}>
+        <Link href="/" className={styles.logo}>
           <Image
             src="/manhub_icon.png"
             alt="Man Hub Logo"
@@ -37,25 +48,52 @@ export default function Header({ onOpenCheckout }: HeaderProps) {
             <span className={styles.logoTitle}>MAN HUB</span>
             <span className={styles.logoSubtitle}>Evolução Masculina</span>
           </div>
-        </a>
+        </Link>
 
         <nav className={styles.nav}>
-          <a href="#app" className={styles.navLink}>O App</a>
-          <a href="#pilares" className={styles.navLink}>Pilares</a>
-          <a href="#treinamentos" className={styles.navLink}>Treinamentos</a>
-          <a href="#diagnostico" className={styles.navLink}>Diagnóstico</a>
-          <a href="#depoimentos" className={styles.navLink}>Depoimentos</a>
-          <a href="#faq" className={styles.navLink}>FAQ</a>
+          <Link
+            href="/"
+            className={`${styles.navLink} ${isHome ? styles.activeNavLink : ""}`}
+          >
+            {isHome && <span className={styles.activeDot} />}
+            Início
+          </Link>
+          <Link
+            href="/treinamentos"
+            className={`${styles.navLink} ${isTrainings ? styles.activeNavLink : ""}`}
+          >
+            {isTrainings && <span className={styles.activeDot} />}
+            Treinamentos
+          </Link>
+          <Link href="/#app" className={styles.navLink}>O App</Link>
+          <Link href="/#pilares" className={styles.navLink}>Pilares</Link>
+          <Link href="/#diagnostico" className={styles.navLink}>Diagnóstico</Link>
+          <Link href="/#depoimentos" className={styles.navLink}>Depoimentos</Link>
+          <Link href="/#faq" className={styles.navLink}>FAQ</Link>
         </nav>
 
         <div className={styles.headerAction}>
-          <button
-            onClick={onOpenCheckout}
-            className={styles.ctaBtn}
-          >
-            <Sparkles size={15} />
-            <span>Assinar • Comprar</span>
-          </button>
+          {isLoggedIn ? (
+            <UserMenu />
+          ) : (
+            <>
+              <button
+                onClick={() => setIsAuthModalOpen(true)}
+                className={styles.loginBtn}
+              >
+                <User size={15} />
+                <span>Entrar</span>
+              </button>
+
+              <button
+                onClick={() => setIsAuthModalOpen(true)}
+                className={styles.ctaBtn}
+              >
+                <Sparkles size={15} />
+                <span>Iniciar Jornada</span>
+              </button>
+            </>
+          )}
 
           <button
             className={styles.mobileMenuBtn}
@@ -67,59 +105,73 @@ export default function Header({ onOpenCheckout }: HeaderProps) {
         </div>
       </div>
 
+      <AuthModal
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
+      />
+
       {mobileMenuOpen && (
         <div className={`${styles.mobileNav} ${styles.mobileOpen}`}>
-          <a
-            href="#app"
-            className={styles.navLink}
+          <Link
+            href="/"
+            className={`${styles.mobileNavLink} ${isHome ? styles.activeMobileNavLink : ""}`}
             onClick={() => setMobileMenuOpen(false)}
           >
-            O App
-          </a>
-          <a
-            href="#pilares"
-            className={styles.navLink}
+            <span>Início</span>
+            {isHome && <span className={styles.mobileActiveDot} />}
+          </Link>
+          <Link
+            href="/treinamentos"
+            className={`${styles.mobileNavLink} ${isTrainings ? styles.activeMobileNavLink : ""}`}
             onClick={() => setMobileMenuOpen(false)}
           >
-            Pilares
-          </a>
-          <a
-            href="#treinamentos"
-            className={styles.navLink}
+            <span>Treinamentos</span>
+            {isTrainings && <span className={styles.mobileActiveDot} />}
+          </Link>
+          <Link
+            href="/#app"
+            className={styles.mobileNavLink}
             onClick={() => setMobileMenuOpen(false)}
           >
-            Treinamentos
-          </a>
-          <a
-            href="#diagnostico"
-            className={styles.navLink}
+            <span>O App</span>
+          </Link>
+          <Link
+            href="/#pilares"
+            className={styles.mobileNavLink}
             onClick={() => setMobileMenuOpen(false)}
           >
-            Diagnóstico
-          </a>
-          <a
-            href="#depoimentos"
-            className={styles.navLink}
+            <span>Pilares</span>
+          </Link>
+          <Link
+            href="/#diagnostico"
+            className={styles.mobileNavLink}
             onClick={() => setMobileMenuOpen(false)}
           >
-            Depoimentos
-          </a>
-          <a
-            href="#faq"
-            className={styles.navLink}
+            <span>Diagnóstico</span>
+          </Link>
+          <Link
+            href="/#depoimentos"
+            className={styles.mobileNavLink}
             onClick={() => setMobileMenuOpen(false)}
           >
-            FAQ
-          </a>
-          <a
-            href="#download"
+            <span>Depoimentos</span>
+          </Link>
+          <Link
+            href="/#faq"
+            className={styles.mobileNavLink}
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            <span>FAQ</span>
+          </Link>
+          <Link
+            href="/treinamentos"
             className={styles.ctaBtn}
             onClick={() => setMobileMenuOpen(false)}
             style={{ textAlign: "center", justifyContent: "center" }}
           >
             <Sparkles size={16} />
-            <span>Garantir Acesso VIP • Em Breve</span>
-          </a>
+            <span>Começar Agora • Treinamentos</span>
+          </Link>
         </div>
       )}
     </header>

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/services/outfit_service.dart';
 import '../../../core/services/haircut_service.dart';
@@ -213,12 +214,27 @@ class _WardrobeScreenState extends State<WardrobeScreen>
                         topLeft: Radius.circular(15),
                         bottomLeft: Radius.circular(15),
                       ),
-                      child: Image.network(
-                        outfit.imageUrl,
+                      child: CachedNetworkImage(
+                        imageUrl: outfit.imageUrl,
                         width: 110,
                         height: 120,
                         fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) => Container(
+                        placeholder: (context, url) => Container(
+                          width: 110,
+                          height: 120,
+                          color: AppColors.backgroundMain,
+                          child: const Center(
+                            child: SizedBox(
+                              width: 20,
+                              height: 20,
+                              child: CircularProgressIndicator(
+                                color: AppColors.neonPrimary,
+                                strokeWidth: 2,
+                              ),
+                            ),
+                          ),
+                        ),
+                        errorWidget: (context, url, error) => Container(
                           width: 110,
                           height: 120,
                           color: AppColors.backgroundMain,
@@ -400,12 +416,27 @@ class _WardrobeScreenState extends State<WardrobeScreen>
                       child: Stack(
                         children: [
                           if (hasImages)
-                            Image.network(
-                              primaryImage,
+                            CachedNetworkImage(
+                              imageUrl: primaryImage,
                               width: 110,
                               height: 120,
                               fit: BoxFit.cover,
-                              errorBuilder: (context, error, stackTrace) => Container(
+                              placeholder: (context, url) => Container(
+                                width: 110,
+                                height: 120,
+                                color: AppColors.backgroundMain,
+                                child: const Center(
+                                  child: SizedBox(
+                                    width: 20,
+                                    height: 20,
+                                    child: CircularProgressIndicator(
+                                      color: AppColors.neonPrimary,
+                                      strokeWidth: 2,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              errorWidget: (context, url, error) => Container(
                                 width: 110,
                                 height: 120,
                                 color: AppColors.backgroundMain,

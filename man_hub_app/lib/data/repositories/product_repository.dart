@@ -10,6 +10,19 @@ class ProductRepository {
   CollectionReference<Map<String, dynamic>> get _collection =>
       _firestore.collection('products');
 
+  Query<Product> getProductsQuery({String? category}) {
+    Query<Map<String, dynamic>> query = _collection;
+
+    if (category != null && category.isNotEmpty && category != 'Todos') {
+      query = query.where('category', isEqualTo: category);
+    }
+
+    return query.withConverter<Product>(
+      fromFirestore: (snapshot, _) => Product.fromFirestore(snapshot),
+      toFirestore: (product, _) => product.toMap(),
+    );
+  }
+
   Stream<List<Product>> getProductsStream({String? category}) {
     Query<Map<String, dynamic>> query = _collection;
 

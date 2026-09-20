@@ -1,8 +1,5 @@
 import styles from "./LegalLayout.module.css";
-import Image from "next/image";
-import Link from "next/link";
-import Footer from "./Footer";
-import { ArrowLeft, Shield } from "lucide-react";
+import { Shield } from "lucide-react";
 
 interface LegalLayoutProps {
   badge: string;
@@ -19,26 +16,6 @@ export default function LegalLayout({
 }: LegalLayoutProps) {
   return (
     <div className={styles.legalPage}>
-      <header className={styles.legalHeader}>
-        <div className={`container ${styles.headerInner}`}>
-          <Link href="/" className={styles.logoWrap}>
-            <Image
-              src="/manhub_icon.png"
-              alt="Man Hub Logo"
-              width={34}
-              height={34}
-              style={{ objectFit: "contain", filter: "drop-shadow(0 0 8px rgba(0, 191, 255, 0.6))" }}
-            />
-            <span className={styles.logoTitle}>MAN HUB</span>
-          </Link>
-
-          <Link href="/" className={styles.backBtn}>
-            <ArrowLeft size={16} />
-            <span>Voltar ao Início</span>
-          </Link>
-        </div>
-      </header>
-
       <main className={styles.mainContent}>
         <div className="container" style={{ maxWidth: "860px" }}>
           <div className={styles.contentCard}>
@@ -57,8 +34,6 @@ export default function LegalLayout({
           </div>
         </div>
       </main>
-
-      <Footer />
     </div>
   );
 }

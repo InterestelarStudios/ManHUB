@@ -59,6 +59,11 @@ export const metadata: Metadata = {
   },
 };
 
+import { AuthProvider } from "@/lib/context/AuthContext";
+import { ProgressProvider } from "@/lib/context/ProgressContext";
+import GlobalNavbar from "@/components/GlobalNavbar";
+import GlobalFooter from "@/components/GlobalFooter";
+
 export default function RootLayout({
   children,
 }: {
@@ -70,7 +75,15 @@ export default function RootLayout({
       className={`${outfit.variable} ${plusJakarta.variable}`}
       suppressHydrationWarning
     >
-      <body suppressHydrationWarning>{children}</body>
+      <body suppressHydrationWarning>
+        <AuthProvider>
+          <ProgressProvider>
+            <GlobalNavbar />
+            {children}
+            <GlobalFooter />
+          </ProgressProvider>
+        </AuthProvider>
+      </body>
     </html>
   );
 }

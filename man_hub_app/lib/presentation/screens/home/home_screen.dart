@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/services/auth_service.dart';
 import '../../../core/services/user_progress_service.dart';
@@ -239,10 +240,20 @@ class _HomeScreenState extends State<HomeScreen> {
                   ? (user.profileImageUrl != null &&
                             user.profileImageUrl!.isNotEmpty
                         ? ClipOval(
-                            child: Image.network(
-                              user.profileImageUrl!,
+                            child: CachedNetworkImage(
+                              imageUrl: user.profileImageUrl!,
                               fit: BoxFit.cover,
-                              errorBuilder: (context, error, stackTrace) =>
+                              placeholder: (context, url) => const Center(
+                                child: SizedBox(
+                                  width: 18,
+                                  height: 18,
+                                  child: CircularProgressIndicator(
+                                    color: AppColors.neonPrimary,
+                                    strokeWidth: 2,
+                                  ),
+                                ),
+                              ),
+                              errorWidget: (context, url, error) =>
                                   _buildAvatarInitial(user.name),
                             ),
                           )
@@ -774,7 +785,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: AppColors.card,
                   borderRadius: BorderRadius.circular(12),
                   image: DecorationImage(
-                    image: NetworkImage(imageUrl),
+                    image: CachedNetworkImageProvider(imageUrl),
                     fit: BoxFit.cover,
                     opacity: 0.7,
                   ),
@@ -1130,10 +1141,23 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Stack(
                     fit: StackFit.expand,
                     children: [
-                      Image.network(
-                        imageUrl,
+                      CachedNetworkImage(
+                        imageUrl: imageUrl,
                         fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) => Container(
+                        placeholder: (context, url) => Container(
+                          color: AppColors.card,
+                          child: const Center(
+                            child: SizedBox(
+                              width: 24,
+                              height: 24,
+                              child: CircularProgressIndicator(
+                                color: AppColors.neonPrimary,
+                                strokeWidth: 2,
+                              ),
+                            ),
+                          ),
+                        ),
+                        errorWidget: (context, url, error) => Container(
                           color: AppColors.card,
                           alignment: Alignment.center,
                           child: const Icon(

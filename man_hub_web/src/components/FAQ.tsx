@@ -23,7 +23,7 @@ const FAQS: FAQItem[] = [
   {
     question: "O aplicativo já está liberado para download nas lojas?",
     answer:
-      "O Man Hub está em fase final de homologação técnica e testes fechados. Ele será lançado muito em breve oficialmente na App Store (iOS) e Google Play (Android). Cadastre seu e-mail na lista VIP desta página para receber o link prioritário de acesso no momento exato do lançamento.",
+      "A plataforma web do Man Hub já está totalmente ativa com os treinamentos oficiais em formato Stories liberados. O aplicativo mobile nativo está em fase final de homologação técnica e revisão nas lojas Google Play e App Store. Você já pode criar sua conta e evoluir diretamente pelo navegador!",
   },
   {
     question: "Como funcionam os treinamentos em formato Stories?",

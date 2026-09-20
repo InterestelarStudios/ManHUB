@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import '../../domain/models/training.dart';
 import '../../data/repositories/training_repository.dart';
 import '../../core/theme/app_colors.dart';
@@ -487,10 +488,23 @@ class _CourseDashboardScreenState extends State<CourseDashboardScreen> {
                 child: Stack(
                   children: [
                     Positioned.fill(
-                      child: Image.network(
-                        training.coverImageUrl ?? '',
+                      child: CachedNetworkImage(
+                        imageUrl: training.coverImageUrl ?? '',
                         fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) => Container(
+                        placeholder: (context, url) => Container(
+                          color: AppColors.backgroundSecondary,
+                          child: const Center(
+                            child: SizedBox(
+                              width: 20,
+                              height: 20,
+                              child: CircularProgressIndicator(
+                                color: AppColors.neonPrimary,
+                                strokeWidth: 2,
+                              ),
+                            ),
+                          ),
+                        ),
+                        errorWidget: (context, error, stackTrace) => Container(
                           decoration: const BoxDecoration(
                             gradient: LinearGradient(
                               begin: Alignment.topLeft,

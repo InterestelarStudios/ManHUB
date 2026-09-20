@@ -13,6 +13,7 @@ import {
   where,
   getDocs,
 } from "firebase/firestore";
+import { sendPurchaseConfirmationEmail } from "@/lib/email/sendEmail";
 
 export async function POST(req: NextRequest) {
   try {
@@ -224,6 +225,35 @@ export async function POST(req: NextRequest) {
               { merge: true }
             );
           }
+        }
+      }
+
+      // 5. Envia e-mail de confirmação e agradecimento para o comprador
+      if (payerEmail) {
+        try {
+          const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://manhub.app";
+          let itemName = "Assinatura Man Hub Pass";
+          if (itemType === "training") {
+            itemName = "Treinamento Especializado";
+            if (itemId) {
+              const tSnap = await getDoc(doc(db, "trainings", String(itemId)));
+              if (tSnap.exists() && tSnap.data()?.title) {
+                itemName = tSnap.data().title;
+              }
+            }
+          }
+
+          await sendPurchaseConfirmationEmail({
+            userName: ref?.userName || metadata.user_name || undefined,
+            userEmail: payerEmail,
+            itemName,
+            itemType: itemType === "pass" ? "pass" : "training",
+            amount: Number(paymentData.transaction_amount || 0),
+            paymentId: String(paymentId),
+            appUrl,
+          });
+        } catch (emailErr) {
+          console.error("[Webhook] Erro não-bloqueante ao enviar email de confirmação:", emailErr);
         }
       }
     }

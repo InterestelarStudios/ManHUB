@@ -44,6 +44,19 @@ export async function POST(req: NextRequest) {
     // 1. ASSINATURA RECORRENTE MENSAL (MAN HUB PASS) -> MERCADO PAGO PREAPPROVAL
     // =========================================================================
     if (itemType === "pass") {
+      // Mercado Pago Preapproval exige estritamente uma URL pública com protocolo HTTPS para o back_url
+      let subBackUrl = `${appUrl}/payment/success`;
+      if (!subBackUrl.startsWith("https://") || subBackUrl.includes("localhost") || subBackUrl.includes("127.0.0.1")) {
+        subBackUrl = "https://manhub.app/payment/success";
+      }
+
+      // Validação do email do pagador para a API de assinaturas do MP
+      const validEmailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const cleanUserEmail =
+        userEmail && validEmailRegex.test(userEmail.trim())
+          ? userEmail.trim().toLowerCase()
+          : "contato@manhub.app";
+
       const subscriptionPayload = {
         reason: "Man Hub Pass (Acesso Ilimitado)",
         auto_recurring: {
@@ -52,8 +65,8 @@ export async function POST(req: NextRequest) {
           transaction_amount: 49.90,
           currency_id: "BRL",
         },
-        back_url: `${appUrl}/payment/subscription`,
-        payer_email: userEmail && userEmail.includes("@") ? userEmail.trim() : "contato@manhub.com.br",
+        back_url: subBackUrl,
+        payer_email: cleanUserEmail,
         external_reference: `${userId}___pass___man_hub_pass`,
         status: "pending",
       };
@@ -70,8 +83,15 @@ export async function POST(req: NextRequest) {
       if (!subResponse.ok) {
         const errData = await subResponse.text();
         console.error("Erro ao criar assinatura recorrente no Mercado Pago:", errData);
+        let errorMsg = "Erro ao gerar assinatura no Mercado Pago";
+        try {
+          const jsonErr = JSON.parse(errData);
+          if (jsonErr.message) {
+            errorMsg = `Mercado Pago: ${jsonErr.message}`;
+          }
+        } catch (_) {}
         return NextResponse.json(
-          { error: "Erro ao gerar assinatura no Mercado Pago", details: errData },
+          { error: errorMsg, details: errData },
           { status: subResponse.status, headers: { "Access-Control-Allow-Origin": "*" } }
         );
       }
