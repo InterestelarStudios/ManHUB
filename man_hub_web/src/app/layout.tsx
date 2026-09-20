@@ -63,6 +63,7 @@ import { AuthProvider } from "@/lib/context/AuthContext";
 import { ProgressProvider } from "@/lib/context/ProgressContext";
 import GlobalNavbar from "@/components/GlobalNavbar";
 import GlobalFooter from "@/components/GlobalFooter";
+import TrackingScripts from "@/components/tracking/TrackingScripts";
 
 export default function RootLayout({
   children,
@@ -76,6 +77,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body suppressHydrationWarning>
+        <TrackingScripts />
         <AuthProvider>
           <ProgressProvider>
             <GlobalNavbar />

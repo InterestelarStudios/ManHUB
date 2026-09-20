@@ -21,6 +21,7 @@ import {
 } from "firebase/firestore";
 import { auth, db } from "@/lib/firebase";
 import { AuthContextType, UserProfile } from "@/lib/types/auth";
+import { trackCompleteRegistration } from "@/lib/tracking/pixel";
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
@@ -128,6 +129,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
                 }
               } catch (_) {}
 
+              // Rastreamento de conversão de cadastro
+              trackCompleteRegistration("google");
+
               setProfile(newProfile);
               setLoading(false);
             }
@@ -182,6 +186,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           }),
         }).catch((e) => console.warn("[Auth] Erro não-bloqueante ao disparar boas-vindas:", e));
       } catch (_) {}
+
+      // Rastreamento de conversão de cadastro
+      trackCompleteRegistration("email");
     }
   };
 

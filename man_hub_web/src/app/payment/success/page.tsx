@@ -1,8 +1,25 @@
+"use client";
+
+import React, { useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { CheckCircle2, ArrowRight } from "lucide-react";
+import { trackPurchase } from "@/lib/tracking/pixel";
 
-export default function PaymentSuccessPage() {
+function PaymentSuccessContent() {
+  const searchParams = useSearchParams();
+  const paymentId = searchParams.get("payment_id") || searchParams.get("collection_id") || "order_" + Date.now();
+
+  useEffect(() => {
+    trackPurchase({
+      id: paymentId,
+      name: "Assinatura / Treinamento Man Hub",
+      price: 49.90,
+      currency: "BRL",
+    });
+  }, [paymentId]);
+
   return (
     <main
       style={{
@@ -116,5 +133,13 @@ export default function PaymentSuccessPage() {
         </div>
       </div>
     </main>
+  );
+}
+
+export default function PaymentSuccessPage() {
+  return (
+    <Suspense fallback={<div style={{ minHeight: "100vh", background: "var(--bg-main)" }} />}>
+      <PaymentSuccessContent />
+    </Suspense>
   );
 }

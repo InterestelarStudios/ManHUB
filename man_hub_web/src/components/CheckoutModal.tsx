@@ -16,6 +16,7 @@ import { db } from "@/lib/firebase";
 import { collection, onSnapshot } from "firebase/firestore";
 import { useAuth } from "@/lib/context/AuthContext";
 import AuthModal from "@/components/auth/AuthModal";
+import { trackInitiateCheckout } from "@/lib/tracking/pixel";
 
 interface CheckoutModalProps {
   isOpen: boolean;
@@ -140,6 +141,14 @@ export default function CheckoutModal({
       if (!res.ok || !data.initPoint) {
         throw new Error(data.error || "Falha ao gerar link de pagamento.");
       }
+
+      // Dispara evento de rastreamento para Pixels (Meta, Google, TikTok)
+      trackInitiateCheckout({
+        id: planType === "pass" ? "man_hub_pass" : selectedTraining,
+        name: currentTitle,
+        price: currentPrice,
+        isSubscription: planType === "pass",
+      });
 
       // Redireciona para o checkout oficial do Mercado Pago
       window.location.href = data.initPoint;

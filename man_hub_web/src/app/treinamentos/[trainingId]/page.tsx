@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import styles from "./CourseDetail.module.css";
@@ -9,6 +9,7 @@ import { useTrainings } from "@/lib/hooks/useTrainings";
 import CheckoutModal from "@/components/CheckoutModal";
 import { useAuth } from "@/lib/context/AuthContext";
 import { useProgress } from "@/lib/context/ProgressContext";
+import { trackViewContent } from "@/lib/tracking/pixel";
 import {
   Clock,
   Layers,
@@ -42,6 +43,17 @@ export default function CourseDetailPage() {
     totalSessions > 0
       ? Math.min(100, Math.round((completedCount / totalSessions) * 100))
       : 0;
+
+  useEffect(() => {
+    if (course) {
+      trackViewContent({
+        id: course.id,
+        name: course.title,
+        price: course.price,
+        category: course.category,
+      });
+    }
+  }, [course]);
 
   if (!course) {
     return (
