@@ -128,12 +128,36 @@ exports.createPaymentPreference = onRequest((req, res) => {
       // Cobrança automática mensal sem parcelamento
       // =======================================================================
       if (itemType === "pass") {
+        let passPrice = 49.90;
+        try {
+          const planDoc = await db
+              .collection("plans")
+              .doc("man_hub_pass")
+              .get();
+          if (planDoc.exists) {
+            const planData = planDoc.data();
+            if (typeof planData.price === "number" && planData.price > 0) {
+              passPrice = planData.price;
+            } else if (planData.price) {
+              const n = Number(planData.price);
+              if (!isNaN(n) && n > 0) passPrice = n;
+            }
+          } else if (price && !isNaN(Number(price)) && Number(price) > 0) {
+            passPrice = Number(price);
+          }
+        } catch (e) {
+          logger.warn("Erro ao buscar plano man_hub_pass no Firestore:", e);
+          if (price && !isNaN(Number(price)) && Number(price) > 0) {
+            passPrice = Number(price);
+          }
+        }
+
         const subscriptionPayload = {
           reason: "Man Hub Pass (Acesso Ilimitado)",
           auto_recurring: {
             frequency: 1,
             frequency_type: "months",
-            transaction_amount: 49.90,
+            transaction_amount: passPrice,
             currency_id: "BRL",
           },
           back_url: `${APP_URL}/payment/subscription`,
@@ -176,14 +200,15 @@ exports.createPaymentPreference = onRequest((req, res) => {
 
         const subData = await subResponse.json();
         logger.info(
-            `Assinatura recorrente gerada: ${subData.id} - R$ 49.90/mês`,
+            `Assinatura recorrente gerada: ${subData.id} ` +
+            `- R$ ${passPrice.toFixed(2)}/mês`,
         );
 
         return res.status(200).json({
           preferenceId: subData.id,
           initPoint: subData.init_point,
           sandboxInitPoint: subData.sandbox_init_point,
-          finalPrice: 49.90,
+          finalPrice: passPrice,
           isSubscription: true,
         });
       }

@@ -7,6 +7,7 @@ import '../../domain/models/user_progress.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/services/auth_service.dart';
 import '../../core/services/user_progress_service.dart';
+import '../../core/services/plan_service.dart';
 import '../widgets/purchase_bottom_sheet.dart';
 import 'session_player_screen.dart';
 
@@ -22,6 +23,7 @@ class CourseDetailScreen extends StatefulWidget {
 class _CourseDetailScreenState extends State<CourseDetailScreen> {
   final AuthService _authService = AuthService();
   final UserProgressService _progressService = UserProgressService();
+  final PlanService _planService = PlanService();
   int get _totalSessions => widget.training.modules.fold(0, (sum, m) => sum + m.sessions.length);
   bool _isPopping = false;
 
@@ -30,12 +32,14 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
     super.initState();
     _authService.addListener(_onStateChanged);
     _progressService.addListener(_onStateChanged);
+    _planService.addListener(_onStateChanged);
   }
 
   @override
   void dispose() {
     _authService.removeListener(_onStateChanged);
     _progressService.removeListener(_onStateChanged);
+    _planService.removeListener(_onStateChanged);
     super.dispose();
   }
 
@@ -636,7 +640,7 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        'Acesso vitalício por $originalPriceStr ou tudo no Pass (R\$ 49,90/mês)',
+                        'Acesso vitalício por $originalPriceStr ou tudo no Pass (${_planService.formattedMonthlyPrice})',
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(

@@ -5,6 +5,7 @@ import '../../data/repositories/training_repository.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/services/auth_service.dart';
 import '../../core/services/user_progress_service.dart';
+import '../../core/services/plan_service.dart';
 import 'course_detail_screen.dart';
 import '../widgets/subscription_bottom_sheet.dart';
 
@@ -21,6 +22,7 @@ class _CourseDashboardScreenState extends State<CourseDashboardScreen> {
   final TrainingRepository _repository = TrainingRepository();
   final AuthService _authService = AuthService();
   final UserProgressService _progressService = UserProgressService();
+  final PlanService _planService = PlanService();
 
   List<Training> _allTrainings = [];
   bool _isLoading = true;
@@ -431,14 +433,19 @@ class _CourseDashboardScreenState extends State<CourseDashboardScreen> {
             const SizedBox(height: 12),
 
             // Título Principal com largura total (sem cortes)
-            const Text(
-              'Desbloqueie tudo por apenas R\$ 49,90/mês',
-              style: TextStyle(
-                color: AppColors.textPrimary,
-                fontSize: 15,
-                fontWeight: FontWeight.bold,
-                letterSpacing: 0.2,
-              ),
+            ListenableBuilder(
+              listenable: _planService,
+              builder: (context, _) {
+                return Text(
+                  'Desbloqueie tudo por apenas ${_planService.formattedMonthlyPrice}',
+                  style: const TextStyle(
+                    color: AppColors.textPrimary,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 0.2,
+                  ),
+                );
+              },
             ),
 
             const SizedBox(height: 4),

@@ -9,6 +9,7 @@ import 'creator_screen.dart';
 import 'outfits/outfit_manager_screen.dart';
 import 'haircuts/haircut_manager_screen.dart';
 import 'recommendations/manage_daily_recommendation_screen.dart';
+import '../widgets/manage_plans_dialog.dart';
 
 class CourseListScreen extends StatefulWidget {
   final CreatorController controller;
@@ -353,6 +354,17 @@ class _CourseListScreenState extends State<CourseListScreen> {
             style: OutlinedButton.styleFrom(
               foregroundColor: Colors.amberAccent,
               side: const BorderSide(color: Colors.amberAccent, width: 1.2),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            ),
+          ),
+          const SizedBox(width: 8),
+          OutlinedButton.icon(
+            onPressed: () => ManagePlansDialog.show(context),
+            icon: const Icon(Icons.card_membership_outlined, size: 16),
+            label: const Text('Planos & Preços'),
+            style: OutlinedButton.styleFrom(
+              foregroundColor: Colors.greenAccent,
+              side: const BorderSide(color: Colors.greenAccent, width: 1.2),
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
             ),
           ),

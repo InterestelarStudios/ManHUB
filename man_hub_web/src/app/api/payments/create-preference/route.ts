@@ -57,12 +57,34 @@ export async function POST(req: NextRequest) {
           ? userEmail.trim().toLowerCase()
           : "contato@manhub.app";
 
+      // Obtenção dinâmica do valor da assinatura no Firestore
+      let transactionAmount = 49.90;
+      try {
+        const planDoc = await getDoc(doc(db, "plans", "man_hub_pass"));
+        if (planDoc.exists()) {
+          const planData = planDoc.data();
+          if (typeof planData.price === "number" && planData.price > 0) {
+            transactionAmount = planData.price;
+          } else if (planData.price) {
+            const n = Number(planData.price);
+            if (!isNaN(n) && n > 0) transactionAmount = n;
+          }
+        } else if (price && !isNaN(Number(price)) && Number(price) > 0) {
+          transactionAmount = Number(price);
+        }
+      } catch (e) {
+        console.warn("Erro ao buscar plano no Firestore:", e);
+        if (price && !isNaN(Number(price)) && Number(price) > 0) {
+          transactionAmount = Number(price);
+        }
+      }
+
       const subscriptionPayload = {
         reason: "Man Hub Pass (Acesso Ilimitado)",
         auto_recurring: {
           frequency: 1,
           frequency_type: "months",
-          transaction_amount: 49.90,
+          transaction_amount: transactionAmount,
           currency_id: "BRL",
         },
         back_url: subBackUrl,
@@ -103,7 +125,7 @@ export async function POST(req: NextRequest) {
           preferenceId: subData.id,
           initPoint: subData.init_point,
           sandboxInitPoint: subData.sandbox_init_point,
-          finalPrice: 49.90,
+          finalPrice: transactionAmount,
           isSubscription: true,
         },
         {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/services/auth_service.dart';
+import '../../core/services/plan_service.dart';
 import '../screens/auth/auth_screen.dart';
 
 class SubscriptionBottomSheet extends StatefulWidget {
@@ -22,9 +23,26 @@ class SubscriptionBottomSheet extends StatefulWidget {
 
 class _SubscriptionBottomSheetState extends State<SubscriptionBottomSheet> {
   final AuthService _authService = AuthService();
+  final PlanService _planService = PlanService();
   bool _isSyncing = false;
   String? _syncFeedback;
   bool _syncNotFound = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _planService.addListener(_onPlanChanged);
+  }
+
+  @override
+  void dispose() {
+    _planService.removeListener(_onPlanChanged);
+    super.dispose();
+  }
+
+  void _onPlanChanged() {
+    if (mounted) setState(() {});
+  }
 
   Future<void> _openPortal() async {
     final uri = Uri.parse('https://manhub.app');
@@ -210,7 +228,7 @@ class _SubscriptionBottomSheetState extends State<SubscriptionBottomSheet> {
                         ),
                         const Spacer(),
                         Text(
-                          isSubscribed ? 'Membro Ativo' : 'Clube de Membros',
+                          isSubscribed ? 'Membro Ativo' : _planService.formattedMonthlyPrice,
                           style: const TextStyle(
                             color: AppColors.neonLight,
                             fontSize: 14,

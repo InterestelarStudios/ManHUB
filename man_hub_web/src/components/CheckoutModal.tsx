@@ -17,6 +17,7 @@ import { collection, onSnapshot } from "firebase/firestore";
 import { useAuth } from "@/lib/context/AuthContext";
 import AuthModal from "@/components/auth/AuthModal";
 import { trackInitiateCheckout } from "@/lib/tracking/pixel";
+import { subscribeToPlan, PlanData, DEFAULT_PASS_PLAN } from "@/lib/services/plans";
 
 interface CheckoutModalProps {
   isOpen: boolean;
@@ -53,13 +54,19 @@ export default function CheckoutModal({
     defaultTrainingId || "e0ee6636-cea6-4f59-8242-6b7270f8254d"
   );
   const [trainingsList, setTrainingsList] = useState<ModalTraining[]>(DEFAULT_TRAININGS);
+  const [passPlan, setPassPlan] = useState<PlanData>(DEFAULT_PASS_PLAN);
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
 
   useEffect(() => {
+    const unsubPlan = subscribeToPlan("man_hub_pass", (plan) => {
+      setPassPlan(plan);
+    });
+
+    let unsubTrainings = () => {};
     try {
-      const unsub = onSnapshot(collection(db, "trainings"), (snapshot) => {
+      unsubTrainings = onSnapshot(collection(db, "trainings"), (snapshot) => {
         if (!snapshot.empty) {
           const list: ModalTraining[] = snapshot.docs.map((docSnap) => {
             const data = docSnap.data();
@@ -79,10 +86,14 @@ export default function CheckoutModal({
           setTrainingsList(list);
         }
       });
-      return () => unsub();
     } catch (err) {
       console.warn("Aviso ao buscar treinamentos para Checkout:", err);
     }
+
+    return () => {
+      unsubPlan();
+      unsubTrainings();
+    };
   }, []);
 
   useEffect(() => {
@@ -95,7 +106,7 @@ export default function CheckoutModal({
   const selectedTrainingObj = trainingsList.find((t) => t.id === selectedTraining);
   const currentPrice =
     planType === "pass"
-      ? 49.9
+      ? passPlan.price
       : selectedTrainingObj?.price ?? defaultPrice ?? 97.0;
   const currentTitle =
     planType === "pass"
@@ -191,7 +202,9 @@ export default function CheckoutModal({
                   Acesse todos os 3 cursos atuais e lançamentos futuros
                 </span>
               </div>
-              <span className={styles.planPrice}>R$ 49,90/mês</span>
+              <span className={styles.planPrice}>
+                R$ {passPlan.price.toFixed(2).replace(".", ",")}/mês
+              </span>
             </div>
 
             <div
