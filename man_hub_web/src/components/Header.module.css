@@ -30,6 +30,8 @@
   align-items: center;
   gap: 12px;
   cursor: pointer;
+  text-decoration: none;
+  flex-shrink: 0;
 }
 
 .logoIcon {
@@ -45,37 +47,46 @@
   font-weight: 900;
   font-size: 20px;
   font-family: var(--font-heading);
+  flex-shrink: 0;
 }
 
 .logoText {
   display: flex;
   flex-direction: column;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .logoTitle {
   font-family: var(--font-heading);
   font-weight: 800;
-  font-size: 20px;
+  font-size: 19px;
   letter-spacing: 0.08em;
   color: #FFFFFF;
+  line-height: 1.15;
+  white-space: nowrap;
 }
 
 .logoSubtitle {
-  font-size: 10px;
+  font-size: 9.5px;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.18em;
   color: var(--neon-light);
   font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
 }
 
 .nav {
   display: flex;
   align-items: center;
-  gap: 32px;
+  justify-content: center;
+  gap: 10px;
+  margin: 0 12px;
 }
 
 .navLink {
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 500;
   color: var(--text-secondary);
   transition: all 0.25s ease;
@@ -85,6 +96,8 @@
   gap: 6px;
   padding: 6px 12px;
   border-radius: var(--radius-full);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .navLink:hover {
@@ -149,14 +162,17 @@
 .headerAction {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
+  flex-shrink: 0;
 }
 
 .loginBtn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
-  padding: 8px 16px;
+  height: 40px;
+  padding: 0 16px;
   font-size: 13.5px;
   font-weight: 700;
   color: var(--text-primary);
@@ -164,6 +180,8 @@
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: var(--radius-full);
   cursor: pointer;
+  white-space: nowrap;
+  box-sizing: border-box;
   transition: all 0.2s ease;
 }
 
@@ -177,22 +195,26 @@
 .ctaBtn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 22px;
-  font-size: 14px;
+  justify-content: center;
+  gap: 7px;
+  height: 40px;
+  padding: 0 20px;
+  font-size: 13.5px;
   font-weight: 700;
   color: #FFFFFF;
   background: linear-gradient(135deg, var(--neon-primary) 0%, var(--royal-blue) 100%);
   border-radius: var(--radius-full);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 0 20px var(--neon-glow);
+  box-shadow: 0 0 16px var(--neon-glow);
   cursor: pointer;
-  transition: all 0.3s ease;
+  white-space: nowrap;
+  box-sizing: border-box;
+  transition: all 0.25s ease;
 }
 
 .ctaBtn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 0 28px rgba(0, 191, 255, 0.6);
+  box-shadow: 0 0 24px rgba(0, 191, 255, 0.6);
 }
 
 .mobileMenuBtn {
@@ -253,12 +275,33 @@
   display: inline-block;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1040px) {
   .nav {
     display: none;
   }
 
   .mobileMenuBtn {
     display: block;
+  }
+}
+
+@media (max-width: 540px) {
+  .logoTitle {
+    font-size: 17px;
+  }
+
+  .logoSubtitle {
+    font-size: 8.5px;
+  }
+
+  .ctaBtn {
+    padding: 0 14px;
+    font-size: 12.5px;
+    gap: 5px;
+  }
+
+  .loginBtn {
+    padding: 0 12px;
+    font-size: 12.5px;
   }
 }

@@ -67,7 +67,6 @@ export default function Header({ onOpenCheckout }: HeaderProps) {
           </Link>
           <Link href="/#app" className={styles.navLink}>O App</Link>
           <Link href="/#pilares" className={styles.navLink}>Pilares</Link>
-          <Link href="/#diagnostico" className={styles.navLink}>Diagnóstico</Link>
           <Link href="/#depoimentos" className={styles.navLink}>Depoimentos</Link>
           <Link href="/#faq" className={styles.navLink}>FAQ</Link>
         </nav>
