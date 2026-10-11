@@ -274,6 +274,12 @@ export default function ContaPage() {
                         alt={course.title}
                         className={styles.cardImage}
                       />
+                      <div className={styles.cardImageOverlay} />
+                      {course.category && (
+                        <span className={styles.categoryBadgeOverlay}>
+                          {course.category}
+                        </span>
+                      )}
                       {percent === 100 && (
                         <span className={styles.completedBadgeOverlay}>
                           <CheckCircle2 size={12} /> Concluído
@@ -298,22 +304,22 @@ export default function ContaPage() {
                       )}
                     </div>
 
-                    {completedCount > 0 && (
-                      <div className={styles.courseProgressBox}>
-                        <div className={styles.courseProgressHeader}>
-                          <span className={styles.courseProgressText}>
-                            {completedCount} de {totalSessions} aulas concluídas
-                          </span>
-                          <span className={styles.courseProgressPercent}>{percent}%</span>
-                        </div>
-                        <div className={styles.progressBarTrack}>
-                          <div
-                            className={styles.progressBarFill}
-                            style={{ width: `${percent}%` }}
-                          />
-                        </div>
+                    <div className={styles.courseProgressBox}>
+                      <div className={styles.courseProgressHeader}>
+                        <span className={styles.courseProgressText}>
+                          {completedCount > 0
+                            ? `${completedCount} de ${totalSessions} aulas concluídas`
+                            : `0 de ${totalSessions} aulas concluídas`}
+                        </span>
+                        <span className={styles.courseProgressPercent}>{percent}%</span>
                       </div>
-                    )}
+                      <div className={styles.progressBarTrack}>
+                        <div
+                          className={styles.progressBarFill}
+                          style={{ width: `${percent}%` }}
+                        />
+                      </div>
+                    </div>
 
                     {hasAccess ? (
                       resumeSessionId && (

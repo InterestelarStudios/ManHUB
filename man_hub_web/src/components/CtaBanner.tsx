@@ -42,19 +42,18 @@ export default function CtaBanner() {
             }}
           />
 
-          <span className="badge-gold">
+          <span className="badge-neon">
             <Sparkles size={13} />
-            Aplicativo Mobile em Homologação
+            Aplicativo Oficial Disponível na Google Play
           </span>
 
           <h2 className={styles.bannerTitle}>
-            Seja um dos primeiros a experimentar o <br />
-            <span className="text-gradient">MAN HUB nas lojas oficiais.</span>
+            Baixe o <span className="text-gradient">MAN HUB na Google Play</span> <br />
+            ou acesse diretamente pelo navegador.
           </h2>
 
           <p className={styles.bannerSubtitle}>
-            O aplicativo está em fase final de homologação e testes fechados. Cadastre seu e-mail para
-            receber o convite VIP e ser notificado no instante em que estiver liberado para download.
+            O aplicativo oficial já está disponível para Android na Google Play Store! A versão iOS (App Store) está em fase de homologação. Baixe agora ou cadastre seu e-mail para receber novidades e avisos VIP.
           </p>
 
           {/* Interactive Waitlist Form */}
@@ -78,23 +77,21 @@ export default function CtaBanner() {
               <div className={styles.successAlert}>
                 <CheckCircle2 size={20} color="var(--success)" />
                 <span>
-                  Inscrição confirmada! Você será avisado no instante em que o app for lançado.
+                  Inscrição confirmada! Você receberá novidades e avisos VIP.
                 </span>
               </div>
             )}
           </div>
 
-          {/* Store Buttons with 'Em Breve' */}
+          {/* Store Buttons */}
           <div className={styles.buttonGroup}>
-            <div className={styles.storeBadgeBtn}>
-              <Apple size={24} />
-              <div className={styles.storeBadgeText}>
-                <span className={styles.storeBadgeSmall}>Em breve na</span>
-                <span className={styles.storeBadgeName}>App Store</span>
-              </div>
-            </div>
-
-            <div className={styles.storeBadgeBtn}>
+            <a
+              href="https://play.google.com/store/apps/details?id=com.interestelar.manhub"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.storeBadgeBtn}
+              style={{ textDecoration: "none" }}
+            >
               <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M3.609 1.814L13.792 12 3.61 22.186a1.99 1.99 0 0 1-.61-.91V2.724c0-.336.075-.658.21-.91z"
@@ -114,8 +111,16 @@ export default function CtaBanner() {
                 />
               </svg>
               <div className={styles.storeBadgeText}>
-                <span className={styles.storeBadgeSmall}>Em breve no</span>
+                <span className={styles.storeBadgeSmall}>Disponível no</span>
                 <span className={styles.storeBadgeName}>Google Play</span>
+              </div>
+            </a>
+
+            <div className={styles.storeBadgeBtn} style={{ opacity: 0.85 }}>
+              <Apple size={24} />
+              <div className={styles.storeBadgeText}>
+                <span className={styles.storeBadgeSmall}>Em breve na</span>
+                <span className={styles.storeBadgeName}>App Store</span>
               </div>
             </div>
           </div>

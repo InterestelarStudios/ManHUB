@@ -23,9 +23,18 @@ export default function Footer() {
               A imagem é apenas o começo. A sua Academia de Desenvolvimento Masculino:
               transformação de imagem, princípios de homem de valor e presença de alto nível.
             </p>
-            <div style={{ marginTop: "4px" }}>
+            <div style={{ marginTop: "8px", display: "flex", flexWrap: "wrap", gap: "6px" }}>
+              <a
+                href="https://play.google.com/store/apps/details?id=com.interestelar.manhub"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="badge-cyan"
+                style={{ fontSize: "10.5px", textDecoration: "none" }}
+              >
+                Disponível no Google Play ↗
+              </a>
               <span className="badge-gold" style={{ fontSize: "10.5px" }}>
-                Lançamento em Breve na App Store & Google Play
+                Em breve na App Store
               </span>
             </div>
           </div>

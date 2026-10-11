@@ -51,7 +51,12 @@ export default function Hero() {
               </div>
             </a>
 
-            <a href="#download" className={styles.storeBtn}>
+            <a
+              href="https://play.google.com/store/apps/details?id=com.interestelar.manhub"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.storeBtn}
+            >
               <div style={{ display: "flex", alignItems: "center" }}>
                 {/* Google Play SVG icon */}
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -62,7 +67,7 @@ export default function Hero() {
                 </svg>
               </div>
               <div className={styles.storeText}>
-                <span className={styles.storeSmall}>Em breve no</span>
+                <span className={styles.storeSmall}>Disponível no</span>
                 <span className={styles.storeName}>Google Play</span>
               </div>
             </a>
