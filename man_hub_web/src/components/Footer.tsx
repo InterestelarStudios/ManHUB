@@ -103,7 +103,15 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className={styles.bottomBar}>
           <span className={styles.copyright}>
-            © 2026 MAN HUB. Todos os direitos reservados. Uma marca Interestelar Studios.
+            © 2026 MAN HUB. Todos os direitos reservados. Uma marca{" "}<a
+              href="https://interestelar.studio"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.brandLink}
+            >
+              Interestelar Studios
+            </a>
+            .
           </span>
 
           <div className={styles.legalLinks}>

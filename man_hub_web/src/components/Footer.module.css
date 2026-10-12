@@ -126,3 +126,14 @@
     align-items: flex-start;
   }
 }
+
+.brandLink {
+  color: var(--text-secondary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
+}
+
+.brandLink:hover {
+  color: var(--neon-primary, #00BFFF);
+}
