@@ -3,15 +3,18 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { getPlayableSession } from "@/lib/coursesData";
+import { getPlayableSession, getCourseById } from "@/lib/coursesData";
+import { useTrainings } from "@/lib/hooks/useTrainings";
 import StoryPlayer from "@/components/player/StoryPlayer";
 import CheckoutModal from "@/components/CheckoutModal";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Loader2 } from "lucide-react";
 
 export default function LessonStoryPlayerPage() {
   const params = useParams();
   const trainingId = params?.trainingId as string;
   const sessionId = params?.sessionId as string;
+
+  const { trainings, loading } = useTrainings();
 
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [selectedTrainingInfo, setSelectedTrainingInfo] = useState<{
@@ -19,7 +22,39 @@ export default function LessonStoryPlayerPage() {
     title: string;
   }>({ id: "", title: "" });
 
-  const sessionContext = getPlayableSession(trainingId, sessionId);
+  const currentTraining =
+    trainings.find((c) => c.id === trainingId) || getCourseById(trainingId);
+
+  const sessionContext = currentTraining
+    ? getPlayableSession(trainingId, sessionId, currentTraining)
+    : null;
+
+  if (loading && !sessionContext) {
+    return (
+      <div
+        style={{
+          minHeight: "100vh",
+          backgroundColor: "#040D1A",
+          color: "#E0E6EE",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: "2rem",
+          textAlign: "center",
+        }}
+      >
+        <Loader2
+          size={36}
+          className="animate-spin"
+          style={{ color: "#00BFFF", marginBottom: "1rem" }}
+        />
+        <p style={{ color: "#8A9AAB", fontSize: "0.95rem" }}>
+          Carregando aula...
+        </p>
+      </div>
+    );
+  }
 
   if (!sessionContext) {
     return (

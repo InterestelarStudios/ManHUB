@@ -7,6 +7,7 @@ import styles from "./Conta.module.css";
 import { useAuth } from "@/lib/context/AuthContext";
 import { useProgress } from "@/lib/context/ProgressContext";
 import { getAllCourses } from "@/lib/coursesData";
+import { useTrainings } from "@/lib/hooks/useTrainings";
 import { db } from "@/lib/firebase";
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import AuthModal from "@/components/auth/AuthModal";
@@ -51,7 +52,7 @@ export default function ContaPage() {
   const [selectedTrainingId, setSelectedTrainingId] = useState<string | undefined>();
   const [selectedTrainingTitle, setSelectedTrainingTitle] = useState<string | undefined>();
 
-  const courses = getAllCourses();
+  const { trainings: courses } = useTrainings();
 
   useEffect(() => {
     if (profile) {

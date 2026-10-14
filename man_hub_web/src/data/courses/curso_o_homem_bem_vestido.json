@@ -7,7 +7,7 @@
   "duration": "5 horas",
   "coverImageUrl": "https://images.unsplash.com/photo-1593032465175-481ac7f401a0?q=80&w=800&auto=format&fit=crop",
   "requirements": "Nenhum pré-requisito necessário. Recomendado para homens que buscam elevar sua presença, autoridade e estilo pessoal.",
-  "updatedAt": "2026-09-11T04:42:23.451",
+  "updatedAt": "2026-10-15T01:07:47.820",
   "modules": [
     {
       "id": "8c090a6b-c72d-43fe-bdff-ac9372921ef8",
@@ -4434,5 +4434,12 @@
         }
       ]
     }
-  ]
+  ],
+  "category": "Estilo",
+  "categories": [
+    "Estilo",
+    "Jornada",
+    "Shopping"
+  ],
+  "price": 119.9
 }

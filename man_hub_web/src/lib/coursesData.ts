@@ -34,9 +34,10 @@ export function getCourseById(id: string): Training | undefined {
 
 export function getPlayableSession(
   trainingId: string,
-  sessionId: string
+  sessionId: string,
+  trainingSource?: Training
 ): PlayableSessionContext | null {
-  const training = getCourseById(trainingId);
+  const training = trainingSource || getCourseById(trainingId);
   if (!training) return null;
 
   // Flatten all sessions to calculate global index, previous and next
